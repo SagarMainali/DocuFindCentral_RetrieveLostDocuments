@@ -1,6 +1,8 @@
 
 export default function SideNavbar() {
      return (
-          <div>SideNavbar</div>
+          <div className="b w-[200px]">
+               SideNavbar
+          </div>
      )
 }

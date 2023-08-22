@@ -4,9 +4,9 @@ import TopNavbar from "./TopNavbar"
 
 export default function Layout() {
      return (
-          <div className="grid grid-cols-2">
+          <div className="flex">
                <SideNavbar />
-               <div>
+               <div className="flex-1">
                     <TopNavbar />
                     <Outlet />
                </div>

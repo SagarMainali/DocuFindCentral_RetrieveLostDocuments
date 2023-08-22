@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* for testing elements with border */
+.b{
+     border: 2px solid red;
+}

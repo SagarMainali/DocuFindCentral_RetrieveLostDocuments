@@ -1,6 +1,8 @@
 
 export default function TopNavbar() {
      return (
-          <div>TopNavbar</div>
+          <div className="b">
+               TopNavbar
+          </div>
      )
 }
