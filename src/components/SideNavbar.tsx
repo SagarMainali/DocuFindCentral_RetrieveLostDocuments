@@ -10,7 +10,10 @@ export default function SideNavbar() {
      return (
           <div className={`bg-primary-dark overflow-hidden duration-300 ${isMenuOpened ? 'w-[240px]' : 'w-[0px]'}`}>
                <header className="h-[60px] w-[240px] flex items-center text-slate-50 font-medium px-4">
-                    <NavLink to='/'>Lost Document Finder</NavLink>
+                    <NavLink to='/' className='flex items-center gap-[6px]'>
+                         <img src="logo.svg" alt="logo" className='w-[27px]' />
+                         <h2 className='text-[17px]'>DocuFind Central</h2>
+                    </NavLink>
                </header>
 
                <div className="text-slate-50 w-[240px] flex flex-col gap-1">
