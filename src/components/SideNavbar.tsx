@@ -11,9 +11,9 @@ export default function SideNavbar() {
           <div className={`bg-primary-dark overflow-hidden duration-300 drop-shadow-[10px_0_15px_rgba(0,0,0,0.25)] whitespace-nowrap
           ${isMenuOpened ? 'w-[240px]' : 'w-[55px]'}`}>
 
-               <header className="h-[60px] flex items-center justify-center text-slate-50 font-medium px-4">
+               <header className="h-[60px] flex items-center justify-center text-slate-50 font-medium px-4 group">
                     <NavLink to='/' className='flex items-center justify-center gap-[6px]'>
-                         <img src="./icons/nav-icons/logo.svg" alt="logo" className='w-[27px]' />
+                         <img src="./icons/nav-icons/logo.svg" alt="logo" className='w-[27px] group-hover:animate-spin' />
                          <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >DocuFind Central</h2>
                     </NavLink>
                </header>
