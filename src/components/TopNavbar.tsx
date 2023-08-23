@@ -6,7 +6,7 @@ export default function TopNavbar() {
      const dispatch = useAppDispatch()
 
      return (
-          <header className="flex justify-between items-center h-[50px] bg-[#333A56] px-5">
+          <header className="flex justify-between items-center h-[60px] bg-primary-dark px-5">
                <span className="nav-left">
                     <svg onClick={() => dispatch(toggleMenu())}
                          className="fill-slate-50 cursor-pointer"
@@ -17,7 +17,7 @@ export default function TopNavbar() {
                     </svg>
                </span>
 
-               <span className="nav-right flex items-center gap-6">
+               <span className="nav-right flex items-center gap-5">
                     <span className="flex items-center gap-1 cursor-pointer">
                          <img src="nepal.svg" alt="language-mode-Nepali" className="w-[14px]" />
                          <h2 className="text-slate-50 text-[14px] tracking-wide">NEP</h2>

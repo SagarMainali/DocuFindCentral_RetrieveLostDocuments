@@ -1,0 +1,21 @@
+.navlinks-container>div {
+     display: flex;
+     flex-direction: column;
+}
+
+.navlinks-container>div>h2 {
+     font-weight: 600 !important;
+}
+
+hr {
+     padding: 0 16px;
+     margin-top: 3px !important;
+}
+
+.navlink {
+     opacity: 0.9;
+}
+
+.navlink-active {
+     
+}
