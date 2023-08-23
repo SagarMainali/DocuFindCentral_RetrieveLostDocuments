@@ -5,7 +5,7 @@ import '../styles/side-navbar.css'
 
 export default function SideNavbar() {
 
-     const isMenuOpened = useAppSelector((state) => state.menuToggler)
+     const isMenuOpened = useAppSelector((state) => state.navbar.isMenuOpened)
 
      return (
           <div className={`bg-primary-dark overflow-hidden duration-300 ${isMenuOpened ? 'w-[240px]' : 'w-[0px]'}`}>
