@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 
 import Layout from './components/Layout'
-import HomePage from './pages/HomePage'
+import LandingPage from './pages/LandingPage'
 
 function App() {
 
@@ -9,7 +9,7 @@ function App() {
     <div className="">
       <Routes >
         <Route path='/' element={<Layout />} >
-          <Route index element={<HomePage />} />
+          <Route index element={<LandingPage />} />
         </Route>
       </Routes>
     </div>
