@@ -8,33 +8,62 @@ export default function SideNavbar() {
      const isMenuOpened = useAppSelector((state) => state.navbar.isMenuOpened)
 
      return (
-          <div className={`bg-primary-dark overflow-hidden duration-300 ${isMenuOpened ? 'w-[240px]' : 'w-[0px]'}`}>
-               <header className="h-[60px] w-[240px] flex items-center text-slate-50 font-medium px-4">
-                    <NavLink to='/' className='flex items-center gap-[6px]'>
-                         <img src="logo.svg" alt="logo" className='w-[27px]' />
-                         <h2 className='text-[17px]'>DocuFind Central</h2>
+          <div className={`bg-primary-dark overflow-hidden duration-300 drop-shadow-[10px_0_15px_rgba(0,0,0,0.25)] whitespace-nowrap
+          ${isMenuOpened ? 'w-[240px]' : 'w-[55px]'}`}>
+
+               <header className="h-[60px] flex items-center justify-center text-slate-50 font-medium px-4">
+                    <NavLink to='/' className='flex items-center justify-center gap-[6px]'>
+                         <img src="./icons/nav-icons/logo.svg" alt="logo" className='w-[27px]' />
+                         <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >DocuFind Central</h2>
                     </NavLink>
                </header>
 
-               <div className="text-slate-50 w-[240px] flex flex-col gap-1">
+               <div className="text-slate-50 flex flex-col gap-1">
 
-                    <NavLink to="/" className={({ isActive }) => `navlink ${isActive ? 'navlink-active' : ''}`}>Document Lost</NavLink>
+                    <NavLink to="/a" className={({ isActive }) => `navlink flex gap-2 items-center ${isActive ? 'navlink-active' : ''}`}>
+                         <img src="./icons/nav-icons/lost-doc.svg" alt="lost-doc" className='w-[22px]' />
+                         <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >Document lost</h2>
+                    </NavLink>
 
-                    <NavLink to="/b" className={({ isActive }) => `navlink ${isActive ? 'navlink-active' : ''}`}>Document Found</NavLink>
+                    <NavLink to="/b" className={({ isActive }) => `navlink flex gap-2 items-center ${isActive ? 'navlink-active' : ''}`}>
+                         <img src="./icons/nav-icons/found-doc.svg" alt="found-doc" className='w-[22px]' />
+                         <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >Document found</h2>
+                    </NavLink>
 
-                    <NavLink to="/c" className={({ isActive }) => `navlink ${isActive ? 'navlink-active' : ''}`}>View unsolved tickets</NavLink>
+                    <NavLink to="/b" className={({ isActive }) => `navlink flex gap-2 items-center ${isActive ? 'navlink-active' : ''}`}>
+                         <img src="./icons/nav-icons/solved-tickets.svg" alt="solved-tickets" className='w-[22px]' />
+                         <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >View solved tickets</h2>
+                    </NavLink>
 
-                    <NavLink to="/d" className={({ isActive }) => `navlink ${isActive ? 'navlink-active' : ''}`}>View solved tickets</NavLink>
+                    <NavLink to="/b" className={({ isActive }) => `navlink flex gap-2 items-center ${isActive ? 'navlink-active' : ''}`}>
+                         <img src="./icons/nav-icons/unsolved-tickets.svg" alt="unsolved-tickets" className='w-[22px]' />
+                         <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >View unsolved tickets</h2>
+                    </NavLink>
 
-                    <NavLink to="/e" className={({ isActive }) => `navlink ${isActive ? 'navlink-active' : ''}`}>Great beings</NavLink>
+                    <NavLink to="/b" className={({ isActive }) => `navlink flex gap-2 items-center ${isActive ? 'navlink-active' : ''}`}>
+                         <img src="./icons/nav-icons/great-beings.svg" alt="great-beings" className='w-[22px]' />
+                         <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >Great beings</h2>
+                    </NavLink>
 
-                    <NavLink to="/f" className={({ isActive }) => `navlink ${isActive ? 'navlink-active' : ''}`}>How it works</NavLink>
+                    <NavLink to="/b" className={({ isActive }) => `navlink flex gap-2 items-center ${isActive ? 'navlink-active' : ''}`}>
+                         <img src="./icons/nav-icons/how-it-works.svg" alt="how-it-works" className='w-[22px]' />
+                         <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >How it works</h2>
+                    </NavLink>
 
-                    <NavLink to="/g" className={({ isActive }) => `navlink ${isActive ? 'navlink-active' : ''}`}>Privacy Policy</NavLink>
+                    <NavLink to="/b" className={({ isActive }) => `navlink flex gap-2 items-center ml-[1px] ${isActive ? 'navlink-active' : ''}`}>
+                         <img src="./icons/nav-icons/provide-feedback.svg" alt="provide-feedback" className='w-[22px]' />
+                         <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >Provide feedback</h2>
+                    </NavLink>
 
-                    <NavLink to="/h" className={({ isActive }) => `navlink ${isActive ? 'navlink-active' : ''}`}>About Us</NavLink>
+                    <NavLink to="/b" className={({ isActive }) => `navlink flex gap-2 items-center ml-[2px] ${isActive ? 'navlink-active' : ''}`}>
+                         <img src="./icons/nav-icons/privacy-policy.svg" alt="privacy-policy" className='w-[20px]' />
+                         <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >Privacy policy</h2>
+                    </NavLink>
 
-                    <NavLink to="/i" className={({ isActive }) => `navlink ${isActive ? 'navlink-active' : ''}`}>Provide Feedback</NavLink>
+                    <NavLink to="/b" className={({ isActive }) => `navlink flex gap-2 items-center ml-[4px] ${isActive ? 'navlink-active' : ''}`}>
+                         <img src="./icons/nav-icons/about-us.svg" alt="about-us" className='w-[18px]' />
+                         <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >About us</h2>
+                    </NavLink>
 
                </div>
           </div>

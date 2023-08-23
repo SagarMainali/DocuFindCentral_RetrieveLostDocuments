@@ -9,7 +9,7 @@ export default function TopNavbar() {
      const dispatch = useAppDispatch()
 
      return (
-          <header className="flex justify-between items-center h-[60px] bg-primary-dark px-6">
+          <header className="flex justify-between items-center h-[60px] bg-primary-dark px-6 drop-shadow-[0_10px_15px_rgba(0,0,0,0.25)]">
                <span className="nav-left">
                     <svg onClick={() => dispatch(toggleMenu())}
                          className="fill-slate-50 cursor-pointer"
@@ -25,12 +25,12 @@ export default function TopNavbar() {
                          {isEnglish
                               ?
                               <span className="flex items-center gap-1">
-                                   <img src="nepal.svg" alt="language-mode-Nepali" className="w-[14px]" />
+                                   <img src="./icons/nav-icons/nepal.svg" alt="language-mode-Nepali" className="w-[14px]" />
                                    <h2 className="text-slate-50 text-[14px] tracking-wide">NEP</h2>
                               </span>
                               :
                               <span className="flex items-center gap-1">
-                                   <img src="usa.svg" alt="language-mode-English" className="w-[24px]" />
+                                   <img src="./icons/nav-icons/usa.svg" alt="language-mode-English" className="w-[24px]" />
                                    <h2 className="text-slate-50 text-[14px]">ENG</h2>
                               </span>
                          }
