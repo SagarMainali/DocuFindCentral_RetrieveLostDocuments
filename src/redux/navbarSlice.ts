@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const navbarInitials = {
-     isMenuOpened: true,
+     isMenuOpened: false,
      isEnglish: true,
      isLight: true
 }
