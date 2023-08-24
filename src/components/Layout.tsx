@@ -16,7 +16,8 @@ export default function Layout() {
 
                <SideNavbar />
 
-               <div className="flex-1" onClick={() => isMenuOpened && dispatch(toggleMenu(false))}>
+               <div className="flex-1 relative" onClick={() => isMenuOpened && dispatch(toggleMenu(false))}>
+                    {isMenuOpened && <div className="absolute inset-0 bg-secondary-dark/70 z-10"></div>}
                     <TopNavbar />
                     <Outlet />
                </div>
