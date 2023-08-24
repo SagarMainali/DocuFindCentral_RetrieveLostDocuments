@@ -16,7 +16,7 @@ export default function Layout() {
 
                <SideNavbar />
 
-               <div className="flex-1" onClick={() => isMenuOpened && dispatch(toggleMenu())}>
+               <div className="flex-1" onClick={() => isMenuOpened && dispatch(toggleMenu(false))}>
                     <TopNavbar />
                     <Outlet />
                </div>

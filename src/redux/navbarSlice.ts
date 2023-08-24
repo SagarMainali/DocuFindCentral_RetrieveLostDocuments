@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const navbarInitials = {
      isMenuOpened: true,
@@ -10,8 +10,8 @@ const navbarSlice = createSlice({
      name: 'navbar',
      initialState: navbarInitials,
      reducers: {
-          toggleMenu(state) {
-               state.isMenuOpened = !state.isMenuOpened
+          toggleMenu(state, action: PayloadAction<boolean | undefined>) {
+               state.isMenuOpened = action.payload ?? !state.isMenuOpened
           },
           changeLanguage(state) {
                state.isEnglish = !state.isEnglish
