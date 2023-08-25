@@ -9,7 +9,7 @@ export default function SideNavbar() {
 
      return (
           <div className={`bg-primary-dark overflow-hidden h-[100vh] duration-300 drop-shadow-[10px_0_15px_rgba(0,0,0,0.25)] whitespace-nowrap 
-          max-md:absolute z-20 ${isMenuOpened ? 'md:w-[250px] w-0' : 'md:w-[55px] w-0'}`}>
+          max-md:absolute z-20 ${isMenuOpened ? 'w-[250px]' : 'md:w-[55px] w-0'}`}>
 
                <header className="h-[60px] flex items-center justify-center text-slate-50 font-medium px-4">
                     <NavLink to='/' className='flex items-center justify-center gap-[6px] group'>
