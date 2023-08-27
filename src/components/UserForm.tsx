@@ -1,8 +1,20 @@
+import Select from 'react-select'
+import { useState } from 'react'
+
 import '../styles/userForm.css'
 
 function UserForm({ formType }: { formType: string }) {
+
+     const [selectedOption, setSelectedOption] = useState()
+
+     const options = [
+          { value: 'citizenship', label: 'CitizenShip' },
+          { value: 'license', label: 'License' },
+          { value: 'passport', label: 'Passport' }
+     ]
+
      return (
-          <form className="font-poppins flex flex-col gap-6">
+          <form className="font-poppins flex flex-col gap-6 max-w-[600px]">
                <h1 className='font-bold text-[#808080] text-center'>
                     DOCUMENT
                     <span className='text-primary-dark'>
@@ -30,7 +42,13 @@ function UserForm({ formType }: { formType: string }) {
                <div>
                     <h2 className="form-sub-title">DOCUMENT</h2>
                     <div className='form-field-group'>
-
+                         <Select
+                              className='select col-span-full'
+                              defaultValue={selectedOption}
+                              onChange={setSelectedOption}
+                              options={options}
+                              placeholder='Select document type'
+                         />
                     </div>
                </div>
 

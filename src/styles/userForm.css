@@ -23,6 +23,12 @@
      border: 1px solid rgba(128, 128, 128, 0.4);
 }
 
+.select {
+     color: #808080;
+     font-size: 13px;
+     border-radius: 6px;
+}
+
 *::placeholder {
      font-size: 13px;
      letter-spacing: 0.4px;
@@ -58,10 +64,8 @@ textarea {
 }
 
 button {
-     display: block;
      padding: 8px 35px !important;
      border-radius: 6px;
      letter-spacing: 0.6px;
-     border: 0;
-     font-size: 15px;
+     font-size: 14px !important;
 }
