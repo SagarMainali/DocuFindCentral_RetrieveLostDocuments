@@ -1,8 +1,9 @@
+import UserForm from "../components/UserForm";
 
 export default function LostDocument() {
      return (
           <div className="cstm-paged">
-               <h2>Lost Documents</h2>
+               <UserForm formType="lost-doc" />
           </div>
      )
 }
