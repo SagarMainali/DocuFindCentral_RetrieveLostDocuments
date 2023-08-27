@@ -8,24 +8,24 @@ export default function SideNavbar() {
      const isMenuOpened = useAppSelector((state) => state.navbar.isMenuOpened)
 
      return (
-          <div className={`bg-primary-dark overflow-hidden h-[100vh] duration-300 drop-shadow-[10px_0_15px_rgba(0,0,0,0.25)] whitespace-nowrap 
+          <div className={`bg-primary-dark overflow-hidden h-[100vh] duration-200 drop-shadow-[10px_0_15px_rgba(0,0,0,0.25)] whitespace-nowrap 
           max-md:absolute z-20 ${isMenuOpened ? 'w-[250px]' : 'md:w-[55px] w-0'}`}>
 
                <header className="h-[60px] flex items-center justify-center text-slate-50 font-medium px-4">
                     <NavLink to='/' className='flex items-center justify-center gap-[6px] group'>
-                         <img src="./icons/nav-icons/logo.svg" alt="logo" className='w-[27px] group-hover:animate-spin' />
+                         <img src="./icons/nav-icons/logo.svg" alt="logo" className='w-[27px] animate-[spin_2s_ease-in-out]' />
                          <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >DocuFind Central</h2>
                     </NavLink>
                </header>
 
                <div className="text-slate-50 flex flex-col gap-1">
 
-                    <NavLink to="/a" className={({ isActive }) => `navlink flex gap-2 items-center ${isActive ? 'navlink-active' : ''}`}>
+                    <NavLink to="/lost-document" className={({ isActive }) => `navlink flex gap-2 items-center ${isActive ? 'navlink-active' : ''}`}>
                          <img src="./icons/nav-icons/lost-doc.svg" alt="lost-doc" className='w-[22px]' />
                          <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >Document lost</h2>
                     </NavLink>
 
-                    <NavLink to="/b" className={({ isActive }) => `navlink flex gap-2 items-center ${isActive ? 'navlink-active' : ''}`}>
+                    <NavLink to="/found-document" className={({ isActive }) => `navlink flex gap-2 items-center ${isActive ? 'navlink-active' : ''}`}>
                          <img src="./icons/nav-icons/found-doc.svg" alt="found-doc" className='w-[22px]' />
                          <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >Document found</h2>
                     </NavLink>

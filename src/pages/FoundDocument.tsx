@@ -1,7 +1,7 @@
 
-export default function FoundDoc() {
+export default function FoundDocument() {
      return (
-          <div>
+          <div className="cstm-paged">
                <h2>Found Documents</h2>
           </div>
      )

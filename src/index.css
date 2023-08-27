@@ -2,7 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/* for testing elements with border */
-.b{
-     border: 2px solid red;
+@layer base {
+
+     .cstm-paged{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 20px 0;
+     }
+
+     /* for testing elements with border */
+     .b {
+          border: 2px solid red;
+     }
 }

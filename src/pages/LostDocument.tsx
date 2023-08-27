@@ -1,7 +1,7 @@
 
-export default function LostDoc() {
+export default function LostDocument() {
      return (
-          <div>
+          <div className="cstm-paged">
                <h2>Lost Documents</h2>
           </div>
      )
