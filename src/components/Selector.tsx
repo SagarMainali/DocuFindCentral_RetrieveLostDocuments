@@ -21,8 +21,9 @@ export default function Selector({ placeholder, options, noOptionsMessage }: Pro
                isSearchable={noOptionsMessage ? true : false}
                noOptionsMessage={() => noOptionsMessage}
                styles={{
-                    control: (baseStyles, state) => ({
-                         ...baseStyles,
+                    // not using baseStyles here because we get zIndex with it which i couuldn't override
+                    control: (_, state) => ({
+                         display: 'flex',
                          borderWidth: '2px',
                          borderColor: state.isFocused ? '#475585' : 'rgba(128, 128, 128, 0.2)',
                          borderRadius: '6px',
@@ -35,7 +36,7 @@ export default function Selector({ placeholder, options, noOptionsMessage }: Pro
                     }),
                     valueContainer: (baseStyles) => ({
                          ...baseStyles,
-                         fontSize,
+                         fontSize
                     }),
                     option: (baseStyles) => ({
                          ...baseStyles,

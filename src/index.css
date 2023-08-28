@@ -8,6 +8,7 @@
           /* 60px is top-navbar's height */
           height: calc(100vh - 60px);
           display: flex;
+          /* without 'align-items:flex-start' the height of the child will be fixed */
           align-items: flex-start;
           justify-content: center;
           overflow-y: scroll;
