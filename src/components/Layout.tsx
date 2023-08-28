@@ -12,14 +12,17 @@ export default function Layout() {
      const dispatch = useAppDispatch()
 
      return (
-          <div className="flex relative">
+          <div className="flex relative max-w-[2000px] mx-auto">
 
                <SideNavbar />
 
                <div className="flex-1 relative" onClick={() => isMenuOpened && dispatch(toggleMenu(false))}>
+
                     {/* add overlay when menu is opened */}
                     {isMenuOpened && <div className="absolute inset-0 bg-secondary-dark/60 z-10"></div>}
+
                     <TopNavbar />
+
                     <Outlet />
                </div>
 

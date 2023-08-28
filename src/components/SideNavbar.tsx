@@ -8,7 +8,7 @@ export default function SideNavbar() {
      const isMenuOpened = useAppSelector((state) => state.navbar.isMenuOpened)
 
      return (
-          <div className={`bg-primary-dark overflow-hidden h-[100vh] duration-200 drop-shadow-[10px_0_15px_rgba(0,0,0,0.25)] whitespace-nowrap 
+          <div className={`bg-primary-dark overflow-hidden min-h-[100vh] duration-200 drop-shadow-[10px_0_15px_rgba(0,0,0,0.25)] whitespace-nowrap 
           max-md:absolute z-20 ${isMenuOpened ? 'w-[250px]' : 'md:w-[55px] w-0'}`}>
 
                <header className="h-[60px] flex items-center justify-center text-slate-50 font-medium px-4">

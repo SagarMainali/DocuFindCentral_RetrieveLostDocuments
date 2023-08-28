@@ -1,29 +1,19 @@
-import Select from 'react-select'
-import { useState } from 'react'
-
 import '../styles/userForm.css'
+import Selector from './Selector'
+import documentTypeOptions from '../options/documentTypeOptions'
+import districtOptions from '../options/districtOptions'
 
 function UserForm({ formType }: { formType: string }) {
 
-     const fontSize = '13px'
-
-     const [selectedValue, setSelectedValue] = useState(null)
-
-     const options = [
-          { value: 'citizenship', label: 'CitizenShip' },
-          { value: 'license', label: 'License' },
-          { value: 'passport', label: 'Passport' }
-     ]
-
      return (
           <form className="font-poppins flex flex-col gap-7 max-w-[600px]">
-               <h1 className='font-bold text-[#808080] text-center'>
+               <h1 className='font-bold text-[#808080] text-center text-[17px]'>
                     DOCUMENT
-                    <span className='text-primary-dark'>
+                    <span className='text-primary-dark mx-[7px]'>
                          {
                               formType === 'lost-doc'
-                                   ? ' "OWNER" '
-                                   : ' "FINDER" '
+                                   ? '"OWNER"'
+                                   : '"FINDER"'
                          }
                     </span>
                     FORM
@@ -46,44 +36,14 @@ function UserForm({ formType }: { formType: string }) {
                <div>
                     <h2 className="form-sub-title">DOCUMENT</h2>
                     <div className='form-field-group'>
-                         <Select
-                              className='col-span-full'
-                              defaultValue={selectedValue}
-                              // onChange={setSelectedValue}
-                              options={options}
-                              isSearchable={false}
+                         <Selector
                               placeholder='Select document type'
-                              styles={{
-                                   control: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        borderWidth: '2px',
-                                        borderColor: state.isFocused ? '#475585' : 'rgba(128, 128, 128, 0.2)',
-                                        borderRadius: '6px',
-                                        boxShadow: 'none',
-                                        '&:hover': {
-                                             boxShadow: 'none'
-                                        },
-                                        transition: '200ms',
-                                        padding: '2px 4px'
-                                   }),
-                                   valueContainer: (baseStyles) => ({
-                                        ...baseStyles,
-                                        fontSize,
-                                   }),
-                                   option: (baseStyles) => ({
-                                        ...baseStyles,
-                                        fontSize
-                                   }),
-                                   placeholder: (baseStyles) => ({
-                                        ...baseStyles,
-                                        color: '#808080',
-                                        fontSize
-                                   }),
-                                   dropdownIndicator: (baseStyles) => ({
-                                        ...baseStyles,
-                                        color: '#808080',
-                                   })
-                              }}
+                              options={documentTypeOptions}
+                         />
+                         <Selector
+                              placeholder='Select issued district'
+                              options={districtOptions}
+                              noOptionsMessage='No district found'
                          />
                     </div>
                </div>
@@ -91,6 +51,10 @@ function UserForm({ formType }: { formType: string }) {
                <div>
                     <h2 className="form-sub-title">MESSAGE</h2>
                     <div className='form-field-group'>
+                         <textarea className='col-span-full' maxLength={200} rows={3} placeholder="Write short message to display" />
+                         <textarea className='col-span-full' maxLength={200} rows={3} placeholder="Write short message to display" />
+                         <textarea className='col-span-full' maxLength={200} rows={3} placeholder="Write short message to display" />
+                         <textarea className='col-span-full' maxLength={200} rows={3} placeholder="Write short message to display" />
                          <textarea className='col-span-full' maxLength={200} rows={3} placeholder="Write short message to display" />
                     </div>
                </div>
