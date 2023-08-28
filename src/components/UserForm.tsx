@@ -5,6 +5,8 @@ import '../styles/userForm.css'
 
 function UserForm({ formType }: { formType: string }) {
 
+     const fontSize = '13px'
+
      const [selectedValue, setSelectedValue] = useState(null)
 
      const options = [
@@ -14,7 +16,7 @@ function UserForm({ formType }: { formType: string }) {
      ]
 
      return (
-          <form className="font-poppins flex flex-col gap-6 max-w-[600px]">
+          <form className="font-poppins flex flex-col gap-7 max-w-[600px]">
                <h1 className='font-bold text-[#808080] text-center'>
                     DOCUMENT
                     <span className='text-primary-dark'>
@@ -36,7 +38,7 @@ function UserForm({ formType }: { formType: string }) {
                          <input type="text" placeholder='Permanent Address' />
                          <input className='col-span-full' type="email" placeholder='Your Email' />
                          <p className="col-span-full note">
-                              *Please enter correct email since you will be notified in this email if we find your document match in our system.
+                              *Please enter correct email since you will be notified in this email if we find your document in our system.
                          </p>
                     </div>
                </div>
@@ -57,26 +59,29 @@ function UserForm({ formType }: { formType: string }) {
                                         borderWidth: '2px',
                                         borderColor: state.isFocused ? '#475585' : 'rgba(128, 128, 128, 0.2)',
                                         borderRadius: '6px',
-                                        transition: '200ms',
                                         boxShadow: 'none',
                                         '&:hover': {
                                              boxShadow: 'none'
-                                        }
+                                        },
+                                        transition: '200ms',
+                                        padding: '2px 4px'
+                                   }),
+                                   valueContainer: (baseStyles) => ({
+                                        ...baseStyles,
+                                        fontSize,
+                                   }),
+                                   option: (baseStyles) => ({
+                                        ...baseStyles,
+                                        fontSize
                                    }),
                                    placeholder: (baseStyles) => ({
                                         ...baseStyles,
                                         color: '#808080',
-                                        fontSize: '13px'
+                                        fontSize
                                    }),
                                    dropdownIndicator: (baseStyles) => ({
                                         ...baseStyles,
-                                        color: '#808080'
-                                   }),
-                                   clearIndicator: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        borderColor: state.isFocused ? 'red' : 'yellow',
-                                        outline: 'none',
-                                        backgroundColor: 'red'
+                                        color: '#808080',
                                    })
                               }}
                          />

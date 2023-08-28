@@ -6,7 +6,7 @@
      font-weight: bold;
      color: #808080;
      font-size: 14px;
-     margin-bottom: 8px;
+     margin-bottom: 10px;
 }
 
 .form-field-group {
@@ -17,7 +17,7 @@
 
 .form-field-group>input {
      min-width: 285px;
-     padding: 10px 15px !important;
+     padding: 10px 14px !important;
      font-size: 13px;
      border-radius: 6px;
      border: 2px solid rgba(128, 128, 128, 0.2);
@@ -26,7 +26,6 @@
 
 *::placeholder {
      font-size: 13px !important;
-     letter-spacing: 0.4px;
      color: #808080 !important;
 }
 
