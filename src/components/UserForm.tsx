@@ -5,7 +5,7 @@ import '../styles/userForm.css'
 
 function UserForm({ formType }: { formType: string }) {
 
-     const [selectedOption, setSelectedOption] = useState()
+     const [selectedValue, setSelectedValue] = useState(null)
 
      const options = [
           { value: 'citizenship', label: 'CitizenShip' },
@@ -35,7 +35,9 @@ function UserForm({ formType }: { formType: string }) {
                          <input type="text" placeholder='Current Address' />
                          <input type="text" placeholder='Permanent Address' />
                          <input className='col-span-full' type="email" placeholder='Your Email' />
-                         <p className="col-span-full note">*Please enter correct email since you will be notified in this email after the ticket matches.</p>
+                         <p className="col-span-full note">
+                              *Please enter correct email since you will be notified in this email if we find your document match in our system.
+                         </p>
                     </div>
                </div>
 
@@ -43,11 +45,40 @@ function UserForm({ formType }: { formType: string }) {
                     <h2 className="form-sub-title">DOCUMENT</h2>
                     <div className='form-field-group'>
                          <Select
-                              className='select col-span-full'
-                              defaultValue={selectedOption}
-                              onChange={setSelectedOption}
+                              className='col-span-full'
+                              defaultValue={selectedValue}
+                              // onChange={setSelectedValue}
                               options={options}
+                              isSearchable={false}
                               placeholder='Select document type'
+                              styles={{
+                                   control: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        borderWidth: '2px',
+                                        borderColor: state.isFocused ? '#475585' : 'rgba(128, 128, 128, 0.2)',
+                                        borderRadius: '6px',
+                                        transition: '200ms',
+                                        boxShadow: 'none',
+                                        '&:hover': {
+                                             boxShadow: 'none'
+                                        }
+                                   }),
+                                   placeholder: (baseStyles) => ({
+                                        ...baseStyles,
+                                        color: '#808080',
+                                        fontSize: '13px'
+                                   }),
+                                   dropdownIndicator: (baseStyles) => ({
+                                        ...baseStyles,
+                                        color: '#808080'
+                                   }),
+                                   clearIndicator: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        borderColor: state.isFocused ? 'red' : 'yellow',
+                                        outline: 'none',
+                                        backgroundColor: 'red'
+                                   })
+                              }}
                          />
                     </div>
                </div>

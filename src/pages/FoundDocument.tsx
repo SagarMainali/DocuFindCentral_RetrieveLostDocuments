@@ -1,8 +1,9 @@
+import UserForm from "../components/UserForm";
 
 export default function FoundDocument() {
      return (
           <div className="cstm-paged">
-               <h2>Found Documents</h2>
+               <UserForm formType="found-doc" />
           </div>
      )
 }
