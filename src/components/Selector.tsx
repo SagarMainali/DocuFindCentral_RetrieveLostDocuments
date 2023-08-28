@@ -15,7 +15,7 @@ export default function Selector({ placeholder, options, noOptionsMessage }: Pro
 
      return (
           <Select
-               className='col-span-full'
+               className=''
                options={options}
                placeholder={placeholder}
                isSearchable={noOptionsMessage ? true : false}
@@ -32,15 +32,23 @@ export default function Selector({ placeholder, options, noOptionsMessage }: Pro
                               boxShadow: 'none'
                          },
                          transition: '200ms',
-                         padding: '2px 4px'
+                         padding: '2px 2px 2px 4px',
+                         cursor: 'pointer'
                     }),
-                    valueContainer: (baseStyles) => ({
+                    singleValue: (baseStyles) => ({
                          ...baseStyles,
-                         fontSize
+                         fontSize: '14px',
+                         color: '#1e1e1e'
                     }),
-                    option: (baseStyles) => ({
+                    option: (baseStyles, state) => ({
                          ...baseStyles,
-                         fontSize
+                         cursor: 'pointer',
+                         fontSize,
+                         backgroundColor: state.isSelected ? '#475585' : '',
+                         color: state.isSelected ? 'white' : '#1e1e1e',
+                         '&:hover': {
+                              backgroundColor: 'rgba(71,85,133,0.1)'
+                         }
                     }),
                     placeholder: (baseStyles) => ({
                          ...baseStyles,
@@ -53,7 +61,7 @@ export default function Selector({ placeholder, options, noOptionsMessage }: Pro
                     }),
                     noOptionsMessage: (baseStyles) => ({
                          ...baseStyles,
-                         fontSize: '13px',
+                         fontSize,
                          color: '#808080'
                     })
                }}

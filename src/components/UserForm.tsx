@@ -3,10 +3,15 @@ import Selector from './Selector'
 import documentTypeOptions from '../options/documentTypeOptions'
 import districtOptions from '../options/districtOptions'
 
+import { useState } from 'react';
+import ImagePicker from './ImagePicker';
+
 function UserForm({ formType }: { formType: string }) {
 
+     const [imageFile, setImageFile] = useState<File>()
+
      return (
-          <form className="font-poppins flex flex-col gap-7 max-w-[600px]">
+          <form className="font-poppins flex flex-col gap-7 max-w-[600px] select-none">
                <h1 className='font-bold text-[#808080] text-center text-[17px]'>
                     DOCUMENT
                     <span className='text-primary-dark mx-[7px]'>
@@ -40,21 +45,24 @@ function UserForm({ formType }: { formType: string }) {
                               placeholder='Select document type'
                               options={documentTypeOptions}
                          />
+
+                         <input type="text" placeholder='Document number' />
+
                          <Selector
-                              placeholder='Select issued district'
+                              placeholder='Select document issued district'
                               options={districtOptions}
                               noOptionsMessage='No district found'
                          />
+
+                         <ImagePicker imageFile={imageFile} setImageFile={ setImageFile} />
+                         {/* <input type="date" />
+                         <input type="date" /> */}
                     </div>
                </div>
 
                <div>
                     <h2 className="form-sub-title">MESSAGE</h2>
                     <div className='form-field-group'>
-                         <textarea className='col-span-full' maxLength={200} rows={3} placeholder="Write short message to display" />
-                         <textarea className='col-span-full' maxLength={200} rows={3} placeholder="Write short message to display" />
-                         <textarea className='col-span-full' maxLength={200} rows={3} placeholder="Write short message to display" />
-                         <textarea className='col-span-full' maxLength={200} rows={3} placeholder="Write short message to display" />
                          <textarea className='col-span-full' maxLength={200} rows={3} placeholder="Write short message to display" />
                     </div>
                </div>
