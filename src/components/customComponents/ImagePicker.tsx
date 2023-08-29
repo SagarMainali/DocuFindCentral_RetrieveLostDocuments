@@ -9,6 +9,7 @@ export default function ImagePicker({ imageFile, setImageFile }: PropsType) {
 
      const imgPickerInput = useRef<HTMLInputElement>(null)
 
+     // trigger click on hidden input[type=file]
      const handleClick = () => {
           imgPickerInput.current?.click()
      }
