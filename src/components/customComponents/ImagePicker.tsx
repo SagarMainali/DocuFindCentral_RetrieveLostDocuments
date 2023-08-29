@@ -10,19 +10,21 @@ export default function ImagePicker({ imageFile, setImageFile }: PropsType) {
      const imgPickerInput = useRef<HTMLInputElement>(null)
 
      // trigger click on hidden input[type=file]
-     const handleClick = () => {
+     const triggerFileInputElementClick = () => {
           imgPickerInput.current?.click()
      }
 
-     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
           if (event.target.files)
                setImageFile(event.target.files[0])
      }
 
      return (
           <>
-               <div className='input flex items-center justify-between cursor-pointer' onClick={handleClick}>
-                    <input type="file" hidden ref={imgPickerInput} onChange={handleChange} />
+               <div className='input flex items-center justify-between cursor-pointer' onClick={triggerFileInputElementClick}>
+
+                    <input type="file" hidden ref={imgPickerInput} onChange={handleFileChange} />
+
                     <h2 className={`w-[240px] truncate ${imageFile ? 'text-[#1e1e1e]' : 'text-[#808080]'}`}>
                          {imageFile?.name ?? 'Choose image file'}
                     </h2>

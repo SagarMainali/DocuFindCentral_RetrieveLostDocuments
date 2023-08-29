@@ -1,22 +1,34 @@
 import { useRef } from "react"
+import { DatesType } from '../UserForm'
 
 type PropsType = {
-     date: Date | undefined,
-     setDate: React.Dispatch<React.SetStateAction<Date | undefined>>
+     date: string | undefined,
+     setDates: React.Dispatch<React.SetStateAction<DatesType>>,
+     name: string,
+     placeholder: string
 }
 
-export default function DatePicker({ date, setDate }: PropsType) {
+export default function DatePicker({ date, setDates, name, placeholder }: PropsType) {
 
      const datePickerInput = useRef<HTMLInputElement>(null)
 
-     const handleClick = () => {
+     // trigger click on 'width-reduced' input[type=date]
+     const handleDateInputElementClick = () => {
           datePickerInput.current?.click()
      }
 
+     const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+          const { name, value } = event.target
+          setDates(prevState => ({
+               ...prevState,
+               [name]: value
+          }))
+     }
+
      return (
-          <div className="input flex items-center justify-end cursor-pointer" onClick={handleClick}>
+          <div className="input flex items-center justify-end cursor-pointer" onClick={handleDateInputElementClick}>
                <h2 className={`w-[240px]  `}>
-                    {date?.toString() ?? 'Document issued date'}
+                    {date ?? placeholder}
                </h2>
                <div className="relative overflow-hidden">
                     <svg className="h-[15px] fill-[#808080]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
@@ -24,8 +36,11 @@ export default function DatePicker({ date, setDate }: PropsType) {
                          <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
                     </svg>
                     <input type="date"
+                         name={name}
                          className="absolute -top-[3px] -left-[1px] w-[17px] scale-[1.4] focus:border-0 opacity-0"
-                         ref={datePickerInput} />
+                         ref={datePickerInput}
+                         onChange={handleDateChange}
+                    />
                </div>
           </div>
      )

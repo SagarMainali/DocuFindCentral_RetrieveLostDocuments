@@ -7,11 +7,16 @@ import { useState } from 'react';
 import ImagePicker from './customComponents/ImagePicker';
 import DatePicker from './customComponents/DatePicker';
 
+export type DatesType = {
+     issuedDate: string,
+     expiryDate: string
+}
+
 function UserForm({ formType }: { formType: string }) {
 
      const [imageFile, setImageFile] = useState<File>()
 
-     const [date, setDate] = useState<Date>()
+     const [dates, setDates] = useState<DatesType>({} as DatesType)
 
      return (
           <form className="font-poppins flex flex-col gap-7 max-w-[600px] select-none">
@@ -61,7 +66,9 @@ function UserForm({ formType }: { formType: string }) {
                          {/* <input type="date" />
                          <input type="date" /> */}
 
-                         <DatePicker date={date} setDate={setDate} />
+                         <DatePicker date={dates?.issuedDate} setDates={setDates} name='issuedDate' placeholder='Document issued date' />
+
+                         <DatePicker date={dates?.expiryDate} setDates={setDates} name='expiryDate' placeholder='Document expiry date' />
                     </div>
                </div>
 
