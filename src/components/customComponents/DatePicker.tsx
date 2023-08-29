@@ -1,4 +1,3 @@
-import { useRef } from "react"
 import { DatesType } from '../UserForm'
 
 type PropsType = {
@@ -10,13 +9,6 @@ type PropsType = {
 
 export default function DatePicker({ date, setDates, name, placeholder }: PropsType) {
 
-     const datePickerInput = useRef<HTMLInputElement>(null)
-
-     // trigger click on 'width-reduced' input[type=date]
-     const handleDateInputElementClick = () => {
-          datePickerInput.current?.click()
-     }
-
      const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
           const { name, value } = event.target
           setDates(prevState => ({
@@ -26,7 +18,7 @@ export default function DatePicker({ date, setDates, name, placeholder }: PropsT
      }
 
      return (
-          <div className="input flex items-center justify-end cursor-pointer" onClick={handleDateInputElementClick}>
+          <div className="input flex items-center justify-end cursor-pointer">
                <h2 className={`w-[240px]  `}>
                     {date ?? placeholder}
                </h2>
@@ -37,8 +29,8 @@ export default function DatePicker({ date, setDates, name, placeholder }: PropsT
                     </svg>
                     <input type="date"
                          name={name}
+                         // overlaying the actual calendar icon on top and reducing the opacity to 0 while still keeping its functionality there
                          className="absolute -top-[3px] -left-[1px] w-[17px] scale-[1.4] focus:border-0 opacity-0"
-                         ref={datePickerInput}
                          onChange={handleDateChange}
                     />
                </div>
