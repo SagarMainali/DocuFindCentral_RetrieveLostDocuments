@@ -57,7 +57,7 @@ export default function Selector({ placeholder, options, noOptionsMessage }: Pro
                     }),
                     dropdownIndicator: (baseStyles) => ({
                          ...baseStyles,
-                         color: '#808080',
+                         color: '#808080'
                     }),
                     noOptionsMessage: (baseStyles) => ({
                          ...baseStyles,

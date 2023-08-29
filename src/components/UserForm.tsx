@@ -1,14 +1,17 @@
 import '../styles/userForm.css'
-import Selector from './Selector'
+import Selector from './customComponents/Selector'
 import documentTypeOptions from '../options/documentTypeOptions'
 import districtOptions from '../options/districtOptions'
 
 import { useState } from 'react';
-import ImagePicker from './ImagePicker';
+import ImagePicker from './customComponents/ImagePicker';
+import DatePicker from './customComponents/DatePicker';
 
 function UserForm({ formType }: { formType: string }) {
 
      const [imageFile, setImageFile] = useState<File>()
+
+     const [date, setDate] = useState<Date>()
 
      return (
           <form className="font-poppins flex flex-col gap-7 max-w-[600px] select-none">
@@ -54,9 +57,11 @@ function UserForm({ formType }: { formType: string }) {
                               noOptionsMessage='No district found'
                          />
 
-                         <ImagePicker imageFile={imageFile} setImageFile={ setImageFile} />
+                         <ImagePicker imageFile={imageFile} setImageFile={setImageFile} />
                          {/* <input type="date" />
                          <input type="date" /> */}
+
+                         <DatePicker date={date} setDate={setDate} />
                     </div>
                </div>
 

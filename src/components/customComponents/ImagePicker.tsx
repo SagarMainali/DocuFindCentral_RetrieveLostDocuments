@@ -20,8 +20,8 @@ export default function ImagePicker({ imageFile, setImageFile }: PropsType) {
 
      return (
           <>
-               <input type="file" ref={imgPickerInput} placeholder='Document photo' hidden onChange={handleChange} />
                <div className='input flex items-center justify-between cursor-pointer' onClick={handleClick}>
+                    <input type="file" hidden ref={imgPickerInput} onChange={handleChange} />
                     <h2 className={`w-[240px] truncate ${imageFile ? 'text-[#1e1e1e]' : 'text-[#808080]'}`}>
                          {imageFile?.name ?? 'Choose image file'}
                     </h2>

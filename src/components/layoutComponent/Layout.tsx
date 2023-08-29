@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom"
 
-import SideNavbar from "./SideNavbar"
-import TopNavbar from "./TopNavbar"
-import { useAppSelector, useAppDispatch } from "../redux/hooks"
-import { toggleMenu } from "../redux/navbarSlice"
+import SideNavbar from "../SideNavbar"
+import TopNavbar from "../TopNavbar"
+import { useAppSelector, useAppDispatch } from "../../redux/hooks"
+import { toggleMenu } from "../../redux/navbarSlice"
 
 export default function Layout() {
 
