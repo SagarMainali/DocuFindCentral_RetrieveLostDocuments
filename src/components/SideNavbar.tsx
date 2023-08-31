@@ -13,7 +13,7 @@ export default function SideNavbar() {
 
                <header className="h-[60px] flex items-center justify-center text-slate-50 font-medium px-4">
                     <NavLink to='/' className='flex items-center justify-center gap-[6px] group'>
-                         <img src="./icons/nav-icons/logo.svg" alt="logo" className='w-[27px] animate-[spin_2s_ease-in-out]' />
+                         <img src="./icons/nav-icons/logo.svg" alt="logo" className='w-[27px] animate-[spin_1s_ease-in-out]' />
                          <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >DocuFind Central</h2>
                     </NavLink>
                </header>
