@@ -1,5 +1,5 @@
 const documentTypeOptions = [
-     { value: 'citizenship', label: 'CitizenShip' },
+     { value: 'citizenship', label: 'Citizenship' },
      { value: 'license', label: 'License' },
      { value: 'passport', label: 'Passport' }
 ]
