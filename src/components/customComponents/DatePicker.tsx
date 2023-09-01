@@ -18,7 +18,7 @@ export default function DatePicker({ date, setDates, name, placeholder }: PropsT
      }
 
      return (
-          <div className="input flex items-center justify-end cursor-pointer">
+          <div className="input flex items-center justify-between cursor-pointer">
                <h2 className={`w-[240px]  `}>
                     {date ?? placeholder}
                </h2>

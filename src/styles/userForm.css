@@ -20,6 +20,12 @@
      /* using calc because it has 12px gap */
 }
 
+@media screen and (max-width: 700px){
+     .form-field-group{
+          grid-template-columns: 100%;
+     }
+}
+
 .form-field-group>input,
 .input {
      color: var(--inputTextColor);

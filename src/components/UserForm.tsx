@@ -25,7 +25,9 @@ function UserForm({ formType }: { formType: string }) {
      const {register, handleSubmit} = useForm()
 
      return (
-          <form className="font-poppins flex flex-col gap-7 max-w-[600px] select-none" onSubmit={handleSubmit(data => console.log(data))}>
+          <form 
+          className="font-poppins flex flex-col gap-7 max-w-[600px] select-none " 
+          onSubmit={handleSubmit(data => console.log(data))}>
                <h1 className='font-bold text-[#808080] text-center text-[17px]'>
                     DOCUMENT
                     <span className='text-primary-dark mx-[7px]'>
