@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 
 import { useAppSelector } from '../redux/hooks'
+
 import '../styles/side-navbar.css'
 
 export default function SideNavbar() {

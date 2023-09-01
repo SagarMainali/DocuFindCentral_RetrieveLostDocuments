@@ -1,11 +1,13 @@
-import '../styles/userForm.css'
+import { useState } from 'react';
+import {useForm} from 'react-hook-form'
+
 import Selector from './customComponents/Selector'
+import ImagePicker from './customComponents/ImagePicker';
+import DatePicker from './customComponents/DatePicker';
 import documentTypeOptions from '../options/documentTypeOptions'
 import districtOptions from '../options/districtOptions'
 
-import { useState } from 'react';
-import ImagePicker from './customComponents/ImagePicker';
-import DatePicker from './customComponents/DatePicker';
+import '../styles/userForm.css'
 
 export type DatesType = {
      issuedDate: string,
@@ -14,12 +16,16 @@ export type DatesType = {
 
 function UserForm({ formType }: { formType: string }) {
 
+     // passed to ImagePicker component
      const [imageFile, setImageFile] = useState<File>()
 
+     // passed to DatePicker component
      const [dates, setDates] = useState<DatesType>({} as DatesType)
 
+     const {register, handleSubmit} = useForm()
+
      return (
-          <form className="font-poppins flex flex-col gap-7 max-w-[600px] select-none">
+          <form className="font-poppins flex flex-col gap-7 max-w-[600px] select-none" onSubmit={handleSubmit(data => console.log(data))}>
                <h1 className='font-bold text-[#808080] text-center text-[17px]'>
                     DOCUMENT
                     <span className='text-primary-dark mx-[7px]'>
@@ -35,11 +41,11 @@ function UserForm({ formType }: { formType: string }) {
                <div>
                     <h2 className="form-sub-title">PERSONAL</h2>
                     <div className='form-field-group'>
-                         <input type="text" placeholder='Full Name(as in document)' />
-                         <input type="number" placeholder='Contact number' />
-                         <input type="text" placeholder='Current Address' />
-                         <input type="text" placeholder='Permanent Address' />
-                         <input className='col-span-full' type="email" placeholder='Your Email' />
+                         <input type="text" placeholder='Full Name(as in document)' {...register('fullName', {required: 'the field is required!'})}/>
+                         <input type="number" placeholder='Contact number' {...register('contact')}/>
+                         <input type="text" placeholder='Current Address' {...register('currentAddress')}/>
+                         <input type="text" placeholder='Permanent Address' {...register('permanentAddress')}/>
+                         <input className='col-span-full' type="email" placeholder='Your Email' {...register('email')}/>
                          <p className="col-span-full note">
                               *Please enter correct email since you will be notified in this email if we find your document in our system.
                          </p>
@@ -75,7 +81,10 @@ function UserForm({ formType }: { formType: string }) {
                <div>
                     <h2 className="form-sub-title">MESSAGE</h2>
                     <div className='form-field-group'>
-                         <textarea className='col-span-full' maxLength={200} rows={3} placeholder="Write short message to display" />
+                         <textarea className='col-span-full' 
+                         maxLength={200} rows={3} 
+                         placeholder="Write short message to display" 
+                         {...register('message')}/>
                     </div>
                </div>
 
