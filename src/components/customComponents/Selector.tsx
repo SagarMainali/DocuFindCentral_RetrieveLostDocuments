@@ -1,4 +1,4 @@
-import Select from 'react-select'
+import Select, { SingleValue } from 'react-select'
 
 type PropsType = {
      placeholder: string,
@@ -6,15 +6,18 @@ type PropsType = {
           value: string,
           label: string
      }[],
-     noOptionsMessage?: string
+     noOptionsMessage?: string,
+     onChange: (value: SingleValue<{ value: string; label: string; }>) => void,
+
 }
 
-export default function Selector({ placeholder, options, noOptionsMessage }: PropsType) {
+export default function Selector({ placeholder, options, noOptionsMessage, onChange }: PropsType) {
 
      const fontSize = '13px'
 
      return (
           <Select
+               onChange={onChange}
                options={options}
                placeholder={placeholder}
                isSearchable={noOptionsMessage ? true : false}

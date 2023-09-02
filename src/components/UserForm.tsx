@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { useForm, type FieldValues } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 
 import Selector from './customComponents/Selector'
 import ImagePicker from './customComponents/ImagePicker';
 import DatePicker from './customComponents/DatePicker';
 import documentTypeOptions from '../options/documentTypeOptions'
-import districtOptions from '../options/districtOptions'
+// import districtOptions from '../options/districtOptions'
+import { FormDataType } from '../types/globalTypes';
 
 import '../styles/userForm.css'
 
@@ -22,18 +23,19 @@ function UserForm({ formType }: { formType: string }) {
      // passed to DatePicker component
      const [dates, setDates] = useState<DatesType>({} as DatesType)
 
-     const { register, handleSubmit, formState: { errors } } = useForm()
+     const { register, handleSubmit, formState: { errors }, control, reset } = useForm<FormDataType>()
 
-     const onSubmit = (data: FieldValues) => {
+     const onSubmit = (data: FormDataType) => {
           console.log(data)
+          reset()
      }
 
-     const requiredMsg = (name: string) => {
-          return `*${name} is required!`
+     const requiredMsg = (fieldName: string) => {
+          return `*${fieldName} is required!`
      }
 
      return (
-          <form
+          <form noValidate
                className="form font-poppins flex flex-col gap-7 select-none"
                onSubmit={handleSubmit(onSubmit)}>
 
@@ -115,9 +117,17 @@ function UserForm({ formType }: { formType: string }) {
                               </div>
                          }
 
-                         <Selector
-                              placeholder='Select document type'
-                              options={documentTypeOptions}
+                         <Controller
+                              name='documentType'
+                              control={control}
+                              render={({ field: { onChange } }) => (
+                                   <Selector
+                                        placeholder='*Select document type'
+                                        options={documentTypeOptions}
+                                        onChange={onChange}
+                                        
+                                   />
+                              )}
                          />
 
                          <div>
@@ -126,11 +136,11 @@ function UserForm({ formType }: { formType: string }) {
                               {errors.documentNumber && <p className='errorMsg'>{`${errors.documentNumber.message}`}</p>}
                          </div>
 
-                         <Selector
-                              placeholder='Select document issued district'
+                         {/* <Selector
+                              placeholder='*Select document issued district'
                               options={districtOptions}
                               noOptionsMessage='No district found'
-                         />
+                         /> */}
 
                          <ImagePicker imageFile={imageFile} setImageFile={setImageFile} />
                          {/* <input type="date" />
@@ -149,8 +159,8 @@ function UserForm({ formType }: { formType: string }) {
                          <div className='col-span-full flex flex-col'>
                               <textarea maxLength={200} rows={3}
                                    placeholder="*Write short message to display"
-                                   {...register('message', { required: requiredMsg('Message') })} />
-                              {errors.message && <p className='errorMsg'>{`${errors.message.message}`}</p>}
+                                   {...register('shortMessage', { required: requiredMsg('Message') })} />
+                              {errors.shortMessage && <p className='errorMsg'>{`${errors.shortMessage.message}`}</p>}
                          </div>
                     </div>
                </div>
