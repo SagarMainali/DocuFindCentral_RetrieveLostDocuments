@@ -15,7 +15,6 @@ export default function Selector({ placeholder, options, noOptionsMessage }: Pro
 
      return (
           <Select
-               className=''
                options={options}
                placeholder={placeholder}
                isSearchable={noOptionsMessage ? true : false}
@@ -23,7 +22,10 @@ export default function Selector({ placeholder, options, noOptionsMessage }: Pro
                styles={{
                     // not using baseStyles here because we get zIndex with it which i couuldn't override
                     control: (_, state) => ({
+                         height: '45px',
                          display: 'flex',
+                         alignItems: 'center',
+                         justifyContent: 'space-between',
                          borderWidth: '2px',
                          borderColor: state.isFocused ? '#475585' : 'rgba(128, 128, 128, 0.2)',
                          borderRadius: '6px',

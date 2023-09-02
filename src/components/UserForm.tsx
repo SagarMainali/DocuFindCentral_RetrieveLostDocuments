@@ -22,15 +22,19 @@ function UserForm({ formType }: { formType: string }) {
      // passed to DatePicker component
      const [dates, setDates] = useState<DatesType>({} as DatesType)
 
-     const { register, handleSubmit } = useForm()
+     const { register, handleSubmit, formState: { errors } } = useForm()
 
      const onSubmit = (data: FieldValues) => {
           console.log(data)
      }
 
+     const requiredMsg = (name: string) => {
+          return `*${name} is required!`
+     }
+
      return (
           <form
-               className="font-poppins flex flex-col gap-7 max-w-[600px] select-none "
+               className="font-poppins flex flex-col gap-7 select-none min-sm:w-[600px] max-sm:w-full"
                onSubmit={handleSubmit(onSubmit)}>
 
                <h1 className='font-bold text-[#808080] text-center text-[17px]'>
@@ -52,21 +56,33 @@ function UserForm({ formType }: { formType: string }) {
                          {
                               formType === 'lost-doc'
                                    ?
-                                   <input
-                                        type="text"
-                                        placeholder='Full name of owner(as in document)'
-                                        {...register('owner_fullName', { required: 'the field is required!' })} />
+                                   <>
+                                        <input
+                                             type="text"
+                                             placeholder='Full name of owner(as in document)'
+                                             {...register('owner_fullName', { required: requiredMsg('Owner Name') })} />
+                                        {errors.owner_fullName && <p className='errorMsg'>{`${errors.owner_fullName.message}`}</p>}
+                                   </>
                                    :
-                                   <input
-                                        type="text"
-                                        placeholder='Full name of finder'
-                                        {...register('finder_fullName', { required: 'the field is required!' })} />
+                                   <>
+                                        <input
+                                             type="text"
+                                             placeholder='Full name of finder'
+                                             {...register('finder_fullName', { required: requiredMsg('Finder Name') })} />
+                                        {errors.finder_fullName && <p className='errorMsg'>{`${errors.finder_fullName.message}`}</p>}
+                                   </>
                          }
 
+                         <>
+                              <input type="number" placeholder='Contact number'
+                                   {...register('contact', {
+                                        required: requiredMsg('Contact Number'),
+                                   })} />
+                              {errors.contact && <p className='errorMsg'>{`${errors.contact.message}`}</p>}
+                         </>
 
-                         <input type="number" placeholder='Contact number' {...register('contact')} />
-
-                         <input type="text" placeholder='Current Address' {...register('currentAddress')} />
+                         <input type="text" placeholder='Current Address'
+                              {...register('currentAddress')} />
 
                          {
                               formType === 'lost-doc'
@@ -76,10 +92,11 @@ function UserForm({ formType }: { formType: string }) {
                                    <input type="text" placeholder='Place where you found the document' {...register('documentFoundPlace')} />
                          }
 
-                         <input className='col-span-full' type="email" placeholder='Your Email' {...register('email')} />
-                         <p className="col-span-full note">
+                         <input className='col-span-full' type="email" placeholder='Your Email'
+                              {...register('email', { required: requiredMsg('Contact Number') })} />
+                         {/* <p className="col-span-full note">
                               *Please enter correct email since you will be notified in this email if we find your ticket match in our system.
-                         </p>
+                         </p> */}
 
                     </div>
                </div>
@@ -90,7 +107,7 @@ function UserForm({ formType }: { formType: string }) {
                          {
                               formType === 'found-doc' && <input
                                    type="text" placeholder='Full Name of owner(as in document)'
-                                   {...register('owner_fullName', { required: 'Please fill this field.' })} />
+                                   {...register('owner_fullName', { required: requiredMsg('Contact Number') })} />
                          }
 
                          <Selector
@@ -122,7 +139,7 @@ function UserForm({ formType }: { formType: string }) {
                          <textarea className='col-span-full'
                               maxLength={200} rows={3}
                               placeholder="Write short message to display"
-                              {...register('message')} />
+                              {...register('message', { required: requiredMsg('Contact Number') })} />
                     </div>
                </div>
 
