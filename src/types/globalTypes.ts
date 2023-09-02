@@ -1,3 +1,5 @@
+import { SingleValue } from 'react-select'
+
 export type FormDataType = {
 
     owner_fullName: string,
@@ -8,7 +10,7 @@ export type FormDataType = {
     documentFoundPlace: string,
     email: string,
 
-    documentType: string,
+    documentType: SingleValue<{ value: string; label: string; }> | null,
     documentNumber: string,
     documentIssuedDistrict: string,
     imageFile: File,

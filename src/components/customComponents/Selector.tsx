@@ -8,17 +8,18 @@ type PropsType = {
      }[],
      noOptionsMessage?: string,
      onChange: (value: SingleValue<{ value: string; label: string; }>) => void,
-
+     selectedValue: SingleValue<{ value: string; label: string; }> | null
 }
 
-export default function Selector({ placeholder, options, noOptionsMessage, onChange }: PropsType) {
+export default function Selector({ placeholder, options, noOptionsMessage, onChange, selectedValue }: PropsType) {
 
      const fontSize = '13px'
 
      return (
           <Select
-               onChange={onChange}
                options={options}
+               onChange={onChange}
+               value={selectedValue}
                placeholder={placeholder}
                isSearchable={noOptionsMessage ? true : false}
                noOptionsMessage={() => noOptionsMessage}

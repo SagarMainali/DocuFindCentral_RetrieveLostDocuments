@@ -23,7 +23,11 @@ function UserForm({ formType }: { formType: string }) {
      // passed to DatePicker component
      const [dates, setDates] = useState<DatesType>({} as DatesType)
 
-     const { register, handleSubmit, formState: { errors }, control, reset } = useForm<FormDataType>()
+     const { register, handleSubmit, formState: { errors }, control, reset } = useForm<FormDataType>({
+          defaultValues: {
+               documentType: null
+          }
+     })
 
      const onSubmit = (data: FormDataType) => {
           console.log(data)
@@ -120,12 +124,12 @@ function UserForm({ formType }: { formType: string }) {
                          <Controller
                               name='documentType'
                               control={control}
-                              render={({ field: { onChange } }) => (
+                              render={({ field: { onChange, value } }) => (
                                    <Selector
                                         placeholder='*Select document type'
                                         options={documentTypeOptions}
                                         onChange={onChange}
-                                        
+                                        selectedValue={value}
                                    />
                               )}
                          />
