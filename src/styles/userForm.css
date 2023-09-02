@@ -2,6 +2,10 @@
      --inputTextColor: #1e1e1e;
 }
 
+.form {
+     width: 600px;
+}
+
 .form-sub-section {
      display: flex;
 }
@@ -22,6 +26,10 @@
 }
 
 @media screen and (max-width:640px) {
+     .form {
+          width: 100%;
+     }
+
      .form-field-group {
           grid-template-columns: 100%;
      }
@@ -29,6 +37,7 @@
 
 input,
 .input {
+     width: 100%;
      height: 45px;
      color: var(--inputTextColor);
      margin: 0 !important;

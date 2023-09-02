@@ -34,7 +34,7 @@ function UserForm({ formType }: { formType: string }) {
 
      return (
           <form
-               className="font-poppins flex flex-col gap-7 select-none min-sm:w-[600px] max-sm:w-full"
+               className="form font-poppins flex flex-col gap-7 select-none"
                onSubmit={handleSubmit(onSubmit)}>
 
                <h1 className='font-bold text-[#808080] text-center text-[17px]'>
@@ -49,37 +49,37 @@ function UserForm({ formType }: { formType: string }) {
                     FORM
                </h1>
 
-               <div>
+               <div className='w-full'>
                     <h2 className="form-sub-title">PERSONAL</h2>
                     <div className='form-field-group'>
 
                          {
                               formType === 'lost-doc'
                                    ?
-                                   <>
+                                   <div>
                                         <input
                                              type="text"
                                              placeholder='Full name of owner(as in document)'
                                              {...register('owner_fullName', { required: requiredMsg('Owner Name') })} />
                                         {errors.owner_fullName && <p className='errorMsg'>{`${errors.owner_fullName.message}`}</p>}
-                                   </>
+                                   </div>
                                    :
-                                   <>
+                                   <div>
                                         <input
                                              type="text"
                                              placeholder='Full name of finder'
                                              {...register('finder_fullName', { required: requiredMsg('Finder Name') })} />
                                         {errors.finder_fullName && <p className='errorMsg'>{`${errors.finder_fullName.message}`}</p>}
-                                   </>
+                                   </div>
                          }
 
-                         <>
+                         <div>
                               <input type="number" placeholder='Contact number'
                                    {...register('contact', {
                                         required: requiredMsg('Contact Number'),
                                    })} />
                               {errors.contact && <p className='errorMsg'>{`${errors.contact.message}`}</p>}
-                         </>
+                         </div>
 
                          <input type="text" placeholder='Current Address'
                               {...register('currentAddress')} />
@@ -94,9 +94,9 @@ function UserForm({ formType }: { formType: string }) {
 
                          <input className='col-span-full' type="email" placeholder='Your Email'
                               {...register('email', { required: requiredMsg('Contact Number') })} />
-                         {/* <p className="col-span-full note">
+                         <p className="col-span-full note">
                               *Please enter correct email since you will be notified in this email if we find your ticket match in our system.
-                         </p> */}
+                         </p>
 
                     </div>
                </div>
