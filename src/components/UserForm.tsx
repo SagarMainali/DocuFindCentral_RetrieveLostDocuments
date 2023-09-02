@@ -49,7 +49,7 @@ function UserForm({ formType }: { formType: string }) {
                     FORM
                </h1>
 
-               <div className='w-full'>
+               <div>
                     <h2 className="form-sub-title">PERSONAL</h2>
                     <div className='form-field-group'>
 
@@ -59,30 +59,27 @@ function UserForm({ formType }: { formType: string }) {
                                    <div>
                                         <input
                                              type="text"
-                                             placeholder='Full name of owner(as in document)'
-                                             {...register('owner_fullName', { required: requiredMsg('Owner Name') })} />
+                                             placeholder='*Full name of owner(as in document)'
+                                             {...register('owner_fullName', { required: requiredMsg('Owner name') })} />
                                         {errors.owner_fullName && <p className='errorMsg'>{`${errors.owner_fullName.message}`}</p>}
                                    </div>
                                    :
                                    <div>
                                         <input
                                              type="text"
-                                             placeholder='Full name of finder'
-                                             {...register('finder_fullName', { required: requiredMsg('Finder Name') })} />
+                                             placeholder='*Full name of finder'
+                                             {...register('finder_fullName', { required: requiredMsg('Finder name') })} />
                                         {errors.finder_fullName && <p className='errorMsg'>{`${errors.finder_fullName.message}`}</p>}
                                    </div>
                          }
 
                          <div>
-                              <input type="number" placeholder='Contact number'
-                                   {...register('contact', {
-                                        required: requiredMsg('Contact Number'),
-                                   })} />
+                              <input type="number" placeholder='*Contact number'
+                                   {...register('contact', { required: requiredMsg('Contact number') })} />
                               {errors.contact && <p className='errorMsg'>{`${errors.contact.message}`}</p>}
                          </div>
 
-                         <input type="text" placeholder='Current Address'
-                              {...register('currentAddress')} />
+                         <input type="text" placeholder='Current Address' {...register('currentAddress')} />
 
                          {
                               formType === 'lost-doc'
@@ -92,11 +89,14 @@ function UserForm({ formType }: { formType: string }) {
                                    <input type="text" placeholder='Place where you found the document' {...register('documentFoundPlace')} />
                          }
 
-                         <input className='col-span-full' type="email" placeholder='Your Email'
-                              {...register('email', { required: requiredMsg('Contact Number') })} />
-                         <p className="col-span-full note">
-                              *Please enter correct email since you will be notified in this email if we find your ticket match in our system.
-                         </p>
+                         <div className='col-span-full'>
+                              <input type="email" placeholder='*Your Email'
+                                   {...register('email', { required: requiredMsg('Email address') })} />
+                              {errors.email && <p className='errorMsg'>{`${errors.email.message}`}</p>}
+                              <p className="col-span-full note">
+                                   *Please enter correct email since you will be notified in this email if we find your ticket match in our system.
+                              </p>
+                         </div>
 
                     </div>
                </div>
@@ -105,9 +105,14 @@ function UserForm({ formType }: { formType: string }) {
                     <h2 className="form-sub-title">DOCUMENT</h2>
                     <div className='form-field-group'>
                          {
-                              formType === 'found-doc' && <input
-                                   type="text" placeholder='Full Name of owner(as in document)'
-                                   {...register('owner_fullName', { required: requiredMsg('Contact Number') })} />
+                              formType === 'found-doc'
+                              &&
+                              <div>
+                                   <input
+                                        type="text" placeholder='*Full Name of owner(as in document)'
+                                        {...register('owner_fullName', { required: requiredMsg('Owner name') })} />
+                                   {errors.owner_fullName && <p className='errorMsg'>{`${errors.owner_fullName.message}`}</p>}
+                              </div>
                          }
 
                          <Selector
@@ -115,7 +120,11 @@ function UserForm({ formType }: { formType: string }) {
                               options={documentTypeOptions}
                          />
 
-                         <input type="text" placeholder='Document number' />
+                         <div>
+                              <input type="text" placeholder='*Document number'
+                                   {...register('documentNumber', { required: requiredMsg('Document number') })} />
+                              {errors.documentNumber && <p className='errorMsg'>{`${errors.documentNumber.message}`}</p>}
+                         </div>
 
                          <Selector
                               placeholder='Select document issued district'
@@ -136,15 +145,18 @@ function UserForm({ formType }: { formType: string }) {
                <div>
                     <h2 className="form-sub-title">MESSAGE</h2>
                     <div className='form-field-group'>
-                         <textarea className='col-span-full'
-                              maxLength={200} rows={3}
-                              placeholder="Write short message to display"
-                              {...register('message', { required: requiredMsg('Contact Number') })} />
+                         {/* flex to remove unusual space between its childrens */}
+                         <div className='col-span-full flex flex-col'>
+                              <textarea maxLength={200} rows={3}
+                                   placeholder="*Write short message to display"
+                                   {...register('message', { required: requiredMsg('Message') })} />
+                              {errors.message && <p className='errorMsg'>{`${errors.message.message}`}</p>}
+                         </div>
                     </div>
                </div>
 
                <button className='bg-primary-dark text-white'>Submit</button>
-          </form>
+          </form >
      )
 }
 
