@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form'
 
 import ControlledSelector from './customComponents/ControlledSelector'
@@ -16,9 +16,6 @@ export const requiredMsg = (fieldName: string) => {
 }
 
 function UserForm({ formType }: { formType: string }) {
-
-     // passed to ImagePicker component
-     const [imageFile, setImageFile] = useState<File>()
 
      const { register, handleSubmit, formState: { errors, isSubmitSuccessful }, control, reset } = useForm<FormDataType>({
           defaultValues: {
@@ -56,7 +53,7 @@ function UserForm({ formType }: { formType: string }) {
                     FORM
                </h1>
 
-               <div>
+               {/* <div>
                     <h2 className="form-sub-title">PERSONAL</h2>
                     <div className='form-field-group'>
 
@@ -82,8 +79,7 @@ function UserForm({ formType }: { formType: string }) {
 
                          <div>
                               <input type="number" placeholder='*Contact number'
-                                   {...register('contact')} />
-                              {/* , { required: requiredMsg('Contact number') } */}
+                                   {...register('contact', { required: requiredMsg('Contact number') })} />
                               {errors.contact && <p className='errorMsg'>{`${errors.contact.message}`}</p>}
                          </div>
 
@@ -99,8 +95,7 @@ function UserForm({ formType }: { formType: string }) {
 
                          <div className='col-span-full'>
                               <input type="email" placeholder='*Your Email'
-                                   {...register('email')} />
-                              {/* , { required: requiredMsg('Email address') } */}
+                                   {...register('email', { required: requiredMsg('Email address') })} />
                               {errors.email && <p className='errorMsg'>{`${errors.email.message}`}</p>}
                               <p className="col-span-full note">
                                    *Please enter correct email since you will be notified in this email if we find your ticket match in our system.
@@ -108,7 +103,7 @@ function UserForm({ formType }: { formType: string }) {
                          </div>
 
                     </div>
-               </div>
+               </div> */}
 
                <div>
                     <h2 className="form-sub-title">DOCUMENT</h2>
@@ -132,8 +127,6 @@ function UserForm({ formType }: { formType: string }) {
                               options={documentTypeOptions}
                               requiredErrorMsg='Document type'
                          />
-                         {/* the error is managed at the ControlledSelector itself */}
-                         {/* {errors.documentType && <p className='errorMsg'>{`${errors.documentType.message}`}</p>} */}
 
                          <div>
                               <input type="text" placeholder='*Document number'
@@ -164,7 +157,7 @@ function UserForm({ formType }: { formType: string }) {
                               placeholder='Document expiry date'
                          />
 
-                         <ImagePicker imageFile={imageFile} setImageFile={setImageFile} />
+                         <ImagePicker control={control} />
 
                     </div>
                </div>
@@ -176,8 +169,7 @@ function UserForm({ formType }: { formType: string }) {
                          <div className='col-span-full flex flex-col'>
                               <textarea maxLength={200} rows={3}
                                    placeholder="*Write short message to display"
-                                   {...register('shortMessage')} />
-                              {/* , { required: requiredMsg('Message') } */}
+                                   {...register('shortMessage', { required: requiredMsg('Message') })} />
                               {errors.shortMessage && <p className='errorMsg'>{`${errors.shortMessage.message}`}</p>}
                          </div>
                     </div>
