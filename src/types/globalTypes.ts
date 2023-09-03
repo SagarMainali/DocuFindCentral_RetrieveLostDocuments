@@ -10,8 +10,8 @@ export type FormDataType = {
     documentFoundPlace: string,
     email: string,
 
-    documentType: SingleValue<{ value: string; label: string; }> | null,
-    documentIssuedDistrict: SingleValue<{ value: string; label: string; }> | null,
+    documentType: SingleValue<{ label: string, value: string }> | null,
+    documentIssuedDistrict: SingleValue<{ label: string, value: string }> | null,
     documentNumber: string,
     imageFile: File,
     documentIssuedDate: string,

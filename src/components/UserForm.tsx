@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form'
 
 import ControlledSelector from './customComponents/ControlledSelector'
@@ -15,6 +15,11 @@ export type DatesType = {
      expiryDate: string
 }
 
+// handling error message
+export const requiredMsg = (fieldName: string) => {
+     return `*${fieldName} is required!`
+}
+
 function UserForm({ formType }: { formType: string }) {
 
      // passed to ImagePicker component
@@ -23,7 +28,7 @@ function UserForm({ formType }: { formType: string }) {
      // passed to DatePicker component
      const [dates, setDates] = useState<DatesType>({} as DatesType)
 
-     const { register, handleSubmit, formState: { errors }, control, reset } = useForm<FormDataType>({
+     const { register, handleSubmit, formState: { errors, isSubmitSuccessful }, control, reset } = useForm<FormDataType>({
           defaultValues: {
                documentType: null,
                documentIssuedDistrict: null
@@ -32,13 +37,15 @@ function UserForm({ formType }: { formType: string }) {
 
      const onSubmit = (data: FormDataType) => {
           console.log(data)
-          reset()
      }
 
-     // handling error message
-     const requiredMsg = (fieldName: string) => {
-          return `*${fieldName} is required!`
-     }
+     // reset inside useEffect to reset after everything is done
+     useEffect(() => {
+          if (isSubmitSuccessful) {
+               reset()
+               console.log('Form submitted successfully and reset the form state')
+          }
+     }, [isSubmitSuccessful])
 
      return (
           <form noValidate
@@ -127,11 +134,14 @@ function UserForm({ formType }: { formType: string }) {
                          }
 
                          <ControlledSelector
-                              fieldName='documentType'
                               control={control}
+                              fieldName='documentType'
                               placeholder='*Select document type'
                               options={documentTypeOptions}
+                              requiredErrorMsg='Document type'
                          />
+                         {/* the error is managed at the ControlledSelector itself */}
+                         {/* {errors.documentType && <p className='errorMsg'>{`${errors.documentType.message}`}</p>} */}
 
                          <div>
                               <input type="text" placeholder='*Document number'
@@ -141,10 +151,11 @@ function UserForm({ formType }: { formType: string }) {
                          </div>
 
                          <ControlledSelector
-                              fieldName='documentIssuedDistrict'
                               control={control}
+                              fieldName='documentIssuedDistrict'
                               placeholder='*Select document issued district'
                               options={districtOptions}
+                              requiredErrorMsg='Document issued district'
                               noOptionsMessage='No district found'
                          />
 
