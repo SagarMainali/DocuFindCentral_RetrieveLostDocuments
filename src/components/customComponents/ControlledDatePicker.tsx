@@ -2,6 +2,7 @@ import { Control, Controller } from 'react-hook-form'
 
 import { requiredMsg } from '../UserForm'
 import { FormDataType } from '../../types/globalTypes'
+import { getDateOfToday, formatDate } from '../../utils/handleDates'
 
 type PropsType = {
      control: Control<FormDataType>,
@@ -32,7 +33,8 @@ export default function ControlledDatePicker({ control, inputName, placeholder, 
                                    </svg>
                                    <input type="date"
                                         name={inputName}
-                                        onChange={onChange}
+                                        onChange={(event) => onChange(formatDate(event.target.value))}
+                                        max={inputName === 'documentIssuedDate' ? getDateOfToday() : ''}
                                         // overlaying the actual calendar icon on top and reducing the opacity to 0 while still keeping its functionality there
                                         className="absolute -top-[3px] -left-[1px] w-[17px] scale-[1.5] focus:border-0 opacity-0"
                                    />

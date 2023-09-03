@@ -155,7 +155,8 @@ function UserForm({ formType }: { formType: string }) {
                               control={control}
                               inputName='documentIssuedDate'
                               placeholder='*Document issued date'
-                              requiredErrorMsg='Document issued date' />
+                              requiredErrorMsg='Document issued date'
+                         />
 
                          <ControlledDatePicker
                               control={control}
