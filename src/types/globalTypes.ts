@@ -11,8 +11,8 @@ export type FormDataType = {
     email: string,
 
     documentType: SingleValue<{ value: string; label: string; }> | null,
+    documentIssuedDistrict: SingleValue<{ value: string; label: string; }> | null,
     documentNumber: string,
-    documentIssuedDistrict: string,
     imageFile: File,
     documentIssuedDate: string,
     documentExpiryDate: string,

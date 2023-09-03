@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { useForm, Controller } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 
-import Selector from './customComponents/Selector'
+import ControlledSelector from './customComponents/ControlledSelector'
 import ImagePicker from './customComponents/ImagePicker';
 import DatePicker from './customComponents/DatePicker';
 import documentTypeOptions from '../options/documentTypeOptions'
-// import districtOptions from '../options/districtOptions'
+import districtOptions from '../options/districtOptions'
 import { FormDataType } from '../types/globalTypes';
 
 import '../styles/userForm.css'
@@ -25,7 +25,8 @@ function UserForm({ formType }: { formType: string }) {
 
      const { register, handleSubmit, formState: { errors }, control, reset } = useForm<FormDataType>({
           defaultValues: {
-               documentType: null
+               documentType: null,
+               documentIssuedDistrict: null
           }
      })
 
@@ -34,6 +35,7 @@ function UserForm({ formType }: { formType: string }) {
           reset()
      }
 
+     // handling error message
      const requiredMsg = (fieldName: string) => {
           return `*${fieldName} is required!`
      }
@@ -81,7 +83,8 @@ function UserForm({ formType }: { formType: string }) {
 
                          <div>
                               <input type="number" placeholder='*Contact number'
-                                   {...register('contact', { required: requiredMsg('Contact number') })} />
+                                   {...register('contact')} />
+                              {/* , { required: requiredMsg('Contact number') } */}
                               {errors.contact && <p className='errorMsg'>{`${errors.contact.message}`}</p>}
                          </div>
 
@@ -97,7 +100,8 @@ function UserForm({ formType }: { formType: string }) {
 
                          <div className='col-span-full'>
                               <input type="email" placeholder='*Your Email'
-                                   {...register('email', { required: requiredMsg('Email address') })} />
+                                   {...register('email')} />
+                              {/* , { required: requiredMsg('Email address') } */}
                               {errors.email && <p className='errorMsg'>{`${errors.email.message}`}</p>}
                               <p className="col-span-full note">
                                    *Please enter correct email since you will be notified in this email if we find your ticket match in our system.
@@ -116,35 +120,33 @@ function UserForm({ formType }: { formType: string }) {
                               <div>
                                    <input
                                         type="text" placeholder='*Full Name of owner(as in document)'
-                                        {...register('owner_fullName', { required: requiredMsg('Owner name') })} />
+                                        {...register('owner_fullName')} />
+                                   {/* , { required: requiredMsg('Owner name') } */}
                                    {errors.owner_fullName && <p className='errorMsg'>{`${errors.owner_fullName.message}`}</p>}
                               </div>
                          }
 
-                         <Controller
-                              name='documentType'
+                         <ControlledSelector
+                              fieldName='documentType'
                               control={control}
-                              render={({ field: { onChange, value } }) => (
-                                   <Selector
-                                        placeholder='*Select document type'
-                                        options={documentTypeOptions}
-                                        onChange={onChange}
-                                        selectedValue={value}
-                                   />
-                              )}
+                              placeholder='*Select document type'
+                              options={documentTypeOptions}
                          />
 
                          <div>
                               <input type="text" placeholder='*Document number'
-                                   {...register('documentNumber', { required: requiredMsg('Document number') })} />
+                                   {...register('documentNumber')} />
+                              {/* , { required: requiredMsg('Document number') } */}
                               {errors.documentNumber && <p className='errorMsg'>{`${errors.documentNumber.message}`}</p>}
                          </div>
 
-                         {/* <Selector
+                         <ControlledSelector
+                              fieldName='documentIssuedDistrict'
+                              control={control}
                               placeholder='*Select document issued district'
                               options={districtOptions}
                               noOptionsMessage='No district found'
-                         /> */}
+                         />
 
                          <ImagePicker imageFile={imageFile} setImageFile={setImageFile} />
                          {/* <input type="date" />
@@ -163,7 +165,8 @@ function UserForm({ formType }: { formType: string }) {
                          <div className='col-span-full flex flex-col'>
                               <textarea maxLength={200} rows={3}
                                    placeholder="*Write short message to display"
-                                   {...register('shortMessage', { required: requiredMsg('Message') })} />
+                                   {...register('shortMessage')} />
+                              {/* , { required: requiredMsg('Message') } */}
                               {errors.shortMessage && <p className='errorMsg'>{`${errors.shortMessage.message}`}</p>}
                          </div>
                     </div>

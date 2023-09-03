@@ -1,7 +1,7 @@
 const documentTypeOptions = [
-     { value: 'citizenship', label: 'Citizenship' },
-     { value: 'license', label: 'License' },
-     { value: 'passport', label: 'Passport' }
+     { label: 'Citizenship', value: 'Citizenship' },
+     { label: 'License', value: 'License' },
+     { label: 'Passport', value: 'Passport' }
 ]
 
 export default documentTypeOptions
