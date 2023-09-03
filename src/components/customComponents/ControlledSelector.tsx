@@ -7,17 +7,17 @@ import { requiredMsg } from '../UserForm'
 type PropsType = {
      // an object that contains methods to link useForm and the Component where it is being used
      control: Control<FormDataType>,
-     fieldName: keyof FormDataType,
+     inputName: keyof FormDataType,
      placeholder: string,
      options: {
           value: string,
           label: string
      }[],
-     requiredErrorMsg: string
-     noOptionsMessage?: string,
+     requiredErrorMsg: string,
+     noOptionsMessage?: string
 }
 
-export default function ControlledSelector({ control, fieldName, placeholder, options, requiredErrorMsg, noOptionsMessage }: PropsType) {
+export default function ControlledSelector({ control, inputName, placeholder, options, requiredErrorMsg, noOptionsMessage }: PropsType) {
 
      const fontSize = '13px'
 
@@ -25,8 +25,10 @@ export default function ControlledSelector({ control, fieldName, placeholder, op
           // use Controller from react-hook-form to wrap external UI component(library) in order to build a connection
           <Controller
                control={control}
-               name={fieldName}
-               rules={{ required: requiredMsg(requiredErrorMsg) }}
+               name={inputName}
+               rules={{
+                    required: requiredMsg(requiredErrorMsg)
+               }}
                render={({ field: { onChange, value }, fieldState: { error } }) => (
                     <div>
                          <Select

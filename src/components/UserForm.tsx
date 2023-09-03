@@ -2,18 +2,13 @@ import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form'
 
 import ControlledSelector from './customComponents/ControlledSelector'
+import ControlledDatePicker from './customComponents/ControlledDatePicker';
 import ImagePicker from './customComponents/ImagePicker';
-import DatePicker from './customComponents/DatePicker';
 import documentTypeOptions from '../options/documentTypeOptions'
 import districtOptions from '../options/districtOptions'
 import { FormDataType } from '../types/globalTypes';
 
 import '../styles/userForm.css'
-
-export type DatesType = {
-     issuedDate: string,
-     expiryDate: string
-}
 
 // handling error message
 export const requiredMsg = (fieldName: string) => {
@@ -24,9 +19,6 @@ function UserForm({ formType }: { formType: string }) {
 
      // passed to ImagePicker component
      const [imageFile, setImageFile] = useState<File>()
-
-     // passed to DatePicker component
-     const [dates, setDates] = useState<DatesType>({} as DatesType)
 
      const { register, handleSubmit, formState: { errors, isSubmitSuccessful }, control, reset } = useForm<FormDataType>({
           defaultValues: {
@@ -135,7 +127,7 @@ function UserForm({ formType }: { formType: string }) {
 
                          <ControlledSelector
                               control={control}
-                              fieldName='documentType'
+                              inputName='documentType'
                               placeholder='*Select document type'
                               options={documentTypeOptions}
                               requiredErrorMsg='Document type'
@@ -152,20 +144,27 @@ function UserForm({ formType }: { formType: string }) {
 
                          <ControlledSelector
                               control={control}
-                              fieldName='documentIssuedDistrict'
+                              inputName='documentIssuedDistrict'
                               placeholder='*Select document issued district'
                               options={districtOptions}
                               requiredErrorMsg='Document issued district'
                               noOptionsMessage='No district found'
                          />
 
+                         <ControlledDatePicker
+                              control={control}
+                              inputName='documentIssuedDate'
+                              placeholder='*Document issued date'
+                              requiredErrorMsg='Document issued date' />
+
+                         <ControlledDatePicker
+                              control={control}
+                              inputName='documentExpiryDate'
+                              placeholder='Document expiry date'
+                         />
+
                          <ImagePicker imageFile={imageFile} setImageFile={setImageFile} />
-                         {/* <input type="date" />
-                         <input type="date" /> */}
 
-                         <DatePicker date={dates?.issuedDate} setDates={setDates} name='issuedDate' placeholder='Document issued date' />
-
-                         <DatePicker date={dates?.expiryDate} setDates={setDates} name='expiryDate' placeholder='Document expiry date' />
                     </div>
                </div>
 
