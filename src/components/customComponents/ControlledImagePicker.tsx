@@ -7,7 +7,7 @@ type PropsType = {
      control: Control<FormDataType>
 }
 
-export default function ImagePicker({ control }: PropsType) {
+export default function ControlledImagePicker({ control }: PropsType) {
 
      const imgPickerInput = useRef<HTMLInputElement>(null)
 

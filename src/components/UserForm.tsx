@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 
 import ControlledSelector from './customComponents/ControlledSelector'
 import ControlledDatePicker from './customComponents/ControlledDatePicker';
-import ImagePicker from './customComponents/ImagePicker';
+import ControlledImagePicker from './customComponents/ControlledImagePicker';
 import documentTypeOptions from '../options/documentTypeOptions'
 import districtOptions from '../options/districtOptions'
 import { FormDataType } from '../types/globalTypes';
@@ -53,7 +53,7 @@ function UserForm({ formType }: { formType: string }) {
                     FORM
                </h1>
 
-               {/* <div>
+               <div>
                     <h2 className="form-sub-title">PERSONAL</h2>
                     <div className='form-field-group'>
 
@@ -103,7 +103,7 @@ function UserForm({ formType }: { formType: string }) {
                          </div>
 
                     </div>
-               </div> */}
+               </div>
 
                <div>
                     <h2 className="form-sub-title">DOCUMENT</h2>
@@ -114,8 +114,7 @@ function UserForm({ formType }: { formType: string }) {
                               <div>
                                    <input
                                         type="text" placeholder='*Full Name of owner(as in document)'
-                                        {...register('owner_fullName')} />
-                                   {/* , { required: requiredMsg('Owner name') } */}
+                                        {...register('owner_fullName', { required: requiredMsg('Owner name') })} />
                                    {errors.owner_fullName && <p className='errorMsg'>{`${errors.owner_fullName.message}`}</p>}
                               </div>
                          }
@@ -130,8 +129,7 @@ function UserForm({ formType }: { formType: string }) {
 
                          <div>
                               <input type="text" placeholder='*Document number'
-                                   {...register('documentNumber')} />
-                              {/* , { required: requiredMsg('Document number') } */}
+                                   {...register('documentNumber', { required: requiredMsg('Document number') })} />
                               {errors.documentNumber && <p className='errorMsg'>{`${errors.documentNumber.message}`}</p>}
                          </div>
 
@@ -157,7 +155,7 @@ function UserForm({ formType }: { formType: string }) {
                               placeholder='Document expiry date'
                          />
 
-                         <ImagePicker control={control} />
+                         <ControlledImagePicker control={control} />
 
                     </div>
                </div>
