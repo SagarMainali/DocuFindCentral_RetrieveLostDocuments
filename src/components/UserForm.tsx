@@ -47,7 +47,7 @@ function UserForm({ formType }: { formType: string }) {
                className="form flex flex-col gap-7 select-none"
                onSubmit={handleSubmit(onSubmit)}>
 
-               <h1 className='font-bold text-primary-dark text-center text-[17px]'>
+               <h1>
                     DOCUMENT
                     <span className='mx-[8px]'>
                          {

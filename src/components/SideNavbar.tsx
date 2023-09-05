@@ -33,12 +33,12 @@ export default function SideNavbar() {
 
                     <NavLink to="/solved-tickets" className={({ isActive }) => `navlink flex gap-2 items-center ${isActive ? 'navlink-active' : ''}`}>
                          <img src="./icons/nav-icons/solved-tickets.svg" alt="solved-tickets" className='w-[22px]' />
-                         <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >View solved tickets</h2>
+                         <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >Solved tickets</h2>
                     </NavLink>
 
                     <NavLink to="/unsolved-tickets" className={({ isActive }) => `navlink flex gap-2 items-center ${isActive ? 'navlink-active' : ''}`}>
                          <img src="./icons/nav-icons/unsolved-tickets.svg" alt="unsolved-tickets" className='w-[22px]' />
-                         <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >View unsolved tickets</h2>
+                         <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >Unsolved tickets</h2>
                     </NavLink>
 
                     <NavLink to="/great-beings" className={({ isActive }) => `navlink flex gap-2 items-center ${isActive ? 'navlink-active' : ''}`}>
