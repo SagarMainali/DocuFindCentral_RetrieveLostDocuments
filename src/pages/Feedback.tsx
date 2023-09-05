@@ -1,6 +1,6 @@
 
 export default function Feedback() {
   return (
-    <div>Feedback</div>
+    <div className="cstm-paged">Feedback</div>
   )
 }

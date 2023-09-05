@@ -17,7 +17,13 @@ export const requiredMsg = (fieldName: string) => {
 
 function UserForm({ formType }: { formType: string }) {
 
-     const { register, handleSubmit, formState: { errors, isSubmitSuccessful }, control, reset } = useForm<FormDataType>({
+     const {
+          register,
+          handleSubmit,
+          formState: { errors, isSubmitSuccessful },
+          control,
+          reset
+     } = useForm<FormDataType>({
           defaultValues: {
                documentType: null,
                documentIssuedDistrict: null

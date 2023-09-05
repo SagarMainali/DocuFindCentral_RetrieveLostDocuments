@@ -31,37 +31,37 @@ export default function SideNavbar() {
                          <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >Document found</h2>
                     </NavLink>
 
-                    <NavLink to="/b" className={({ isActive }) => `navlink flex gap-2 items-center ${isActive ? 'navlink-active' : ''}`}>
+                    <NavLink to="/solved-tickets" className={({ isActive }) => `navlink flex gap-2 items-center ${isActive ? 'navlink-active' : ''}`}>
                          <img src="./icons/nav-icons/solved-tickets.svg" alt="solved-tickets" className='w-[22px]' />
                          <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >View solved tickets</h2>
                     </NavLink>
 
-                    <NavLink to="/b" className={({ isActive }) => `navlink flex gap-2 items-center ${isActive ? 'navlink-active' : ''}`}>
+                    <NavLink to="/unsolved-tickets" className={({ isActive }) => `navlink flex gap-2 items-center ${isActive ? 'navlink-active' : ''}`}>
                          <img src="./icons/nav-icons/unsolved-tickets.svg" alt="unsolved-tickets" className='w-[22px]' />
                          <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >View unsolved tickets</h2>
                     </NavLink>
 
-                    <NavLink to="/b" className={({ isActive }) => `navlink flex gap-2 items-center ${isActive ? 'navlink-active' : ''}`}>
+                    <NavLink to="/great-beings" className={({ isActive }) => `navlink flex gap-2 items-center ${isActive ? 'navlink-active' : ''}`}>
                          <img src="./icons/nav-icons/great-beings.svg" alt="great-beings" className='w-[22px]' />
                          <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >Great beings</h2>
                     </NavLink>
 
-                    <NavLink to="/b" className={({ isActive }) => `navlink flex gap-2 items-center ${isActive ? 'navlink-active' : ''}`}>
+                    <NavLink to="/how-it-works" className={({ isActive }) => `navlink flex gap-2 items-center ${isActive ? 'navlink-active' : ''}`}>
                          <img src="./icons/nav-icons/how-it-works.svg" alt="how-it-works" className='w-[22px]' />
                          <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >How it works</h2>
                     </NavLink>
 
-                    <NavLink to="/b" className={({ isActive }) => `navlink flex gap-2 items-center ml-[1px] ${isActive ? 'navlink-active' : ''}`}>
+                    <NavLink to="/feedback" className={({ isActive }) => `navlink flex gap-2 items-center ml-[1px] ${isActive ? 'navlink-active' : ''}`}>
                          <img src="./icons/nav-icons/provide-feedback.svg" alt="provide-feedback" className='w-[22px]' />
                          <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >Provide feedback</h2>
                     </NavLink>
 
-                    <NavLink to="/b" className={({ isActive }) => `navlink flex gap-2 items-center ml-[2px] ${isActive ? 'navlink-active' : ''}`}>
+                    <NavLink to="/privacy-policy" className={({ isActive }) => `navlink flex gap-2 items-center ml-[2px] ${isActive ? 'navlink-active' : ''}`}>
                          <img src="./icons/nav-icons/privacy-policy.svg" alt="privacy-policy" className='w-[20px]' />
                          <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >Privacy policy</h2>
                     </NavLink>
 
-                    <NavLink to="/b" className={({ isActive }) => `navlink flex gap-2 items-center ml-[4px] ${isActive ? 'navlink-active' : ''}`}>
+                    <NavLink to="/about-us" className={({ isActive }) => `navlink flex gap-2 items-center ml-[4px] ${isActive ? 'navlink-active' : ''}`}>
                          <img src="./icons/nav-icons/about-us.svg" alt="about-us" className='w-[18px]' />
                          <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >About us</h2>
                     </NavLink>

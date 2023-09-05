@@ -1,6 +1,6 @@
 
 export default function HowItWorks() {
   return (
-    <div>HowItWorks</div>
+    <div className="cstm-paged">HowItWorks</div>
   )
 }
