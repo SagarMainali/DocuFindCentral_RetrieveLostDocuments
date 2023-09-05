@@ -19,3 +19,8 @@ export type FormDataType = {
 
     shortMessage: string
 }
+
+export type FeedbackFormType = {
+    fullName: string,
+    feedback: string
+}

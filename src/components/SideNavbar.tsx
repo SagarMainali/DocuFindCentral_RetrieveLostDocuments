@@ -19,7 +19,7 @@ export default function SideNavbar() {
                     </NavLink>
                </header>
 
-               <div className="text-slate-50 flex flex-col gap-1">
+               <div className="text-slate-50 flex flex-col gap-2">
 
                     <NavLink to="/lost-document" className={({ isActive }) => `navlink flex gap-2 items-center ${isActive ? 'navlink-active' : ''}`}>
                          <img src="./icons/nav-icons/lost-doc.svg" alt="lost-doc" className='w-[22px]' />
@@ -51,17 +51,17 @@ export default function SideNavbar() {
                          <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >How it works</h2>
                     </NavLink>
 
-                    <NavLink to="/feedback" className={({ isActive }) => `navlink flex gap-2 items-center ml-[1px] ${isActive ? 'navlink-active' : ''}`}>
+                    <NavLink to="/feedback" className={({ isActive }) => `navlink flex gap-2 items-center pl-[18px] ${isActive ? 'navlink-active' : ''}`}>
                          <img src="./icons/nav-icons/provide-feedback.svg" alt="provide-feedback" className='w-[22px]' />
                          <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >Provide feedback</h2>
                     </NavLink>
 
-                    <NavLink to="/privacy-policy" className={({ isActive }) => `navlink flex gap-2 items-center ml-[2px] ${isActive ? 'navlink-active' : ''}`}>
+                    <NavLink to="/privacy-policy" className={({ isActive }) => `navlink flex gap-2 items-center pl-[18px] ${isActive ? 'navlink-active' : ''}`}>
                          <img src="./icons/nav-icons/privacy-policy.svg" alt="privacy-policy" className='w-[20px]' />
                          <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >Privacy policy</h2>
                     </NavLink>
 
-                    <NavLink to="/about-us" className={({ isActive }) => `navlink flex gap-2 items-center ml-[4px] ${isActive ? 'navlink-active' : ''}`}>
+                    <NavLink to="/about-us" className={({ isActive }) => `navlink flex gap-2 items-center pl-[20px] ${isActive ? 'navlink-active' : ''}`}>
                          <img src="./icons/nav-icons/about-us.svg" alt="about-us" className='w-[18px]' />
                          <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >About us</h2>
                     </NavLink>

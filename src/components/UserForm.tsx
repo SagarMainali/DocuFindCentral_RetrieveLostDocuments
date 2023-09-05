@@ -12,7 +12,7 @@ import '../styles/userForm.css'
 
 // handling error message
 export const requiredMsg = (fieldName: string) => {
-     return `*${fieldName} is required!`
+     return `*${fieldName} is required!`;
 }
 
 function UserForm({ formType }: { formType: string }) {
@@ -31,25 +31,25 @@ function UserForm({ formType }: { formType: string }) {
      })
 
      const onSubmit = (data: FormDataType) => {
-          console.log(data)
+          console.log(data);
      }
 
      // reset inside useEffect to reset after everything is done
      useEffect(() => {
           if (isSubmitSuccessful) {
-               reset()
-               console.log('Form submitted successfully and reset the form state')
+               reset();
+               console.log('Form submitted successfully and reset the form state');
           }
      }, [isSubmitSuccessful])
 
      return (
           <form noValidate
-               className="form font-poppins flex flex-col gap-7 select-none"
+               className="form flex flex-col gap-7 select-none"
                onSubmit={handleSubmit(onSubmit)}>
 
-               <h1 className='font-bold text-[#808080] text-center text-[17px]'>
+               <h1 className='font-bold text-primary-dark text-center text-[17px]'>
                     DOCUMENT
-                    <span className='text-primary-dark mx-[8px]'>
+                    <span className='mx-[8px]'>
                          {
                               formType === 'lost-doc'
                                    ? '"OWNER"'
@@ -69,7 +69,7 @@ function UserForm({ formType }: { formType: string }) {
                                    <div>
                                         <input
                                              type="text"
-                                             placeholder='*Full name of owner(as in document)'
+                                             placeholder='Full name of owner(as in document)*'
                                              {...register('owner_fullName', { required: requiredMsg('Owner name') })} />
                                         {errors.owner_fullName && <p className='errorMsg'>{`${errors.owner_fullName.message}`}</p>}
                                    </div>
@@ -77,14 +77,14 @@ function UserForm({ formType }: { formType: string }) {
                                    <div>
                                         <input
                                              type="text"
-                                             placeholder='*Full name of finder'
+                                             placeholder='Full name of finder*'
                                              {...register('finder_fullName', { required: requiredMsg('Finder name') })} />
                                         {errors.finder_fullName && <p className='errorMsg'>{`${errors.finder_fullName.message}`}</p>}
                                    </div>
                          }
 
                          <div>
-                              <input type="number" placeholder='*Contact number'
+                              <input type="number" placeholder='Contact number*'
                                    {...register('contact', { required: requiredMsg('Contact number') })} />
                               {errors.contact && <p className='errorMsg'>{`${errors.contact.message}`}</p>}
                          </div>
@@ -100,7 +100,7 @@ function UserForm({ formType }: { formType: string }) {
                          }
 
                          <div className='col-span-full'>
-                              <input type="email" placeholder='*Your Email'
+                              <input type="email" placeholder='Your Email*'
                                    {...register('email', { required: requiredMsg('Email address') })} />
                               {errors.email && <p className='errorMsg'>{`${errors.email.message}`}</p>}
                               <p className="col-span-full note">
@@ -119,7 +119,7 @@ function UserForm({ formType }: { formType: string }) {
                               &&
                               <div>
                                    <input
-                                        type="text" placeholder='*Full Name of owner(as in document)'
+                                        type="text" placeholder='Full Name of owner(as in document)*'
                                         {...register('owner_fullName', { required: requiredMsg('Owner name') })} />
                                    {errors.owner_fullName && <p className='errorMsg'>{`${errors.owner_fullName.message}`}</p>}
                               </div>
@@ -128,13 +128,13 @@ function UserForm({ formType }: { formType: string }) {
                          <ControlledSelector
                               control={control}
                               inputName='documentType'
-                              placeholder='*Select document type'
+                              placeholder='Select document type*'
                               options={documentTypeOptions}
                               requiredErrorMsg='Document type'
                          />
 
                          <div>
-                              <input type="text" placeholder='*Document number'
+                              <input type="text" placeholder='Document number*'
                                    {...register('documentNumber', { required: requiredMsg('Document number') })} />
                               {errors.documentNumber && <p className='errorMsg'>{`${errors.documentNumber.message}`}</p>}
                          </div>
@@ -142,7 +142,7 @@ function UserForm({ formType }: { formType: string }) {
                          <ControlledSelector
                               control={control}
                               inputName='documentIssuedDistrict'
-                              placeholder='*Select document issued district'
+                              placeholder='Select document issued district*'
                               options={districtOptions}
                               requiredErrorMsg='Document issued district'
                               noOptionsMessage='No district found'
@@ -151,7 +151,7 @@ function UserForm({ formType }: { formType: string }) {
                          <ControlledDatePicker
                               control={control}
                               inputName='documentIssuedDate'
-                              placeholder='*Document issued date'
+                              placeholder='Document issued date*'
                               requiredErrorMsg='Document issued date'
                          />
 
@@ -172,7 +172,7 @@ function UserForm({ formType }: { formType: string }) {
                          {/* flex to remove unusual space between its childrens */}
                          <div className='col-span-full flex flex-col'>
                               <textarea maxLength={200} rows={3}
-                                   placeholder="*Write short message to display"
+                                   placeholder="Write short message to display*"
                                    {...register('shortMessage', { required: requiredMsg('Message') })} />
                               {errors.shortMessage && <p className='errorMsg'>{`${errors.shortMessage.message}`}</p>}
                          </div>

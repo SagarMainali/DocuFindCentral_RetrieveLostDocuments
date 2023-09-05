@@ -16,7 +16,7 @@ import AboutUs from './pages/AboutUs'
 function App() {
 
   return (
-    <div className="">
+    <div className="font-poppins">
       <Routes >
         <Route path='/' element={<Layout />} >
           <Route index element={<WelcomePage />} />
