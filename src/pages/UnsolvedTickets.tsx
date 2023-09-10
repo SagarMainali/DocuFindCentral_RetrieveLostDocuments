@@ -3,7 +3,7 @@ import Ticket from "../components/Ticket";
 export default function UnsolvedTickets() {
     return (
         <div className="cstm-paged flex-col justify-start gap-4">
-            <h1 className="text-center w-full tex">Unsolved tickets</h1>
+            <h1>Unsolved tickets</h1>
             <Ticket
                 name="Rohan Basnet"
                 label="OWNER"

@@ -9,6 +9,7 @@
           font-weight: bold;
           text-align: center;
           color: #475585;
+          width: 100%;
           /* this color is custom congitured @tailwind.config.js */
      }
 
