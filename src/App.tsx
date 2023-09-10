@@ -24,11 +24,11 @@ function App() {
           <Route path='found-document' element={<FoundDocument />} />
           <Route path='solved-tickets' element={<SolvedTickets />} />
           <Route path='unsolved-tickets' element={<UnsolvedTickets />} />
-          <Route path='great-beings' element={< GreatBeings />} />
-          <Route path='how-it-works' element={< HowItWorks />} />
-          <Route path='feedback' element={< Feedback />} />
-          <Route path='privacy-policy' element={< PrivacyPolicy />} />
-          <Route path='about-us' element={< AboutUs />} />
+          <Route path='great-beings' element={<GreatBeings />} />
+          <Route path='how-it-works' element={<HowItWorks />} />
+          <Route path='feedback' element={<Feedback />} />
+          <Route path='privacy-policy' element={<PrivacyPolicy />} />
+          <Route path='about-us' element={<AboutUs />} />
           <Route path='*' element={<PageNotFound />} />
         </Route>
       </Routes>
