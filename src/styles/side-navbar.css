@@ -1,5 +1,11 @@
 .navlink {
      padding: 5px 16px;
+
+}
+
+.icon-center{
+     display: flex;
+     justify-content: center;
 }
 
 .navlink-active {
