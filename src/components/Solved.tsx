@@ -7,7 +7,7 @@ type PropsType = {
 
 function Solved({ founder, owner, type, date }: PropsType) {
     return (
-        <div className="text-primary-light bg-secondary-dark/90 p-3 rounded-md flex flex-col gap-3">
+        <div className="text-primary-light bg-[#3A3B3C] p-3 rounded-md flex flex-col gap-3">
             <div className="flex justify-between">
                 <h2 className="underline underline-offset-4">{founder}</h2>
                 <svg className="fill-primary-light" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">

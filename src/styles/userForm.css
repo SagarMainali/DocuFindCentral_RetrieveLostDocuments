@@ -98,6 +98,10 @@ button {
      border-radius: 6px;
      letter-spacing: 0.6px;
      font-size: 14px !important;
+     height: 45px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
 }
 
 label {

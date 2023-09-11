@@ -9,6 +9,7 @@ import districtOptions from '../options/districtOptions'
 import { FormDataType } from '../types/globalTypes';
 
 import '../styles/userForm.css'
+import Loader from './Loader';
 
 // handling error message
 export const requiredMsg = (fieldName: string) => {
@@ -20,7 +21,7 @@ function UserForm({ formType }: { formType: string }) {
      const {
           register,
           handleSubmit,
-          formState: { errors, isSubmitSuccessful },
+          formState: { errors, isSubmitSuccessful, isSubmitting },
           control,
           reset
      } = useForm<FormDataType>({
@@ -30,15 +31,36 @@ function UserForm({ formType }: { formType: string }) {
           }
      })
 
-     const onSubmit = (data: FormDataType) => {
-          console.log(data);
+     const onSubmit = async (data: FormDataType) => {
+          try {
+               const responseObj = await fetch('http://localhost:8000/api/documents', {
+                    method: 'POST',
+                    headers: {
+                         'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+
+               })
+               if (responseObj.ok) {
+                    const parsedData = await responseObj.json();
+                    console.log("The following data was sent to the server:\n", parsedData);
+               }
+               else {
+                    console.error(responseObj.statusText);
+               }
+          }
+          catch (error) {
+               console.error(error);
+          }
      }
 
      // reset inside useEffect to reset after everything is done
      useEffect(() => {
+          // isSubmitSuccessful only signifies that the data has passed the validation and 
+          // is passed by the handleSubmit function to the custom function
           if (isSubmitSuccessful) {
                reset();
-               console.log('Form submitted successfully and reset the form state');
+               console.log('Form data passed the validation and reset the form state');
           }
      }, [isSubmitSuccessful])
 
@@ -179,7 +201,17 @@ function UserForm({ formType }: { formType: string }) {
                     </div>
                </div>
 
-               <button className='bg-primary-dark text-white'>Submit</button>
+               <button
+                    disabled={isSubmitting}
+                    className='text-white bg-primary-dark disabled:bg-slate-400'>
+                    {
+                         isSubmitting
+                              ?
+                              < Loader />
+                              :
+                              'Submit'
+                    }
+               </button>
           </form >
      )
 }
