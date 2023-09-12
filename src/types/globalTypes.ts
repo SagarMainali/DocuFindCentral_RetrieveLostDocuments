@@ -1,6 +1,8 @@
 import { SingleValue } from 'react-select'
 
 export type FormDataType = {
+    [key: string]: string | File | SingleValue<{ label: string, value: string }>,
+
     owner_fullName: string,
     finder_fullName: string,
     contact: string,

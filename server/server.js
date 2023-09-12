@@ -33,8 +33,9 @@ app.get('/', (req, res) => {
     res.send("Hello World!");
 })
 
-app.post('/api/documents', upload.single('file'), (req, res) => {
-    console.log(`${req.body.name} send this file:\n`, req.file);
+app.post('/api/documents', upload.single('imageFile'), (req, res) => {
+    console.log(`${req.body.owner_fullName} send this file:\n`, req.file);
+    console.log(req.body.documentType);
     res.send(req.file);
 })
 

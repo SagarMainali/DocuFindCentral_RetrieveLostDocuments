@@ -36,14 +36,30 @@ function UserForm({ formType }: { formType: string }) {
 
           const formData = new FormData();
 
-          // for (const fieldName in data) {
-          //      if (data.hasOwnProperty(fieldName)) {
-          //           formData.append(fieldName, data[fieldName]);
-          //      }
-          // }
+          for (const property in data) {
+               if (data.hasOwnProperty(property)) {
+                    const value = data[property];
 
-          formData.append("name", data.owner_fullName);
-          formData.append("file", data.imageFile);
+                    if (typeof value === 'string' || value instanceof Blob) {
+                         // Handle strings and Blobs
+                         formData.append(property, value);
+                    } else if (value instanceof File) {
+                         // Handle Files
+                         formData.append(property, value, value.name);
+                    } else if (value !== null && typeof value === 'object') {
+                         // Handle SingleValue objects
+                         formData.append(property, JSON.stringify(value));
+                    }
+               }
+          }
+
+
+          // formData.append("documentType", JSON.stringify(data.documentType))
+
+          // const formData = new FormData();
+
+          // formData.append("owner_fullName", data.owner_fullName);
+          // formData.append("imageFile", data.imageFile);
 
           try {
                const responseObj = await fetch('http://localhost:8000/api/documents', {
@@ -161,7 +177,7 @@ function UserForm({ formType }: { formType: string }) {
                          }
 
 
-                         {/* <ControlledSelector
+                         <ControlledSelector
                               control={control}
                               inputName='documentType'
                               placeholder='Select document type*'
@@ -169,7 +185,7 @@ function UserForm({ formType }: { formType: string }) {
                               requiredErrorMsg='Document type'
                          />
 
-                         <div>
+                         {/* <div>
                               <input type="text" placeholder='Document number*'
                                    {...register('documentNumber', { required: requiredMsg('Document number') })} />
                               {errors.documentNumber && <p className='errorMsg'>{`${errors.documentNumber.message}`}</p>}

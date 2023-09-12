@@ -25,7 +25,7 @@ export default function ControlledSelector({ control, inputName, placeholder, op
           // use Controller from react-hook-form to wrap external UI component(library) in order to build a connection
           <Controller
                control={control}
-               name={inputName}
+               name={inputName.toString()}
                rules={{
                     required: requiredMsg(requiredErrorMsg)
                }}
