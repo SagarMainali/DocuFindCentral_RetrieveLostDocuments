@@ -34,8 +34,13 @@ function UserForm({ formType }: { formType: string }) {
 
      const onSubmit = async (data: FormDataType) => {
 
+          // const formData = new FormData();
+          // formData.append("owner_fullName", data.owner_fullName);
+          // formData.append("imageFile", data.imageFile);
+
           const formData = new FormData();
 
+          // looping over each property in an object
           for (const property in data) {
                if (data.hasOwnProperty(property)) {
                     const value = data[property];
@@ -53,16 +58,8 @@ function UserForm({ formType }: { formType: string }) {
                }
           }
 
-
-          // formData.append("documentType", JSON.stringify(data.documentType))
-
-          // const formData = new FormData();
-
-          // formData.append("owner_fullName", data.owner_fullName);
-          // formData.append("imageFile", data.imageFile);
-
           try {
-               const responseObj = await fetch('http://localhost:8000/api/documents', {
+               const responseObj = await fetch('http://localhost:8000/api/uploads', {
                     method: 'POST',
                     body: formData
                })

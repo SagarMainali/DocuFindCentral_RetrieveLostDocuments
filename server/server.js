@@ -1,24 +1,14 @@
 import express from 'express';
 import cors from 'cors';
+import mysql from 'mysql2';
 import multer from 'multer'
-// import mysql from 'mysql2';
 
 const app = express();
 
 // using middleware
 app.use(cors());
-// app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
 
-// establishing connection to remote database
-// const database = mysql.createPool({
-//     host: 'localhost',
-//     port: '3307',
-//     user: 'root',
-//     password: 'mysql@wb_2023',
-//     database: 'documents'
-// })
-
+// allocating storage in the server itself to store images sent from the client side
 const storage = multer.diskStorage({
     destination: "./images",
     filename: (req, file, cb) => {
@@ -26,17 +16,44 @@ const storage = multer.diskStorage({
     }
 })
 
-const upload = multer({ storage })
+// custom middleware to use in a specific route
+const fileUpload = multer({ storage })
+
+// establishing connection to remote database
+const database = mysql.createPool({
+    host: 'localhost',
+    port: '3307',
+    user: 'root',
+    password: 'mysql@wb_2023',
+    database: 'documents'
+})
 
 //default route 
 app.get('/', (req, res) => {
     res.send("Hello World!");
 })
 
-app.post('/api/documents', upload.single('imageFile'), (req, res) => {
-    console.log(`${req.body.owner_fullName} send this file:\n`, req.file);
-    console.log(req.body.documentType);
-    res.send(req.file);
+// route to receive formdata
+app.post('/api/uploads', fileUpload.single('imageFile'), (req, res) => {
+    const { owner_fullName,
+        finder_fullName,
+        contact,
+        currentAddress,
+        permanentAddress,
+        documentFoundPlace,
+        email,
+        documentType,
+        documentNumber,
+        documentIssuedDistrict,
+        documentIssuedDate,
+        documentExpiryDate,
+        shortMessage } = req.body;
+
+    const imageFile = req.file;
+
+    console.log(req.body.owner_fullName)
+
+    res.send(documentType);
 })
 
 // dynamic assignment of port number
