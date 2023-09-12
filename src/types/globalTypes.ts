@@ -1,7 +1,6 @@
 import { SingleValue } from 'react-select'
 
 export type FormDataType = {
-
     owner_fullName: string,
     finder_fullName: string,
     contact: string,

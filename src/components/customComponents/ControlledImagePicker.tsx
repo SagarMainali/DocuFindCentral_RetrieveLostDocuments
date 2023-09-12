@@ -17,8 +17,9 @@ export default function ControlledImagePicker({ control }: PropsType) {
      }
 
      const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-          if (event.target.files)
+          if (event.target.files) {
                return event.target.files[0]
+          }
      }
 
      return (

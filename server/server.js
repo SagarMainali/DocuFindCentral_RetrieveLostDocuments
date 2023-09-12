@@ -1,31 +1,41 @@
 import express from 'express';
-import cors from 'cors'
-import mysql from 'mysql2';
+import cors from 'cors';
+import multer from 'multer'
+// import mysql from 'mysql2';
 
 const app = express();
 
 // using middleware
 app.use(cors());
-app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
 
 // establishing connection to remote database
-const database = mysql.createPool({
-    host: 'localhost',
-    port: '3307',
-    user: 'root',
-    password: 'mysql@wb_2023',
-    database: 'documents'
+// const database = mysql.createPool({
+//     host: 'localhost',
+//     port: '3307',
+//     user: 'root',
+//     password: 'mysql@wb_2023',
+//     database: 'documents'
+// })
+
+const storage = multer.diskStorage({
+    destination: "./images",
+    filename: (req, file, cb) => {
+        cb(null, `${Date.now()} ${file.originalname}`);
+    }
 })
+
+const upload = multer({ storage })
 
 //default route 
 app.get('/', (req, res) => {
     res.send("Hello World!");
 })
 
-app.post('/api/documents/', (req, res) => {
-    const data = req.body;
-    console.log(data);
-    res.send(data)
+app.post('/api/documents', upload.single('file'), (req, res) => {
+    console.log(`${req.body.name} send this file:\n`, req.file);
+    res.send(req.file);
 })
 
 // dynamic assignment of port number

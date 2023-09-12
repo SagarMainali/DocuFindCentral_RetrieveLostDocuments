@@ -16,6 +16,7 @@ export const requiredMsg = (fieldName: string) => {
      return `*${fieldName} is required!`;
 }
 
+
 function UserForm({ formType }: { formType: string }) {
 
      const {
@@ -32,14 +33,22 @@ function UserForm({ formType }: { formType: string }) {
      })
 
      const onSubmit = async (data: FormDataType) => {
+
+          const formData = new FormData();
+
+          // for (const fieldName in data) {
+          //      if (data.hasOwnProperty(fieldName)) {
+          //           formData.append(fieldName, data[fieldName]);
+          //      }
+          // }
+
+          formData.append("name", data.owner_fullName);
+          formData.append("file", data.imageFile);
+
           try {
                const responseObj = await fetch('http://localhost:8000/api/documents', {
                     method: 'POST',
-                    headers: {
-                         'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-
+                    body: formData
                })
                if (responseObj.ok) {
                     const parsedData = await responseObj.json();
@@ -92,7 +101,8 @@ function UserForm({ formType }: { formType: string }) {
                                         <input
                                              type="text"
                                              placeholder='Full name of owner(as in document)*'
-                                             {...register('owner_fullName', { required: requiredMsg('Owner name') })} />
+                                             {...register('owner_fullName')} />
+                                        {/* , { required: requiredMsg('Owner name') } */}
                                         {errors.owner_fullName && <p className='errorMsg'>{`${errors.owner_fullName.message}`}</p>}
                                    </div>
                                    :
@@ -107,7 +117,8 @@ function UserForm({ formType }: { formType: string }) {
 
                          <div>
                               <input type="number" placeholder='Contact number*'
-                                   {...register('contact', { required: requiredMsg('Contact number') })} />
+                                   {...register('contact')} />
+                              {/* , { required: requiredMsg('Contact number') } */}
                               {errors.contact && <p className='errorMsg'>{`${errors.contact.message}`}</p>}
                          </div>
 
@@ -123,7 +134,8 @@ function UserForm({ formType }: { formType: string }) {
 
                          <div className='col-span-full'>
                               <input type="email" placeholder='Your Email*'
-                                   {...register('email', { required: requiredMsg('Email address') })} />
+                                   {...register('email')} />
+                              {/* , { required: requiredMsg('Email address') } */}
                               {errors.email && <p className='errorMsg'>{`${errors.email.message}`}</p>}
                               <p className="col-span-full note">
                                    *Please enter correct email since you will be notified in this email if we find your ticket match in our system.
@@ -142,12 +154,14 @@ function UserForm({ formType }: { formType: string }) {
                               <div>
                                    <input
                                         type="text" placeholder='Full Name of owner(as in document)*'
-                                        {...register('owner_fullName', { required: requiredMsg('Owner name') })} />
+                                        {...register('owner_fullName')} />
+                                   {/* , { required: requiredMsg('Owner name') } */}
                                    {errors.owner_fullName && <p className='errorMsg'>{`${errors.owner_fullName.message}`}</p>}
                               </div>
                          }
 
-                         <ControlledSelector
+
+                         {/* <ControlledSelector
                               control={control}
                               inputName='documentType'
                               placeholder='Select document type*'
@@ -181,17 +195,17 @@ function UserForm({ formType }: { formType: string }) {
                               control={control}
                               inputName='documentExpiryDate'
                               placeholder='Document expiry date'
-                         />
+                         /> */}
 
                          <ControlledImagePicker control={control} />
 
                     </div>
                </div>
 
-               <div>
+               {/* flex to remove unusual space between its childrens */}
+               {/* <div>
                     <h2 className="form-sub-title">MESSAGE</h2>
                     <div className='form-field-group'>
-                         {/* flex to remove unusual space between its childrens */}
                          <div className='col-span-full flex flex-col'>
                               <textarea maxLength={200} rows={3}
                                    placeholder="Write short message to display*"
@@ -199,7 +213,7 @@ function UserForm({ formType }: { formType: string }) {
                               {errors.shortMessage && <p className='errorMsg'>{`${errors.shortMessage.message}`}</p>}
                          </div>
                     </div>
-               </div>
+               </div> */}
 
                <button
                     disabled={isSubmitting}
