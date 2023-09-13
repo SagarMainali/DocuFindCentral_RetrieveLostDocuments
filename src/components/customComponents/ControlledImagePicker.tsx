@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { Control, Controller } from "react-hook-form"
 
 import { FormDataType } from "../../types/globalTypes"
@@ -13,12 +13,23 @@ export default function ControlledImagePicker({ control }: PropsType) {
 
      // trigger click on hidden input[type=file]
      const triggerFileInputElementClick = () => {
-          imgPickerInput.current?.click()
+          imgPickerInput.current?.click();
      }
+
+     const [error, setError] = useState<string | null>();
 
      const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
           if (event.target.files) {
-               return event.target.files[0]
+               const allowedFileTypes = ["image/jpg", "image/jpeg", "image/png"];
+               const selectedFile = event.target.files[0];
+
+               if (allowedFileTypes.includes(selectedFile.type)) {
+                    setError(null);
+                    return selectedFile;
+               }
+               else {
+                    setError('Only jpg, jpeg and png types are allowed!')
+               }
           }
      }
 
@@ -26,7 +37,7 @@ export default function ControlledImagePicker({ control }: PropsType) {
           <Controller
                control={control}
                name='imageFile'
-               render={({ field: { onChange, value }, fieldState: { error } }) => (
+               render={({ field: { onChange, value } }) => (
                     <div>
                          <div className='input flex items-center justify-between cursor-pointer' onClick={triggerFileInputElementClick}>
 
@@ -41,7 +52,7 @@ export default function ControlledImagePicker({ control }: PropsType) {
                               </svg>
                          </div>
 
-                         {error && <p className="errorMsg">{`${error.message}`}</p>}
+                         {error && <p className="errorMsg">{`${error}`}</p>}
                     </div>
                )}
           />

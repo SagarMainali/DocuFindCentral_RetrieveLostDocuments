@@ -36,7 +36,7 @@ function UserForm({ formType }: { formType: string }) {
           }
 
           try {
-               const responseObj = await fetch('http://localhost:8000/api/uploads', {
+               const responseObj = await fetch('http://localhost:8000/api/tickets', {
                     method: 'POST',
                     body: formData
                })
@@ -149,7 +149,6 @@ function UserForm({ formType }: { formType: string }) {
                                    {errors.owner_fullName && <p className='errorMsg'>{`${errors.owner_fullName.message}`}</p>}
                               </div>
                          }
-
 
                          <ControlledSelector
                               control={control}

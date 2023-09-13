@@ -25,7 +25,7 @@ const database = mysql.createPool({
     port: '3307',
     user: 'root',
     password: 'mysql@wb_2023',
-    database: 'documents'
+    database: 'tickets'
 })
 
 //default route 
@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
 })
 
 // route to receive formdata
-app.post('/api/uploads', fileUpload.single('imageFile'), (req, res) => {
+app.post('/api/tickets', fileUpload.single('imageFile'), (req, res) => {
     const { owner_fullName,
         finder_fullName,
         contact,
@@ -51,9 +51,9 @@ app.post('/api/uploads', fileUpload.single('imageFile'), (req, res) => {
 
     const imageFile = req.file;
 
-    console.log(documentType, imageFile)
+    console.log(req.body, imageFile)
 
-    res.json(documentType);
+    res.send({ textData: req.body, file: req.file });
 })
 
 // dynamic assignment of port number
