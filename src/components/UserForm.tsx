@@ -16,7 +16,6 @@ export const requiredMsg = (fieldName: string) => {
      return `*${fieldName} is required!`;
 }
 
-
 function UserForm({ formType }: { formType: string }) {
 
      const {
@@ -25,37 +24,15 @@ function UserForm({ formType }: { formType: string }) {
           formState: { errors, isSubmitSuccessful, isSubmitting },
           control,
           reset
-     } = useForm<FormDataType>({
-          defaultValues: {
-               documentType: null,
-               documentIssuedDistrict: null
-          }
-     })
+     } = useForm<FormDataType>()
 
      const onSubmit = async (data: FormDataType) => {
 
-          // const formData = new FormData();
-          // formData.append("owner_fullName", data.owner_fullName);
-          // formData.append("imageFile", data.imageFile);
-
           const formData = new FormData();
 
-          // looping over each property in an object
-          for (const property in data) {
-               if (data.hasOwnProperty(property)) {
-                    const value = data[property];
-
-                    if (typeof value === 'string' || value instanceof Blob) {
-                         // Handle strings and Blobs
-                         formData.append(property, value);
-                    } else if (value instanceof File) {
-                         // Handle Files
-                         formData.append(property, value, value.name);
-                    } else if (value !== null && typeof value === 'object') {
-                         // Handle SingleValue objects
-                         formData.append(property, JSON.stringify(value));
-                    }
-               }
+          // looping over each property in an object to append it to Form Data constructor
+          for (const key in data) {
+               formData.append(key, data[key]);
           }
 
           try {
@@ -182,9 +159,10 @@ function UserForm({ formType }: { formType: string }) {
                               requiredErrorMsg='Document type'
                          />
 
-                         {/* <div>
+                         <div>
                               <input type="text" placeholder='Document number*'
-                                   {...register('documentNumber', { required: requiredMsg('Document number') })} />
+                                   {...register('documentNumber')} />
+                              {/* , { required: requiredMsg('Document number') } */}
                               {errors.documentNumber && <p className='errorMsg'>{`${errors.documentNumber.message}`}</p>}
                          </div>
 
@@ -201,32 +179,33 @@ function UserForm({ formType }: { formType: string }) {
                               control={control}
                               inputName='documentIssuedDate'
                               placeholder='Document issued date*'
-                              requiredErrorMsg='Document issued date'
+                         // requiredErrorMsg='Document issued date'
                          />
 
                          <ControlledDatePicker
                               control={control}
                               inputName='documentExpiryDate'
                               placeholder='Document expiry date'
-                         /> */}
+                         />
 
                          <ControlledImagePicker control={control} />
 
                     </div>
                </div>
 
-               {/* flex to remove unusual space between its childrens */}
-               {/* <div>
+               <div>
                     <h2 className="form-sub-title">MESSAGE</h2>
                     <div className='form-field-group'>
+                         {/* flex to remove unusual space between its childrens */}
                          <div className='col-span-full flex flex-col'>
                               <textarea maxLength={200} rows={3}
                                    placeholder="Write short message to display*"
-                                   {...register('shortMessage', { required: requiredMsg('Message') })} />
+                                   {...register('shortMessage')} />
+                              {/* , { required: requiredMsg('Message') } */}
                               {errors.shortMessage && <p className='errorMsg'>{`${errors.shortMessage.message}`}</p>}
                          </div>
                     </div>
-               </div> */}
+               </div>
 
                <button
                     disabled={isSubmitting}

@@ -7,7 +7,7 @@ import { requiredMsg } from '../UserForm'
 type PropsType = {
      // an object that contains methods to link useForm and the Component where it is being used
      control: Control<FormDataType>,
-     inputName: keyof FormDataType,
+     inputName: string,
      placeholder: string,
      options: {
           value: string,
@@ -25,16 +25,16 @@ export default function ControlledSelector({ control, inputName, placeholder, op
           // use Controller from react-hook-form to wrap external UI component(library) in order to build a connection
           <Controller
                control={control}
-               name={inputName.toString()}
+               name={inputName}
                rules={{
                     required: requiredMsg(requiredErrorMsg)
                }}
                render={({ field: { onChange, value }, fieldState: { error } }) => (
                     <div>
                          <Select
-                              value={value}
-                              onChange={onChange}
                               options={options}
+                              value={options.find((option) => option.value === value) || null} //return null if no match is found
+                              onChange={(selectedOption) => onChange(selectedOption?.value)}
                               placeholder={placeholder}
                               isSearchable={noOptionsMessage ? true : false}
                               noOptionsMessage={() => noOptionsMessage}

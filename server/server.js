@@ -51,9 +51,9 @@ app.post('/api/uploads', fileUpload.single('imageFile'), (req, res) => {
 
     const imageFile = req.file;
 
-    console.log(req.body.owner_fullName)
+    console.log(documentType, imageFile)
 
-    res.send(documentType);
+    res.json(documentType);
 })
 
 // dynamic assignment of port number

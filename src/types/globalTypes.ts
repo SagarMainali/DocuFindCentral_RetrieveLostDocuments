@@ -1,7 +1,5 @@
-import { SingleValue } from 'react-select'
-
 export type FormDataType = {
-    [key: string]: string | File | SingleValue<{ label: string, value: string }>,
+    [key: string]: string | File,
 
     owner_fullName: string,
     finder_fullName: string,
@@ -11,8 +9,8 @@ export type FormDataType = {
     documentFoundPlace: string,
     email: string,
 
-    documentType: SingleValue<{ label: string, value: string }> | null,
-    documentIssuedDistrict: SingleValue<{ label: string, value: string }> | null,
+    documentType: string,
+    documentIssuedDistrict: string,
     documentNumber: string,
     imageFile: File,
     documentIssuedDate: string,
