@@ -40,7 +40,6 @@ export default function ControlledImagePicker({ control }: PropsType) {
                render={({ field: { onChange, value } }) => (
                     <div>
                          <div className='input flex items-center justify-between cursor-pointer' onClick={triggerFileInputElementClick}>
-
                               <input type="file" hidden ref={imgPickerInput} onChange={(event) => onChange(handleFileChange(event))} />
 
                               <h2 className={`w-[240px] truncate ${value?.name ? 'text-[#1e1e1e]' : 'text-[#808080]'}`}>

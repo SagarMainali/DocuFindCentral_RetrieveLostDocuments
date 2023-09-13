@@ -7,6 +7,7 @@ const app = express();
 
 // using middleware
 app.use(cors());
+app.use(express.json());
 
 // allocating storage in the server itself to store images sent from the client side
 const storage = multer.diskStorage({
@@ -17,7 +18,7 @@ const storage = multer.diskStorage({
 })
 
 // custom middleware to use in a specific route
-const fileUpload = multer({ storage })
+const upload = multer({ storage })
 
 // establishing connection to remote database
 const database = mysql.createPool({
@@ -34,7 +35,7 @@ app.get('/', (req, res) => {
 })
 
 // route to receive formdata
-app.post('/api/tickets', fileUpload.single('imageFile'), (req, res) => {
+app.post('/api/tickets', upload.single('imageFile'), (req, res) => {
     const { owner_fullName,
         finder_fullName,
         contact,
@@ -49,11 +50,14 @@ app.post('/api/tickets', fileUpload.single('imageFile'), (req, res) => {
         documentExpiryDate,
         shortMessage } = req.body;
 
+    const textData = req.body;
+
     const imageFile = req.file;
 
-    console.log(req.body, imageFile)
+    console.log({ textData, imageFile });
 
-    res.send({ textData: req.body, file: req.file });
+    // send response back to client-side
+    res.json({ textData, imageFile });
 })
 
 // dynamic assignment of port number

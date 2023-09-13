@@ -26,6 +26,7 @@ function UserForm({ formType }: { formType: string }) {
           reset
      } = useForm<FormDataType>()
 
+     // custom function to handle submission of form data
      const onSubmit = async (data: FormDataType) => {
 
           const formData = new FormData();
@@ -38,6 +39,7 @@ function UserForm({ formType }: { formType: string }) {
           try {
                const responseObj = await fetch('http://localhost:8000/api/tickets', {
                     method: 'POST',
+                    // no need to specify the header when sending FormData()
                     body: formData
                })
                if (responseObj.ok) {
