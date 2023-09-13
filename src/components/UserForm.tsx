@@ -49,7 +49,7 @@ function UserForm({ formType }: { formType: string }) {
                })
                if (responseObj.ok) {
                     const parsedData = await responseObj.json();
-                    console.log("The following data was sent to the server:\n", parsedData);
+                    console.log(parsedData);
                }
                else {
                     console.error(responseObj.statusText);
@@ -66,7 +66,6 @@ function UserForm({ formType }: { formType: string }) {
           // is passed by the handleSubmit function to the custom function
           if (isSubmitSuccessful) {
                reset();
-               console.log('Form data passed the validation and reset the form state');
           }
      }, [isSubmitSuccessful])
 

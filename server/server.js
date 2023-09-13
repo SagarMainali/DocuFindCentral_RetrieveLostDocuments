@@ -41,6 +41,7 @@ app.post('/api/tickets', upload.single('imageFile'), (req, res) => {
     const imageFile = req.file;
 
     const sqlSelectQuery = 'SELECT * FROM unsolved_tickets WHERE ticketType=? AND documentNumber=?';
+    // to look for data in opposite ticket type
     const ticketTypeOpposite = textData.ticketType === 'Lost' ? 'Found' : 'Lost';
     const valuesToLookFor = [ticketTypeOpposite, textData.documentNumber];
 
@@ -62,6 +63,7 @@ app.post('/api/tickets', upload.single('imageFile'), (req, res) => {
                     }
                     else {
                         res.status(200).json({
+                            message: 'No ticket with the given information found so a new ticket will be created with this information.',
                             inserted_Data: {
                                 textData,
                                 imageFile
@@ -73,7 +75,11 @@ app.post('/api/tickets', upload.single('imageFile'), (req, res) => {
                 })
             }
             else {
-                res.json(resultArr)
+                const ticket = resultArr[0]
+                res.json({
+                    message: 'A ticket has been found with the same information as provided by the user.',
+                    matchedTicket: ticket
+                })
                 console.log('Match detected!')
             }
         }
