@@ -107,7 +107,8 @@ function UserForm({ formType }: { formType: string }) {
                                         <input
                                              type="text"
                                              placeholder='Full name of finder*'
-                                             {...register('finder_fullName', { required: requiredMsg('Finder name') })} />
+                                             {...register('finder_fullName')} />
+                                        {/* , { required: requiredMsg('Finder name') } */}
                                         {errors.finder_fullName && <p className='errorMsg'>{`${errors.finder_fullName.message}`}</p>}
                                    </div>
                          }

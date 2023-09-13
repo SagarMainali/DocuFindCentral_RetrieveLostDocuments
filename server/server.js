@@ -40,26 +40,65 @@ app.post('/api/tickets', upload.single('imageFile'), (req, res) => {
     const textData = req.body;
     const imageFile = req.file;
 
-    const sqlInsertQuery = 'INSERT INTO unsolved_tickets SET ?';
-    const dataToInsert = { ...textData, imageFile }
+    const sqlSelectQuery = 'SELECT * FROM unsolved_tickets WHERE ticketType=? AND documentNumber=?';
+    const ticketTypeOpposite = textData.ticketType === 'Lost' ? 'Found' : 'Lost';
+    const valuesToLookFor = [ticketTypeOpposite, textData.documentNumber];
 
-    database.query(sqlInsertQuery, dataToInsert, (error, results) => {
+    database.query(sqlSelectQuery, valuesToLookFor, (error, resultArr) => {
         if (error) {
-            console.log("Error:\n", error);
-            res.status(400).json(error);
+            res.status(400).send("Error while looking for data in the database:\n", error);
+            console.log("Error while looking for data in the database:\n", error);
         }
         else {
-            console.log("Success:\n", results);
-            // send response back to client-side
-            res.status(200).json({
-                inserted_Data: {
-                    textData,
-                    imageFile
-                },
-                from_Database: results
-            });
+            // insert new ticket if no match found with any of the existing tickets
+            if (resultArr.length === 0) {
+                const sqlInsertQuery = 'INSERT INTO unsolved_tickets SET ?';
+                const dataToInsert = { ...textData, imageFile }
+
+                database.query(sqlInsertQuery, dataToInsert, (error, results) => {
+                    if (error) {
+                        res.status(400).send("Error while looking for data in the database:\n", error);
+                        console.log("Error while inserting data in the database:\n", error);
+                    }
+                    else {
+                        res.status(200).json({
+                            inserted_Data: {
+                                textData,
+                                imageFile
+                            },
+                            from_Database: results
+                        });
+                        console.log("Success:\n", results);
+                    }
+                })
+            }
+            else {
+                res.json(resultArr)
+                console.log('Match detected!')
+            }
         }
     })
+
+    // const sqlInsertQuery = 'INSERT INTO unsolved_tickets SET ?';
+    // const dataToInsert = { ...textData, imageFile }
+
+    // database.query(sqlInsertQuery, dataToInsert, (error, results) => {
+    //     if (error) {
+    //         console.log("Error:\n", error);
+    //         res.status(400).json(error);
+    //     }
+    //     else {
+    //         console.log("Success:\n", results);
+    //         // send response back to client-side
+    //         res.status(200).json({
+    //             inserted_Data: {
+    //                 textData,
+    //                 imageFile
+    //             },
+    //             from_Database: results
+    //         });
+    //     }
+    // })
 
 })
 
