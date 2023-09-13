@@ -36,31 +36,48 @@ app.get('/', (req, res) => {
 
 // route to receive formdata
 app.post('/api/tickets', upload.single('imageFile'), (req, res) => {
-    const { owner_fullName,
-        finder_fullName,
-        contact,
-        currentAddress,
-        permanentAddress,
-        documentFoundPlace,
-        email,
-        documentType,
-        documentNumber,
-        documentIssuedDistrict,
-        documentIssuedDate,
-        documentExpiryDate,
-        shortMessage } = req.body;
 
     const textData = req.body;
-
     const imageFile = req.file;
 
-    console.log({ textData, imageFile });
+    const sqlInsertQuery = 'INSERT INTO unsolved_tickets SET ?';
+    const dataToInsert = { ...textData, imageFile }
 
-    // send response back to client-side
-    res.json({ textData, imageFile });
+    database.query(sqlInsertQuery, dataToInsert, (error, results) => {
+        if (error) {
+            console.log("Error:\n", error);
+            res.status(400).json(error);
+        }
+        else {
+            console.log("Success:\n", results);
+            // send response back to client-side
+            res.status(200).json({
+                inserted_Data: {
+                    textData,
+                    imageFile
+                },
+                from_Database: results
+            });
+        }
+    })
+
 })
 
 // dynamic assignment of port number
 const port = process.env.PORT || 8000;
 
 app.listen(port, () => console.log(`The server is running at ${port}...`));
+
+// const { owner_fullName,
+//     finder_fullName,
+//     contact,
+//     currentAddress,
+//     permanentAddress,
+//     documentFoundPlace,
+//     email,
+//     documentType,
+//     documentNumber,
+//     documentIssuedDistrict,
+//     documentIssuedDate,
+//     documentExpiryDate,
+//     shortMessage } = req.body;
