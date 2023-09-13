@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form'
+import { useLocation } from 'react-router-dom'
 
 import ControlledSelector from './customComponents/ControlledSelector'
 import ControlledDatePicker from './customComponents/ControlledDatePicker';
@@ -18,6 +19,8 @@ export const requiredMsg = (fieldName: string) => {
 
 function UserForm({ formType }: { formType: string }) {
 
+     const { pathname } = useLocation();
+
      const {
           register,
           handleSubmit,
@@ -35,6 +38,8 @@ function UserForm({ formType }: { formType: string }) {
           for (const key in data) {
                formData.append(key, data[key]);
           }
+
+          formData.append('ticketType', `${pathname === '/lost-document' ? 'Lost' : 'Found'}`)
 
           try {
                const responseObj = await fetch('http://localhost:8000/api/tickets', {
