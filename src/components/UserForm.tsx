@@ -39,10 +39,11 @@ function UserForm({ formType }: { formType: string }) {
                formData.append(key, data[key]);
           }
 
+          // appending tiket type according to path to search the opposite ticket type in database
           formData.append('ticketType', `${pathname === '/lost-document' ? 'Lost' : 'Found'}`)
 
           try {
-               const responseObj = await fetch('http://localhost:8000/api/tickets', {
+               const responseObj = await fetch('http://localhost:8000/api/post/tickets', {
                     method: 'POST',
                     // no need to specify the header when sending FormData()
                     body: formData
