@@ -36,12 +36,13 @@ const database = mysql.createPool({
 
 //default route 
 app.get('/', (req, res) => {
-    const currentDate = dayjs().utc().format('MMM DD, YYYY - HH:mm');
+    const currentDate = dayjs().utc().format('MMM DD, YYYY - HH:mm UTC');
+    console.log(typeof currentDate);
     res.send({ message: "Hello World!", currentDate });
 })
 
 // route to receive formdata
-app.post('/api/tickets', upload.single('imageFile'), (req, res) => {
+app.post('/api/post/tickets', upload.single('imageFile'), (req, res) => {
 
     const textData = req.body;
     const imageFile = req.file;
@@ -56,11 +57,12 @@ app.post('/api/tickets', upload.single('imageFile'), (req, res) => {
             res.status(400).send("Error while looking for data in the database:\n", error);
             console.log("Error while looking for data in the database:\n", error);
         }
-        else {
-            // insert new ticket if no match found with any of the existing tickets
+        else { // insert new ticket if no match found with any of the existing tickets
+            const createdDate = dayjs().utc().format('MMM DD, YYYY - HH:mm UTC');
+
             if (resultArr.length === 0) {
                 const sqlInsertQuery = 'INSERT INTO unsolved_tickets SET ?';
-                const dataToInsert = { ...textData, imageFile }
+                const dataToInsert = { ...textData, imageFile, createdDate }
 
                 database.query(sqlInsertQuery, dataToInsert, (error, results) => {
                     if (error) {
@@ -68,14 +70,16 @@ app.post('/api/tickets', upload.single('imageFile'), (req, res) => {
                         console.log("Error while inserting data in the database:\n", error);
                     }
                     else {
-                        res.status(200).json({
+                        const dataToRespond = {
                             message: 'No ticket with the given information found so a new ticket will be created with this information.',
+                            inserted_On: createdDate,
                             inserted_Data: {
                                 textData,
                                 imageFile
                             },
                             from_Database: results
-                        });
+                        }
+                        res.status(200).json(dataToRespond);
                         console.log("Success:\n", results);
                     }
                 })
