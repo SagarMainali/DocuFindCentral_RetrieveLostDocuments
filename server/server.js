@@ -1,8 +1,13 @@
-import express from 'express';
-import cors from 'cors';
-import mysql from 'mysql2';
-import multer from 'multer'
+// using CommonJs require because some plugin didn't support ES6 modules
 
+const express = require('express')
+const cors = require('cors')
+const mysql = require('mysql2')
+const multer = require('multer')
+const dayjs = require('dayjs')
+const utc = require('dayjs/plugin/utc')
+
+dayjs.extend(utc);
 const app = express();
 
 // using middleware
@@ -31,7 +36,8 @@ const database = mysql.createPool({
 
 //default route 
 app.get('/', (req, res) => {
-    res.send("Hello World!");
+    const currentDate = dayjs().utc().format('MMM DD, YYYY - HH:mm');
+    res.send({ message: "Hello World!", currentDate });
 })
 
 // route to receive formdata
