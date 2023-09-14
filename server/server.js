@@ -4,10 +4,9 @@ const express = require('express')
 const cors = require('cors')
 const mysql = require('mysql2')
 const multer = require('multer')
-const dayjs = require('dayjs')
-const utc = require('dayjs/plugin/utc')
 
-dayjs.extend(utc);
+const { getCurrentUTC, convertUTCtoLocal } = require('./handleDates')
+
 const app = express();
 
 // using middleware
@@ -36,9 +35,9 @@ const database = mysql.createPool({
 
 //default route 
 app.get('/', (req, res) => {
-    const currentDate = dayjs().utc().format('MMM DD, YYYY - HH:mm UTC');
-    console.log(typeof currentDate);
-    res.send({ message: "Hello World!", currentDate });
+    const utc = getCurrentUTC();
+    const local = convertUTCtoLocal(utc);
+    res.send({ message: "Hello World!", utc, local });
 })
 
 // route to receive formdata
@@ -54,25 +53,23 @@ app.post('/api/post/tickets', upload.single('imageFile'), (req, res) => {
 
     database.query(sqlSelectQuery, valuesToLookFor, (error, resultArr) => {
         if (error) {
-            res.status(400).send("Error while looking for data in the database:\n", error);
-            console.log("Error while looking for data in the database:\n", error);
+            res.status(400).send("Error while looking for a ticket in the database:\n", error);
+            console.log("Error while looking for a ticket in the database:\n", error);
         }
         else { // insert new ticket if no match found with any of the existing tickets
-            const createdDate = dayjs().utc().format('MMM DD, YYYY - HH:mm UTC');
-
             if (resultArr.length === 0) {
                 const sqlInsertQuery = 'INSERT INTO unsolved_tickets SET ?';
-                const dataToInsert = { ...textData, imageFile, createdDate }
+                const dataToInsert = { ...textData, imageFile, createdDate: getCurrentUTC() }
 
                 database.query(sqlInsertQuery, dataToInsert, (error, results) => {
                     if (error) {
-                        res.status(400).send("Error while looking for data in the database:\n", error);
-                        console.log("Error while inserting data in the database:\n", error);
+                        res.status(400).send("No ticket with the given information found but got error while trying to create a new ticket with this information:\n", error);
+                        console.log("No ticket with the given information found but got error while trying to create a new ticket with this information:\n", error);
                     }
                     else {
                         const dataToRespond = {
-                            message: 'No ticket with the given information found so a new ticket will be created with this information.',
-                            inserted_On: createdDate,
+                            message: 'No ticket with the given information found so a new ticket has been created with this information.',
+                            inserted_On: convertUTCtoLocal(),
                             inserted_Data: {
                                 textData,
                                 imageFile
@@ -88,6 +85,7 @@ app.post('/api/post/tickets', upload.single('imageFile'), (req, res) => {
                 const ticket = resultArr[0]
                 res.json({
                     message: 'A ticket has been found with the same information as provided by the user.',
+                    matchedOn: convertUTCtoLocal(),
                     matchedTicket: ticket
                 })
                 console.log('Match detected!')
