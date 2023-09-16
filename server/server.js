@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
     res.send({ message: 'Hello World!', utc, local });
 })
 
-// route to receive formdata
+// route to receive formdata and perform necessary operation on that data to search and match tickets
 app.post('/api/post/tickets/', upload.single('imageFile'), (req, res) => {
 
     // parsed by multer middleware
@@ -56,8 +56,8 @@ app.post('/api/post/tickets/', upload.single('imageFile'), (req, res) => {
     database.query(sqlSelectQuery, valuesToLookFor, (error, resultArr) => {
         if (error) {
             const customErrorMsg = 'Error while searching for a ticket in the database:\n'
-            res.status(400).send(customErrorMsg + error);
             console.log(customErrorMsg + error);
+            res.status(400).send(customErrorMsg + error);
         }
         else { // insert new ticket if no match found with any of the existing tickets
             if (resultArr.length < 1) {
@@ -72,8 +72,8 @@ app.post('/api/post/tickets/', upload.single('imageFile'), (req, res) => {
                 database.query(sqlInsertQuery, dataToInsert, (error, result) => {
                     if (error) {
                         const customErrorMsg = 'No ticket with the given information was found and got error while trying to create a new ticket with the provided information:\n'
-                        res.status(400).send(customErrorMsg + error);
                         console.log(customErrorMsg + error);
+                        res.status(400).send(customErrorMsg + error);
                     }
                     else {
                         const dataToRespond = {
@@ -86,8 +86,8 @@ app.post('/api/post/tickets/', upload.single('imageFile'), (req, res) => {
                             from_Database: result
                         }
 
-                        res.json(dataToRespond);
                         console.log('New ticket was created.');
+                        res.json(dataToRespond);
                     }
                 })
             }
@@ -101,8 +101,8 @@ app.post('/api/post/tickets/', upload.single('imageFile'), (req, res) => {
                 database.query(sqlDeleteQuery, id, (error, result) => {
                     if (error) {
                         const customErrorMsg = 'A ticket has been found with the same information as provided by the user but got error while resolving it:\n'
-                        res.status(400).send(customErrorMsg + error)
                         console.log(customErrorMsg + error)
+                        res.status(400).send(customErrorMsg + error)
                     }
                     else {
                         const sqlInsertQuery = 'INSERT INTO solved_tickets SET ?';
@@ -118,8 +118,8 @@ app.post('/api/post/tickets/', upload.single('imageFile'), (req, res) => {
                         database.query(sqlInsertQuery, dataToInsert, (error, result) => {
                             if (error) {
                                 const customErrorMsg = 'A ticket has been found with the same information as provided by the user but got error while resolving it:\n'
-                                res.status(400).send(customErrorMsg + error);
                                 console.log(customErrorMsg + error);
+                                res.status(400).send(customErrorMsg + error);
                             }
                             else {
                                 const dataToRespond = {
@@ -129,13 +129,60 @@ app.post('/api/post/tickets/', upload.single('imageFile'), (req, res) => {
                                     from_Database: result
                                 }
 
+                                console.log('Matched ticket resolved.');
                                 res.json(dataToRespond);
-                                console.log('Match found and resolved.');
                             }
                         })
                     }
                 })
             }
+        }
+    })
+})
+
+// route to get all the solved_tickets from the database
+app.get('/api/get/solved_tickets/', (req, res) => {
+    const sqlSelectQuery = 'SELECT * FROM solved_tickets';
+    database.query(sqlSelectQuery, (error, resultArr) => {
+        if (error) {
+            const customErrorMsg = 'There was an error fetching the list of solved tickets.';
+            console.log(customErrorMsg);
+            res.status(400).send(customErrorMsg);
+        }
+        else {
+            const dataToRespond = resultArr.map(resultObj => (
+                {
+                    ...resultObj,
+                    createdDate: convertUTCtoLocal(resultObj.createdDate),
+                    resolvedDate: convertUTCtoLocal(resultObj.resolvedDate)
+                }
+            ))
+
+            console.log(dataToRespond);
+            res.json(dataToRespond);
+        }
+    })
+})
+
+// route to get all the unsolved_tickets from the database
+app.get('/api/get/unsolved_tickets/', (req, res) => {
+    const sqlSelectQuery = 'SELECT * FROM unsolved_tickets';
+    database.query(sqlSelectQuery, (error, resultArr) => {
+        if (error) {
+            const customErrorMsg = 'There was an error fetching the list of unsolved tickets!';
+            console.log(customErrorMsg);
+            res.status(400).send(customErrorMsg);
+        }
+        else {
+            const dataToRespond = resultArr.map(resultObj => (
+                {
+                    ...resultObj,
+                    createdDate: convertUTCtoLocal(resultObj.createdDate)
+                }
+            ))
+
+            console.log(dataToRespond);
+            res.json(dataToRespond);
         }
     })
 })
