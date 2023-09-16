@@ -41,24 +41,26 @@ app.get('/', (req, res) => {
 })
 
 // route to receive formdata
-app.post('/api/post/tickets', upload.single('imageFile'), (req, res) => {
+app.post('/api/post/tickets/', upload.single('imageFile'), (req, res) => {
 
     // parsed by multer middleware
     const textData = req.body;
     const imageFile = req.file;
 
     const sqlSelectQuery = 'SELECT * FROM unsolved_tickets WHERE ticketType=? AND documentType=? AND documentNumber=?';
-    // data to look for in opposite ticket type
+    // look for matching ticket in opposite of provided ticket type
     const ticketTypeOpposite = textData.ticketType === 'Lost' ? 'Found' : 'Lost';
     const valuesToLookFor = [ticketTypeOpposite, textData.documentType, textData.documentNumber];
 
+    console.log('initiating select query')
     database.query(sqlSelectQuery, valuesToLookFor, (error, resultArr) => {
         if (error) {
-            res.status(400).send('Error while looking for a ticket in the database:\n', error);
-            console.log('Error while looking for a ticket in the database:\n', error);
+            res.status(400).send('Error while searching for a ticket in the database:\n' + error);
+            console.log('Error while searching for a ticket in the database:\n' + error);
         }
         else { // insert new ticket if no match found with any of the existing tickets
-            if (resultArr.length === 0) {
+            if (resultArr.length < 1) {
+                console.log('no match found')
                 const sqlInsertQuery = 'INSERT INTO unsolved_tickets SET ?';
                 const dataToInsert = {
                     ...textData,
@@ -66,14 +68,15 @@ app.post('/api/post/tickets', upload.single('imageFile'), (req, res) => {
                     createdDate: getCurrentUTC()
                 }
 
+                console.log('initiating insert query')
                 database.query(sqlInsertQuery, dataToInsert, (error, result) => {
                     if (error) {
-                        res.status(400).send('No ticket with the given information found but got error while trying to create a new ticket with this information:\n', error);
-                        console.log('No ticket with the given information found but got error while trying to create a new ticket with this information:\n', error);
+                        res.status(400).send('No ticket with the given information was found and got error while trying to create a new ticket with the provided information:\n' + error);
+                        console.log('No ticket with the given information was found and got error while trying to create a new ticket with the provided information:\n' + error);
                     }
                     else {
                         const dataToRespond = {
-                            message: 'No ticket with the given information found so a new ticket has been created with this information.',
+                            message: 'No ticket with the given information was found so a new ticket has been created with the provided information.',
                             inserted_On: convertUTCtoLocal(),
                             inserted_Data: {
                                 textData,
@@ -81,77 +84,56 @@ app.post('/api/post/tickets', upload.single('imageFile'), (req, res) => {
                             },
                             from_Database: result
                         }
-                        res.status(200).json(dataToRespond);
-                        console.log('Success:\n', results);
+
+                        res.json(dataToRespond);
+                        console.log('Match not found! So new ticket was created.');
                     }
                 })
             }
+
             else { // if match found, delete existing ticket from unsolved_tickets and add some of its info to solved_tickets
                 const { id, owner_fullName, finder_fullName, documentType, createdDate } = resultArr[0]
 
                 const sqlDeleteQuery = 'DELETE FROM unsolved_tickets WHERE id=?'
 
-                database.query(sqlDeleteQuery, ticket.id, (error, result) => {
+                console.log('initiating delete query')
+                database.query(sqlDeleteQuery, [id], (error, result) => {
                     if (error) {
-                        res.status(200).send('A ticket has been found with the same information as provided by the user but got error while resolving it:\n', error)
-                        console.log('A ticket has been found with the same information as provided by the user but got error while resolving it:\n', error)
+                        res.status(400).send('A ticket has been found with the same information as provided by the user but got error while resolving it:\n' + error)
+                        console.log('A ticket has been found with the same information as provided by the user but got error while resolving it:\n' + error)
                     }
                     else {
                         const sqlInsertQuery = 'INSERT INTO solved_tickets SET ?'
                         const dataToInsert = {
-
+                            owner_fullName,
+                            finder_fullName: finder_fullName ?? textData.finder_fullName,
+                            documentType,
+                            createdDate,
+                            resolvedDate: getCurrentUTC()
                         }
+
+                        database.query(sqlInsertQuery, dataToInsert, (error, result) => {
+                            if (error) {
+                                res.status(400).send('A ticket has been found with the same information as provided by the user but got error while resolving it:\n' + error);
+                                console.log('A ticket has been found with the same information as provided by the user but got error while resolving it:\n' + error);
+                            }
+                            else {
+                                res.json({
+                                    message: 'A ticket has been found with the same information as provided by the user and has been resolved. Please check your email.',
+                                    matchedOn: convertUTCtoLocal(),
+                                    matchedTicket: dataToInsert
+                                });
+                                console.log('Match found and resolved.');
+                            }
+                        })
                     }
                 })
-
-                res.json({
-                    message: 'A ticket has been found with the same information as provided by the user.',
-                    matchedOn: convertUTCtoLocal(),
-                    matchedTicket: ticket
-                })
-                console.log('Match detected!')
             }
         }
     })
-
-    // const sqlInsertQuery = 'INSERT INTO unsolved_tickets SET ?';
-    // const dataToInsert = { ...textData, imageFile }
-
-    // database.query(sqlInsertQuery, dataToInsert, (error, results) => {
-    //     if (error) {
-    //         console.log('Error:\n', error);
-    //         res.status(400).json(error);
-    //     }
-    //     else {
-    //         console.log('Success:\n', results);
-    //         // send response back to client-side
-    //         res.status(200).json({
-    //             inserted_Data: {
-    //                 textData,
-    //                 imageFile
-    //             },
-    //             from_Database: results
-    //         });
-    //     }
-    // })
-
 })
 
 // dynamic assignment of port number
 const port = process.env.PORT || 8000;
 
 app.listen(port, () => console.log(`The server is running at ${port}...`));
-
-// const { owner_fullName,
-//     finder_fullName,
-//     contact,
-//     currentAddress,
-//     permanentAddress,
-//     documentFoundPlace,
-//     email,
-//     documentType,
-//     documentNumber,
-//     documentIssuedDistrict,
-//     documentIssuedDate,
-//     documentExpiryDate,
-//     shortMessage } = req.body;

@@ -43,7 +43,7 @@ function UserForm({ formType }: { formType: string }) {
           formData.append('ticketType', `${pathname === '/lost-document' ? 'Lost' : 'Found'}`)
 
           try {
-               const responseObj = await fetch('http://localhost:8000/api/post/tickets', {
+               const responseObj = await fetch('http://localhost:8000/api/post/tickets/', {
                     method: 'POST',
                     // no need to specify the header when sending FormData()
                     body: formData
