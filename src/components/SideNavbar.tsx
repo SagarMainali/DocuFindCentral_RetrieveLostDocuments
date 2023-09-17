@@ -36,6 +36,14 @@ export default function SideNavbar() {
                          <img src="./icons/nav-icons/found-doc.svg" alt="found-doc" className='w-[22px]' />
                          <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >Document found</h2>
                     </NavLink>
+                    
+                    <NavLink to="/unsolved-tickets"
+                         className={({ isActive }) => `navlink flex gap-2 items-center 
+                         ${isMenuOpened ? '' : 'icon-center'} 
+                         ${isActive ? 'navlink-active' : ''}`}>
+                         <img src="./icons/nav-icons/unsolved-tickets.svg" alt="unsolved-tickets" className='w-[22px]' />
+                         <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >Unsolved tickets</h2>
+                    </NavLink>
 
                     <NavLink to="/solved-tickets"
                          className={({ isActive }) => `navlink flex gap-2 items-center 
@@ -43,14 +51,6 @@ export default function SideNavbar() {
                          ${isActive ? 'navlink-active' : ''}`}>
                          <img src="./icons/nav-icons/solved-tickets.svg" alt="solved-tickets" className='w-[22px]' />
                          <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >Solved tickets</h2>
-                    </NavLink>
-
-                    <NavLink to="/unsolved-tickets"
-                         className={({ isActive }) => `navlink flex gap-2 items-center 
-                         ${isMenuOpened ? '' : 'icon-center'} 
-                         ${isActive ? 'navlink-active' : ''}`}>
-                         <img src="./icons/nav-icons/unsolved-tickets.svg" alt="unsolved-tickets" className='w-[22px]' />
-                         <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >Unsolved tickets</h2>
                     </NavLink>
 
                     <NavLink to="/great-beings"

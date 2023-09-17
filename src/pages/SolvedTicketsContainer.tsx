@@ -6,7 +6,6 @@ export default function SolvedTicketsContainer() {
 
     const path = 'http://localhost:8000/api/get/solved_tickets';
     const { tickets, error } = useFetchTickets(path);
-    console.log(tickets, error);
 
     return (
         <div className="cstm-paged flex-col justify-start gap-4">
@@ -22,9 +21,9 @@ export default function SolvedTicketsContainer() {
                     :
                     tickets.length < 1
                         ?
-                        <h2>'There are no solved tickets at the moment.'</h2>
+                        <h2>There are no solved tickets at the moment.</h2>
                         :
-                        <div className="grid grid-cols-4 gap-6 w-full">
+                        <div className="grid grid-cols-3 gap-5 w-full">
                             {
                                 tickets.map((ticket: SolvedTicketType) => <SolvedTicket key={ticket.id} {...ticket} />)
                             }
