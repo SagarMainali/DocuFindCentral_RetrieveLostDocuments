@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { FormDataType } from "../types/globalTypes";
 
 export default function useFetchTickets(path: string) {
 
-    const [tickets, setTickets] = useState<FormDataType[]>([]);
+    const [tickets, setTickets] = useState([]);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
@@ -25,7 +24,7 @@ export default function useFetchTickets(path: string) {
 
         getSolvedTickets();
 
-    }, [path])
+    }, [])
 
     return { tickets, error };
 }

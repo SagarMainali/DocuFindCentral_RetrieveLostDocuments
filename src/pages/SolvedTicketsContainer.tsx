@@ -1,4 +1,5 @@
 import SolvedTicket from "../components/SolvedTicket";
+import { SolvedTicketType } from "../types/globalTypes";
 import useFetchTickets from "../utils/useFetchTickets";
 
 export default function SolvedTicketsContainer() {
@@ -13,19 +14,17 @@ export default function SolvedTicketsContainer() {
             <h1>Solved tickets</h1>
 
             <div className="grid grid-cols-4 gap-6 w-full">
-                <SolvedTicket
-                    founder="Pratap Shah"
-                    owner="Rohan Basnet"
-                    type="Citizenship"
-                    date="2 Sep, 2023"
-                />
-
-                <SolvedTicket
-                    founder="Ramesh Baniya"
-                    owner="Samir Maharjan"
-                    type="License"
-                    date="9 Sep, 2023"
-                />
+                {
+                    error
+                        ?
+                        <h2>{error}</h2>
+                        :
+                        tickets.length < 1
+                            ?
+                            <h2>'No tickets have been solved yet.'</h2>
+                            :
+                            tickets.map((ticket: SolvedTicketType) => <SolvedTicket key={ticket.id} {...ticket} />)
+                }
             </div>
         </div>
     )
