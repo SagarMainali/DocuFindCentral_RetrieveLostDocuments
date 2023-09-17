@@ -8,7 +8,7 @@ export default function capitalizeAndLengthValidation(text: string, fieldType: s
                 word.charAt(0).toUpperCase() + word.slice(1)
             ))
 
-            return textTransformed.join(' ').slice(0, 10);
+            return textTransformed.join(' ').slice(0, 45);
         }
 
         else if (fieldType === 'email') { // no need to capitalize email so only return sliced version
@@ -16,7 +16,7 @@ export default function capitalizeAndLengthValidation(text: string, fieldType: s
         }
 
         else if (fieldType === 'contact') { // no need to capitalize contact number so only return sliced version
-            return text.slice(0, 15);
+            return text.slice(0, 10);
         }
 
         else { // capitalize first letter of only first word for all except name and contact

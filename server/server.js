@@ -60,9 +60,9 @@ app.post('/api/post/tickets/', upload.single('imageFile'), (req, res) => {
     console.log('Searching for a match...');
     database.query(sqlSelectQuery, valuesToLookFor, (error, resultArr) => {
         if (error) {
-            const customErrorMsg = 'Error while searching for a ticket in the database:\n'
-            console.log(customErrorMsg + error);
-            res.status(400).send(customErrorMsg + error);
+            const errorMsg = 'Error while searching for a ticket in the database!\n' + error;
+            console.log(errorMsg);
+            res.status(400).send(errorMsg);
         }
         else { // insert new ticket if no match found with any of the existing tickets
             if (resultArr.length < 1) {
@@ -77,9 +77,9 @@ app.post('/api/post/tickets/', upload.single('imageFile'), (req, res) => {
                 console.log('MATCH NOT FOUND! so creating a new ticket...');
                 database.query(sqlInsertQuery, dataToInsert, (error, result) => {
                     if (error) {
-                        const customErrorMsg = 'No ticket with the given information was found and got error while trying to create a new ticket with the provided information:\n'
-                        console.log(customErrorMsg + error);
-                        res.status(400).send(customErrorMsg + error);
+                        const errorMsg = 'No ticket with the given information was found and got error while trying to create a new ticket with the provided information!\n' + error;
+                        console.log(errorMsg);
+                        res.status(400).send(errorMsg);
                     }
                     else {
                         const dataToRespond = {
@@ -106,9 +106,9 @@ app.post('/api/post/tickets/', upload.single('imageFile'), (req, res) => {
                 console.log('MATCH FOUND! so moving it from existing table...');
                 database.query(sqlDeleteQuery, id, (error, result) => {
                     if (error) {
-                        const customErrorMsg = 'A ticket has been found with the same information as provided by the user but got error while resolving it:\n'
-                        console.log(customErrorMsg + error)
-                        res.status(400).send(customErrorMsg + error)
+                        const errorMsg = 'A ticket has been found with the same information as provided by the user but got error while resolving it!\n' + error;
+                        console.log(errorMsg)
+                        res.status(400).send(errorMsg)
                     }
                     else {
                         const sqlInsertQuery = 'INSERT INTO solved_tickets SET ?';
@@ -123,9 +123,9 @@ app.post('/api/post/tickets/', upload.single('imageFile'), (req, res) => {
                         console.log('Inserting matched ticket on a new table...')
                         database.query(sqlInsertQuery, dataToInsert, (error, result) => {
                             if (error) {
-                                const customErrorMsg = 'A ticket has been found with the same information as provided by the user but got error while resolving it:\n'
-                                console.log(customErrorMsg + error);
-                                res.status(400).send(customErrorMsg + error);
+                                const errorMsg = 'A ticket has been found with the same information as provided by the user but got error while resolving it!\n' + error;
+                                console.log(errorMsg);
+                                res.status(400).send(errorMsg);
                             }
                             else {
                                 const dataToRespond = {
@@ -151,9 +151,9 @@ app.get('/api/get/solved_tickets/', (req, res) => {
     const sqlSelectQuery = 'SELECT * FROM solved_tickets';
     database.query(sqlSelectQuery, (error, resultArr) => {
         if (error) {
-            const customErrorMsg = 'There was an error fetching the list of solved tickets.';
-            console.log(customErrorMsg);
-            res.status(400).send(customErrorMsg);
+            const errorMsg = 'There was an error fetching the list of solved tickets!\n' + error;
+            console.log(errorMsg);
+            res.status(400).send(errorMsg);
         }
         else {
             const dataToRespond = resultArr.map(resultObj => (
@@ -164,7 +164,7 @@ app.get('/api/get/solved_tickets/', (req, res) => {
                 }
             ))
 
-            console.log(dataToRespond);
+            console.log('The data has been successfully delivered to the client.');
             res.json(dataToRespond);
         }
     })
@@ -175,9 +175,9 @@ app.get('/api/get/unsolved_tickets/', (req, res) => {
     const sqlSelectQuery = 'SELECT * FROM unsolved_tickets';
     database.query(sqlSelectQuery, (error, resultArr) => {
         if (error) {
-            const customErrorMsg = 'There was an error fetching the list of unsolved tickets!';
-            console.log(customErrorMsg);
-            res.status(400).send(customErrorMsg);
+            const errorMsg = 'There was an error fetching the list of unsolved tickets!\n' + error;
+            console.log(errorMsg);
+            res.status(400).send(errorMsg);
         }
         else {
             const dataToRespond = resultArr.map(resultObj => (
@@ -187,7 +187,35 @@ app.get('/api/get/unsolved_tickets/', (req, res) => {
                 }
             ))
 
-            console.log(dataToRespond);
+            console.log('The data has been successfully delivered to the client.');
+            res.json(dataToRespond);
+        }
+    })
+})
+
+// route for posting feedbacks
+app.get('/api/post/feedbacks/', (req, res) => {
+    const dataToInsert = {
+        ...req.body,
+        submittedDate: getCurrentUTC()
+    }
+    const sqlInsertQuery = 'INSERT INTO feedbacks SET ?';
+
+    console.log('Saving feedback in database...')
+    database.query(sqlInsertQuery, dataToInsert, (error, result) => {
+        if (error) {
+            const errorMsg = 'Error while saving feedback in database!\n' + error;
+            console.log(errorMsg);
+            res.status(400).send(errorMsg);
+        }
+        else {
+            const dataToRespond = {
+                message: 'Your valuable feedback has been submitted. Thankyou!',
+                inserted_Data: dataToInsert,
+                from_Database: result
+            }
+
+            console.log('Feedback successfully saved to the database.');
             res.json(dataToRespond);
         }
     })
