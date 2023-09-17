@@ -13,13 +13,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// allocating storage in the server itself to store images sent from the client side
-const storage = multer.diskStorage({
-    destination: './images',
-    filename: (req, file, cb) => {
-        cb(null, `${Date.now()} ${file.originalname}`);
-    }
-})
+// use multer to allocate storage in the server itself to store images sent from the client side
+// const storage = multer.diskStorage({
+//     destination: './images',
+//     filename: (req, file, cb) => {
+//         cb(null, `${Date.now()} ${file.originalname}`);
+//     }
+// })
+
+// use multer to handle file uploads and save it in memory
+const storage = multer.memoryStorage();
 
 // custom middleware to use in a specific route
 const upload = multer({ storage })
@@ -47,6 +50,8 @@ app.post('/api/post/tickets/', upload.single('imageFile'), (req, res) => {
     const textData = req.body;
     const imageFile = req.file;
 
+    // console.log(`data:${imageFile.mimetype};base64,${imageFile.buffer.toString('base64')}`);
+
     const sqlSelectQuery = 'SELECT * FROM unsolved_tickets WHERE ticketType=? AND documentType=? AND documentNumber=?';
     // look for matching ticket in opposite of provided ticket type
     const ticketTypeOpposite = textData.ticketType === 'Lost' ? 'Found' : 'Lost';
@@ -64,6 +69,7 @@ app.post('/api/post/tickets/', upload.single('imageFile'), (req, res) => {
                 const sqlInsertQuery = 'INSERT INTO unsolved_tickets SET ?';
                 const dataToInsert = {
                     ...textData,
+                    // storing the base64 data of the image in the database which is ready to be used on src attribute of img
                     imageFile,
                     createdDate: getCurrentUTC()
                 }

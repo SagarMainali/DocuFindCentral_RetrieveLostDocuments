@@ -4,8 +4,8 @@ type PropsType = {
     type: string,
     date: string
 }
-
-function Solved({ founder, owner, type, date }: PropsType) {
+// owner_fullName, finder_fullName, documentType, createdDate, resolvedDate
+function SolvedTicket({ founder, owner, type, date }: PropsType) {
     return (
         <div className="text-primary-light bg-[#3A3B3C] p-3 rounded-md flex flex-col gap-3">
             <div className="flex justify-between">
@@ -21,4 +21,4 @@ function Solved({ founder, owner, type, date }: PropsType) {
     )
 }
 
-export default Solved
+export default SolvedTicket

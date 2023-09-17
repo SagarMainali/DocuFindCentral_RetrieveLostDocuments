@@ -5,7 +5,7 @@ type PropsType = {
     date: string
 }
 
-function Ticket({ name, label, message, date }: PropsType) {
+function UnsolvedTicket({ name, label, message, date }: PropsType) {
     return (
         <div className="w-full text-primary-light bg-[#3A3B3C] p-3 rounded-md">
             <div className="flex justify-between items-center mb-4">
@@ -22,4 +22,4 @@ function Ticket({ name, label, message, date }: PropsType) {
     )
 }
 
-export default Ticket
+export default UnsolvedTicket
