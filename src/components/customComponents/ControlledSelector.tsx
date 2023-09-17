@@ -26,9 +26,9 @@ export default function ControlledSelector({ control, inputName, placeholder, op
           <Controller
                control={control}
                name={inputName}
-               // rules={{
-               //      required: requiredMsg(requiredErrorMsg)
-               // }}
+               rules={{
+                    required: requiredMsg(requiredErrorMsg)
+               }}
                render={({ field: { onChange, value }, fieldState: { error } }) => (
                     <div>
                          <Select

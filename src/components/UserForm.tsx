@@ -99,11 +99,7 @@ function UserForm({ formType }: { formType: string }) {
                                    <div>
                                         <input type="text" placeholder='Full name of owner(as in document)*'
                                              {...register('owner_fullName', {
-                                                  required: requiredMsg('Owner name'),
-                                                  maxLength: {
-                                                       value: 10,
-                                                       message: 'Max length is 10!'
-                                                  }
+                                                  required: requiredMsg('Owner name')
                                              })}
                                              onChange={(e) => {
                                                   setValue('owner_fullName', capitalizeAndLengthValidation(e.target.value, 'name'));

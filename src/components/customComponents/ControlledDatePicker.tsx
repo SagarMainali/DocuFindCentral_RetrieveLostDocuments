@@ -23,7 +23,7 @@ export default function ControlledDatePicker({ control, inputName, placeholder, 
                render={({ field: { onChange, value }, fieldState: { error } }) => (
                     <div>
                          <div className="input flex items-center justify-between cursor-pointer">
-                              <h2 className='w-[240px]'>
+                              <h2 className={`w-[240px] ${value ? 'text-[#1e1e1e] text-[14px]' : 'text-[#808080] text-[13px]'}`}>
                                    {typeof value === 'string' ? value : placeholder}
                               </h2>
                               <div className="relative overflow-hidden">

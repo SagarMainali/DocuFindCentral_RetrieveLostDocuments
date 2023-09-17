@@ -42,7 +42,7 @@ export default function ControlledImagePicker({ control }: PropsType) {
                          <div className='input flex items-center justify-between cursor-pointer' onClick={triggerFileInputElementClick}>
                               <input type="file" hidden ref={imgPickerInput} onChange={(event) => onChange(handleFileChange(event))} />
 
-                              <h2 className={`w-[240px] truncate ${value?.name ? 'text-[#1e1e1e]' : 'text-[#808080]'}`}>
+                              <h2 className={`w-[240px] truncate ${value?.name ? 'text-[#1e1e1e] text-[14px]' : 'text-[#808080] text-[14px]'}`}>
                                    {value?.name ?? 'Choose image file'}
                               </h2>
                               <svg className="h-[15px] fill-[#808080]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
