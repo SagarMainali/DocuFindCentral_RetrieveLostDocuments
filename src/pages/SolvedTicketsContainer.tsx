@@ -21,7 +21,7 @@ export default function SolvedTicketsContainer() {
                         :
                         tickets.length < 1
                             ?
-                            <h2>'No tickets have been solved yet.'</h2>
+                            <h2>'There are no solved tickets at the moment.'</h2>
                             :
                             tickets.map((ticket: SolvedTicketType) => <SolvedTicket key={ticket.id} {...ticket} />)
                 }

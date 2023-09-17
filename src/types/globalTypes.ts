@@ -19,11 +19,17 @@ export interface FormDataType {
     shortMessage: string
 }
 
-export interface UnSolvedTicketType extends FormDataType {
+export interface UnsolvedTicketType {
+    id: number,
+    owner_fullName: string,
+    finder_fullName: string,
+    documentType: string,
+    ticketType: string,
+    shortMessage: string,
     createdDate: string
 }
 
-export type SolvedTicketType = {
+export interface SolvedTicketType {
     id: number,
     owner_fullName: string,
     finder_fullName: string,
@@ -32,7 +38,7 @@ export type SolvedTicketType = {
     resolvedDate: string
 }
 
-export type FeedbackFormType = {
+export interface FeedbackFormType {
     fullName: string,
     feedback: string
 }

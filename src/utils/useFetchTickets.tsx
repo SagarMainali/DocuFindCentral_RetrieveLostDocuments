@@ -11,7 +11,7 @@ export default function useFetchTickets(path: string) {
                 const responseObj = await fetch(path);
                 if (responseObj.ok) {
                     const parsedData = await responseObj.json();
-                    setTickets(parsedData);
+                    setTickets(parsedData.reverse());
                 }
                 else {
                     setError(responseObj.statusText);
