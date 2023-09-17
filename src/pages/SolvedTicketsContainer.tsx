@@ -13,19 +13,24 @@ export default function SolvedTicketsContainer() {
 
             <h1>Solved tickets</h1>
 
-            <div className="grid grid-cols-4 gap-6 w-full">
-                {
-                    error
+            <h2 className="w-full text-end">Total: <b>{tickets.length}</b></h2>
+
+            {
+                error
+                    ?
+                    <h2>{error}</h2>
+                    :
+                    tickets.length < 1
                         ?
-                        <h2>{error}</h2>
+                        <h2>'There are no solved tickets at the moment.'</h2>
                         :
-                        tickets.length < 1
-                            ?
-                            <h2>'There are no solved tickets at the moment.'</h2>
-                            :
-                            tickets.map((ticket: SolvedTicketType) => <SolvedTicket key={ticket.id} {...ticket} />)
-                }
-            </div>
+                        <div className="grid grid-cols-4 gap-6 w-full">
+                            {
+                                tickets.map((ticket: SolvedTicketType) => <SolvedTicket key={ticket.id} {...ticket} />)
+                            }
+                        </div>
+            }
+
         </div>
     )
 }

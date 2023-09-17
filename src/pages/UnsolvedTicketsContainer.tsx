@@ -12,19 +12,23 @@ export default function UnsolvedTickets() {
         <div className="cstm-paged flex-col justify-start gap-4">
             <h1>Unsolved tickets</h1>
 
-            <div className="w-full flex flex-col gap-4">
-                {
-                    error
+            <h2 className="w-full text-end">Total: <b>{tickets.length}</b></h2>
+
+            {
+                error
+                    ?
+                    <h2>{error}</h2>
+                    :
+                    tickets.length < 1
                         ?
-                        <h2>{error}</h2>
+                        <h2>'There are no unsolved tickets at the moment.'</h2>
                         :
-                        tickets.length < 1
-                            ?
-                            <h2>'There are no unsolved tickets at the moment.'</h2>
-                            :
-                            tickets.map((ticket: UnsolvedTicketType) => <UnsolvedTicket key={ticket.id} {...ticket} />)
-                }
-            </div>
+                        <div className="w-full flex flex-col gap-4">
+                            {
+                                tickets.map((ticket: UnsolvedTicketType) => <UnsolvedTicket key={ticket.id} {...ticket} />)
+                            }
+                        </div>
+            }
 
         </div>
     )
