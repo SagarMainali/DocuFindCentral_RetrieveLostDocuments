@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form'
 import { useLocation } from 'react-router-dom'
 
+import capitalizeAndLengthValidation from '../utils/capitalizeAndLengthValidation';
 import ControlledSelector from './customComponents/ControlledSelector'
 import ControlledDatePicker from './customComponents/ControlledDatePicker';
 import ControlledImagePicker from './customComponents/ControlledImagePicker';
@@ -23,6 +24,7 @@ function UserForm({ formType }: { formType: string }) {
 
      const {
           register,
+          setValue,
           handleSubmit,
           formState: { errors, isSubmitSuccessful, isSubmitting },
           control,
@@ -95,19 +97,28 @@ function UserForm({ formType }: { formType: string }) {
                               formType === 'lost-doc'
                                    ?
                                    <div>
-                                        <input
-                                             type="text"
-                                             placeholder='Full name of owner(as in document)*'
-                                             {...register('owner_fullName')} />
-                                        {/* , { required: requiredMsg('Owner name') } */}
+                                        <input type="text" placeholder='Full name of owner(as in document)*'
+                                             {...register('owner_fullName', {
+                                                  required: requiredMsg('Owner name'),
+                                                  maxLength: {
+                                                       value: 10,
+                                                       message: 'Max length is 10!'
+                                                  }
+                                             })}
+                                             onChange={(e) => {
+                                                  setValue('owner_fullName', capitalizeAndLengthValidation(e.target.value, 'name'));
+                                             }}
+                                        />
                                         {errors.owner_fullName && <p className='errorMsg'>{`${errors.owner_fullName.message}`}</p>}
                                    </div>
                                    :
                                    <div>
-                                        <input
-                                             type="text"
-                                             placeholder='Full name of finder*'
-                                             {...register('finder_fullName')} />
+                                        <input type="text" placeholder='Full name of finder*'
+                                             {...register('finder_fullName')}
+                                             onChange={(e) => {
+                                                  setValue('finder_fullName', capitalizeAndLengthValidation(e.target.value, 'name'));
+                                             }}
+                                        />
                                         {/* , { required: requiredMsg('Finder name') } */}
                                         {errors.finder_fullName && <p className='errorMsg'>{`${errors.finder_fullName.message}`}</p>}
                                    </div>
@@ -115,25 +126,48 @@ function UserForm({ formType }: { formType: string }) {
 
                          <div>
                               <input type="number" placeholder='Contact number*'
-                                   {...register('contact')} />
+                                   {...register('contact')}
+                                   onChange={e => setValue('contact', capitalizeAndLengthValidation(e.target.value, 'contact'))}
+                              />
                               {/* , { required: requiredMsg('Contact number') } */}
                               {errors.contact && <p className='errorMsg'>{`${errors.contact.message}`}</p>}
                          </div>
 
-                         <input type="text" placeholder='Current Address' {...register('currentAddress')} />
+                         <input type="text" placeholder='Current Address'
+                              {...register('currentAddress')}
+                              onChange={e => setValue('currentAddress', capitalizeAndLengthValidation(e.target.value, 'currentAddress'))} />
 
                          {
                               formType === 'lost-doc'
                                    ?
-                                   <input type="text" placeholder='Permanent Address' {...register('permanentAddress')} />
+                                   <input type="text" placeholder='Permanent Address'
+                                        {...register('permanentAddress')}
+                                        onChange={(e) => {
+                                             setValue('permanentAddress', capitalizeAndLengthValidation(e.target.value, 'permanentAddress'));
+                                        }}
+                                   />
                                    :
-                                   <input type="text" placeholder='Place where you found the document' {...register('documentFoundPlace')} />
+                                   <input type="text" placeholder='Place where you found the document'
+                                        {...register('documentFoundPlace')}
+                                        onChange={(e) => {
+                                             setValue('documentFoundPlace', capitalizeAndLengthValidation(e.target.value, 'documentFoundPlace'));
+                                        }}
+                                   />
                          }
 
                          <div className='col-span-full'>
                               <input type="email" placeholder='Your Email*'
-                                   {...register('email')} />
-                              {/* , { required: requiredMsg('Email address') } */}
+                                   {...register('email', {
+                                        required: requiredMsg('Email address'),
+                                        pattern: {
+                                             value: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
+                                             message: 'Invalid email address'
+                                        }
+                                   })}
+                                   onChange={(e) => {
+                                        setValue('email', capitalizeAndLengthValidation(e.target.value, 'email'));
+                                   }}
+                              />
                               {errors.email && <p className='errorMsg'>{`${errors.email.message}`}</p>}
                               <p className="col-span-full note">
                                    *Please enter correct email since you will be notified in this email if we find your ticket match in our system.
@@ -152,7 +186,11 @@ function UserForm({ formType }: { formType: string }) {
                               <div>
                                    <input
                                         type="text" placeholder='Full Name of owner(as in document)*'
-                                        {...register('owner_fullName')} />
+                                        {...register('owner_fullName')}
+                                        onChange={(e) => {
+                                             setValue('owner_fullName', capitalizeAndLengthValidation(e.target.value, 'name'));
+                                        }}
+                                   />
                                    {/* , { required: requiredMsg('Owner name') } */}
                                    {errors.owner_fullName && <p className='errorMsg'>{`${errors.owner_fullName.message}`}</p>}
                               </div>
@@ -168,7 +206,11 @@ function UserForm({ formType }: { formType: string }) {
 
                          <div>
                               <input type="text" placeholder='Document number*'
-                                   {...register('documentNumber')} />
+                                   {...register('documentNumber')}
+                                   onChange={(e) => {
+                                        setValue('documentNumber', capitalizeAndLengthValidation(e.target.value, 'documentNumber'));
+                                   }}
+                              />
                               {/* , { required: requiredMsg('Document number') } */}
                               {errors.documentNumber && <p className='errorMsg'>{`${errors.documentNumber.message}`}</p>}
                          </div>
@@ -207,7 +249,11 @@ function UserForm({ formType }: { formType: string }) {
                          <div className='col-span-full flex flex-col'>
                               <textarea maxLength={200} rows={3}
                                    placeholder="Write short message to display*"
-                                   {...register('shortMessage')} />
+                                   {...register('shortMessage')}
+                                   onChange={(e) => {
+                                        setValue('shortMessage', capitalizeAndLengthValidation(e.target.value, 'shortMessage'));
+                                   }}
+                              />
                               {/* , { required: requiredMsg('Message') } */}
                               {errors.shortMessage && <p className='errorMsg'>{`${errors.shortMessage.message}`}</p>}
                          </div>

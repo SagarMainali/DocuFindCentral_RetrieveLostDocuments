@@ -11,7 +11,7 @@ export default function UnsolvedTickets() {
         <div className="cstm-paged flex-col justify-start gap-4">
             <h1>Unsolved tickets</h1>
 
-            <h2 className="w-full text-end">Total: <b>{tickets.length}</b></h2>
+            <h2 className="w-full text-end px-2">Total: <b>{tickets.length}</b></h2>
 
             {
                 error

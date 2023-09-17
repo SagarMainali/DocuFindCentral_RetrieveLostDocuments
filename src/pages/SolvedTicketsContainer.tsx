@@ -12,7 +12,7 @@ export default function SolvedTicketsContainer() {
 
             <h1>Solved tickets</h1>
 
-            <h2 className="w-full text-end">Total: <b>{tickets.length}</b></h2>
+            <h2 className="w-full text-end px-2">Total: <b>{tickets.length}</b></h2>
 
             {
                 error
