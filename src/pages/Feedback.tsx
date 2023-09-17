@@ -1,24 +1,45 @@
 import { useForm } from 'react-hook-form'
 import { FeedbackFormType } from '../types/globalTypes'
 import { useEffect } from 'react'
+import capitalizeAndLengthValidation from '../utils/capitalizeAndLengthValidation'
+import Loader from '../components/Loader'
 
 export default function Feedback() {
 
   const {
     register,
+    setValue,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitSuccessful }
+    formState: { errors, isSubmitSuccessful, isSubmitting }
   } = useForm<FeedbackFormType>()
 
-  const onSubmit = (data: FeedbackFormType) => {
-    console.log(data)
+  const onSubmit = async (data: FeedbackFormType) => {
+    try {
+      const responseObj = await fetch('http://localhost:8000/api/post/feedbacks/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+
+      if (responseObj.ok) {
+        const parsedData = await responseObj.json();
+        console.log(parsedData);
+      }
+      else {
+        console.log(responseObj.statusText);
+      }
+    }
+    catch (error) {
+      console.log(error);
+    }
   }
 
   useEffect(() => {
     if (isSubmitSuccessful) {
       reset();
-      console.log('Feedback has been submitted successfully!');
     }
   }, [isSubmitSuccessful])
 
@@ -33,8 +54,9 @@ export default function Feedback() {
           <input type="text" placeholder='Sagar Mainali' id='full-name'
             {...register('fullName', {
               required: '*Please provide your full name!'
-            })
-            } />
+            })}
+            onChange={(e) => setValue('fullName', capitalizeAndLengthValidation(e.target.value, 'name'))}
+          />
           {errors.fullName && <p className='errorMsg'>{`${errors.fullName.message}`}</p>}
         </div>
 
@@ -42,11 +64,23 @@ export default function Feedback() {
           <label htmlFor="feedback">Your valuable feedback*</label>
           <textarea maxLength={150} rows={5} id='feedback'
             placeholder="Write your feedback in about 150 words"
-            {...register('feedback', { required: 'Please provide your feedback!' })} />
+            {...register('feedback', { required: 'Please provide your feedback!' })}
+            onChange={(e) => setValue('feedback', capitalizeAndLengthValidation(e.target.value, 'feedback'))}
+          />
           {errors.feedback && <p className='errorMsg'>{`${errors.feedback.message}`}</p>}
         </div>
 
-        <button className='bg-primary-dark text-white'>Submit</button>
+        <button
+          disabled={isSubmitting}
+          className='text-white bg-primary-dark disabled:bg-slate-400'>
+          {
+            isSubmitting
+              ?
+              < Loader />
+              :
+              'Submit'
+          }
+        </button>
 
       </form>
     </div>

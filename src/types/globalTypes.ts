@@ -1,4 +1,4 @@
-export interface FormDataType {
+export type FormDataType = {
     [key: string]: string | File,
 
     owner_fullName: string,
@@ -19,7 +19,7 @@ export interface FormDataType {
     shortMessage: string
 }
 
-export interface UnsolvedTicketType {
+export type UnsolvedTicketType = {
     id: number,
     owner_fullName: string,
     finder_fullName: string,
@@ -29,7 +29,7 @@ export interface UnsolvedTicketType {
     createdDate: string
 }
 
-export interface SolvedTicketType {
+export type SolvedTicketType = {
     id: number,
     owner_fullName: string,
     finder_fullName: string,
@@ -38,7 +38,7 @@ export interface SolvedTicketType {
     resolvedDate: string
 }
 
-export interface FeedbackFormType {
+export type FeedbackFormType = {
     fullName: string,
     feedback: string
 }

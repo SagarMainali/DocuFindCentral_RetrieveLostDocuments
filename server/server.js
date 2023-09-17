@@ -194,7 +194,7 @@ app.get('/api/get/unsolved_tickets/', (req, res) => {
 })
 
 // route for posting feedbacks
-app.get('/api/post/feedbacks/', (req, res) => {
+app.post('/api/post/feedbacks/', (req, res) => {
     const dataToInsert = {
         ...req.body,
         submittedDate: getCurrentUTC()
@@ -211,7 +211,10 @@ app.get('/api/post/feedbacks/', (req, res) => {
         else {
             const dataToRespond = {
                 message: 'Your valuable feedback has been submitted. Thankyou!',
-                inserted_Data: dataToInsert,
+                inserted_Data: {
+                    ...dataToInsert,
+                    submittedDate: convertUTCtoLocal()
+                },
                 from_Database: result
             }
 

@@ -1,6 +1,6 @@
 
 export default function capitalizeAndLengthValidation(text: string, fieldType: string) {
-    if (fieldType !== 'shortMessage') {
+    if (fieldType !== 'shortMessage' && fieldType !== 'feedback') {
         if (fieldType === 'name') { // capitalize first letter of each word for name fields
             const words = text.split(' ');
 
@@ -24,7 +24,11 @@ export default function capitalizeAndLengthValidation(text: string, fieldType: s
         }
     }
 
-    else { // capitalize first letter of first word for messages
+    else if (fieldType === 'shortMessage') { // capitalize first letter of first word for messages
         return text.charAt(0).toUpperCase() + text.slice(1, 500);
+    }
+
+    else { // capitalize first letter of first word for feedbacks
+        return text.charAt(0).toUpperCase() + text.slice(1, 1000);
     }
 }

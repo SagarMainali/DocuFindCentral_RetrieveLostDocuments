@@ -42,7 +42,7 @@ function UserForm({ formType }: { formType: string }) {
           }
 
           // appending tiket type according to path to search the opposite ticket type in database
-          formData.append('ticketType', `${pathname === '/lost-document' ? 'Lost' : 'Found'}`)
+          formData.append('ticketType', `${pathname === '/lost-document' ? 'Lost' : 'Found'}`);
 
           try {
                const responseObj = await fetch('http://localhost:8000/api/post/tickets/', {
