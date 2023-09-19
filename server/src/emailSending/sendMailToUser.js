@@ -8,7 +8,7 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-async function sendEmail(receivers) {
+async function sendMailToUser(receivers) {
     const email = {
         from: '"DocuFind Central 🏢" <docufind.central@gmail.com>',
         to: receivers,
@@ -17,11 +17,11 @@ async function sendEmail(receivers) {
     }
 
     try {
-        const info = await transporter.sendMail(email);
-        console.log("Message sent successfully: %s", info.messageId);
+        const response = await transporter.sendMail(email);
+        return response;
     } catch (error) {
-        console.error(error);
+        return error;
     }
 }
 
-module.exports = sendEmail;
+module.exports = sendMailToUser;

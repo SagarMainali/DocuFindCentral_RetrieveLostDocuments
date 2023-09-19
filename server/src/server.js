@@ -2,18 +2,22 @@
 
 const express = require('express');
 const cors = require('cors');
-const sendEmail = require('./emailSending/sendEmail');
+const sendMailToUser = require('./emailSending/sendMailToUser');
 
 const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 
-app.get('/api/sendEmail/', (req, res) => {
-    sendEmail(['sagarmainali78@gmail.com'])
-        .then(() => console.log('Email sent successfully!\n'))
-        .catch((error) => console.error('Error sending email!\n', error));
-
-    res.send('Email sent!');
+app.get('/api/mail/', (req, res) => {
+    sendMailToUser(['sagarmainali78@gmail.com'])
+        .then(response => {
+            if (response.messageId) {
+                res.send(`Email sent successfully with following message id:\n ${response.messageId}`);
+            }
+            else {
+                res.status(400).send(`Email sent failed with following error message:\n' ${response.message}`);
+            }
+        })
 })
 
 // using middleware

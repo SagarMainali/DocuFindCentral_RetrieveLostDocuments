@@ -33,7 +33,7 @@ export default function Feedback() {
       }
     }
     catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
