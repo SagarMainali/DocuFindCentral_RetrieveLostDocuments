@@ -8,8 +8,11 @@ const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 
-app.get('/api/sendEmail/', async (req, res) => {
-    await sendEmail().catch(console.error);
+app.get('/api/sendEmail/', (req, res) => {
+    sendEmail(['sagarmainali78@gmail.com'])
+        .then(() => console.log('Email sent successfully!\n'))
+        .catch((error) => console.error('Error sending email!\n', error));
+
     res.send('Email sent!');
 })
 
