@@ -2,11 +2,16 @@
 
 const express = require('express');
 const cors = require('cors');
-const sendEmail = require('./nodemailtest');
+const sendEmail = require('./emailSending/sendEmail');
 
 const userRoutes = require('./routes/userRoutes');
 
 const app = express();
+
+app.get('/api/sendEmail/', async (req, res) => {
+    await sendEmail().catch(console.error);
+    res.send('Email sent!');
+})
 
 // using middleware
 app.use(cors());
@@ -14,8 +19,6 @@ app.use(express.json());
 
 // routes
 app.use('/api', userRoutes);
-
-sendEmail().catch(console.error);
 
 // dynamic assignment of port number
 const port = process.env.PORT || 8000;
