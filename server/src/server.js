@@ -10,12 +10,14 @@ const app = express();
 
 app.get('/api/mail/', (req, res) => {
     sendMailToUser(['sagarmainali78@gmail.com'])
-        .then(response => {
-            if (response.messageId) {
-                res.send(`Email sent successfully with following message id:\n ${response.messageId}`);
+        .then(result => {
+            if (result.messageId) {
+                console.log('Mail sent successfully.');
+                res.status(200).send(`Mail sent successfully with following message id:\n ${result.messageId}`);
             }
             else {
-                res.status(400).send(`Email sent failed with following error message:\n' ${response.message}`);
+                console.log('Error while sending mail!');
+                res.status(400).send(`Error while sending mail:\n' ${result.message}`);
             }
         })
 })

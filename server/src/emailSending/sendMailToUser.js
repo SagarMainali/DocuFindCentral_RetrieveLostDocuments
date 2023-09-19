@@ -17,8 +17,8 @@ async function sendMailToUser(receivers) {
     }
 
     try {
-        const response = await transporter.sendMail(email);
-        return response;
+        const result = await transporter.sendMail(email);
+        return result;
     } catch (error) {
         return error;
     }
