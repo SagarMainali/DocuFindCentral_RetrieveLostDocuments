@@ -8,17 +8,43 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-async function sendMailToUser(data) {
-    const { owner, finder, receivers } = data;
+async function sendMailToUser(bothPartiesData) {
+
+    const data = {
+        owner: {},
+        finder: {}
+    }
+
+    const { owner, finder } = data;
+
+    bothPartiesData.forEach(party => {
+        if (party.ticketType === 'Lost') {
+            owner = {
+                fullName: party.owner_fullName,
+                contact: party.contact,
+                email: party.email,
+                documentType: party.documentType,
+                documentNumber: party.documentNumber
+            }
+        }
+        else if (party.ticketType === 'Found') {
+            finder = {
+                fullName: party.finder_fullName,
+                contact: party.contact,
+                email: party.email,
+                documentType: party.documentType,
+                documentNumber: party.documentNumber
+            }
+        }
+    })
 
     const html = `<div>
-        <h2>A ticket has been found with the provided information! Please see the detailed information below and contact the respective party.</h2>
+        <h3>A ticket has been found with the provided information! Please see the detailed information below and contact the respective party.</h3>
         <table>
-            <h3>Documet Owner</h3>
             <tr>
-                <th>Users</th>
+                <th>Party</th>
                 <th>Full Name</th>
-                <th>Contact</th>
+                <th>Contact No.</th>
                 <th>Email</th>
                 <th>Document Type</th>
                 <th>Document Number</th>
@@ -44,7 +70,7 @@ async function sendMailToUser(data) {
 
     const email = {
         from: '"DocuFind Central 🏢" <docufind.central@gmail.com>',
-        to: receivers,
+        to: [owner.email, finder.email],
         subject: "Good News!",
         html
     }

@@ -56,7 +56,7 @@ const ticketCreationAndMatching = (req, res) => {
             }
 
             else { // if match found, delete existing ticket from unsolved_tickets and add some of its info to solved_tickets
-                const { id, owner_fullName, finder_fullName, email, documentType, createdDate } = resultArr[0];
+                const { id, owner_fullName, finder_fullName, documentType, createdDate } = resultArr[0];
 
                 const sqlDeleteQuery = 'DELETE FROM unsolved_tickets WHERE id=?';
 
@@ -85,7 +85,9 @@ const ticketCreationAndMatching = (req, res) => {
                                 res.status(400).send(errorMsg);
                             }
                             else {
-                                sendMailToUser([email, textData.email])
+                                const bothPartiesData = [textData, resultArr[0]];
+
+                                sendMailToUser(bothPartiesData)
                                     .then(resultFromMailServer => {
                                         if (resultFromMailServer.messageId) {
                                             const dataToRespond = {
