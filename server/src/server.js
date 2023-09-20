@@ -12,12 +12,13 @@ app.get('/api/mail/', (req, res) => {
     sendMailToUser(['sagarmainali78@gmail.com'])
         .then(result => {
             if (result.messageId) {
+                console.log(result)
                 console.log('Mail sent successfully.');
-                res.status(200).send(`Mail sent successfully with following message id:\n ${result.messageId}`);
+                res.status(200).send(`Mail sent successfully with following message id:\n${result.messageId}`);
             }
             else {
                 console.log('Error while sending mail!');
-                res.status(400).send(`Error while sending mail:\n' ${result.message}`);
+                res.status(400).send(`Error while sending mail:\n'${result.message}`);
             }
         })
 })

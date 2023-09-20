@@ -1,5 +1,6 @@
 const database = require('../database/dbConfig');
 const { getCurrentUTC, convertUTCtoLocal } = require('../utils/handleDates');
+const sendMailToUser = require('../emailSending/sendMailToUser');
 
 const ticketCreationAndMatching = (req, res) => {
     // parsed by multer middleware
@@ -55,7 +56,7 @@ const ticketCreationAndMatching = (req, res) => {
             }
 
             else { // if match found, delete existing ticket from unsolved_tickets and add some of its info to solved_tickets
-                const { id, owner_fullName, finder_fullName, documentType, createdDate } = resultArr[0];
+                const { id, owner_fullName, finder_fullName, email, documentType, createdDate } = resultArr[0];
 
                 const sqlDeleteQuery = 'DELETE FROM unsolved_tickets WHERE id=?';
 
@@ -84,15 +85,24 @@ const ticketCreationAndMatching = (req, res) => {
                                 res.status(400).send(errorMsg);
                             }
                             else {
-                                const dataToRespond = {
-                                    message: 'A ticket has been found with the same information as provided by the user and has been resolved. Please check your email.',
-                                    matchedOn: convertUTCtoLocal(),
-                                    matchedTicket: dataToInsert,
-                                    from_Database: result
-                                }
+                                sendMailToUser([email, textData.email])
+                                    .then(resultFromMailServer => {
+                                        if (resultFromMailServer.messageId) {
+                                            const dataToRespond = {
+                                                message: 'A ticket has been found with the same information as provided by the user and has been resolved. Please check your email.',
+                                                matchedOn: convertUTCtoLocal(),
+                                                matchedTicket: dataToInsert,
+                                                from_Database: result
+                                            }
 
-                                console.log('Matched ticket resolved.');
-                                res.json(dataToRespond);
+                                            console.log('Matched ticket resolved and mail sent successfully.');
+                                            res.json(dataToRespond);
+                                        }
+                                        else {
+                                            console.log(`Matched ticket resolved but got error while sending mail!\n:${resultFromMailServer.message}`);
+                                            res.status(400).send(`Matched ticket resolved but got error while sending mail!\n:${resultFromMailServer.message}`);
+                                        }
+                                    });
                             }
                         })
                     }
