@@ -5,38 +5,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        p {
+            color: black;
+            margin: 20px 0;
+            font-size: 17px;
+        }
+
+        h3 {
+            text-align: center;
+            font-size: 17px;
+        }
+
+        table {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        caption {
+            color: black;
+            font-size: 17px;
+            margin-bottom: 4px;
+        }
+
+        th {
+            background-color: #475585;
+            color: white;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        td {
+            background-color: #e9ecef;
+        }
+    </style>
 </head>
 
 <body>
     <div>
-        <h3>Greetings, a ticket has been found with the provided information! Please see the detailed information below
-            and contact the respective party.</h3>
+        <p>Greetings,<br> A ticket has been found with the provided information! Please see the detailed information
+            below
+            and contact the respective party.</p>
+
+        <h3>Matched Ticket Info</h3>
         <table>
             <tr>
                 <th>Party</th>
                 <th>Full Name</th>
-                <th>Contact No.</th>
-                <th>Email Address</th>
                 <th>Document Type</th>
                 <th>Document Number</th>
+                <th>Contact No.</th>
+                <th>Email Address</th>
+                <th>Ticket Issued Date</th>
             </tr>
             <tr>
-                <td><b>Document Owner</b></td>
+                <th><b>Document Owner</b></th>
                 <td>{{owner_fullName}}</td>
-                <td>{{owner_contact}}</td>
-                <td>{{owner_email}}</td>
                 <td>{{owner_documentType}}</td>
                 <td>{{owner_documentNumber}}</td>
+                <td>{{owner_contact}}</td>
+                <td>{{owner_email}}</td>
+                <td>{{owner_createdDate}}</td>
             </tr>
             <tr>
-                <td><b>Document Finder</b></td>
+                <th><b>Document Finder</b></th>
                 <td>{{finder_fullName}}</td>
-                <td>{{finder_contact}}</td>
-                <td>{{finder_email}}</td>
                 <td>{{finder_documentType}}</td>
                 <td>{{finder_documentNumber}}</td>
+                <td>{{finder_contact}}</td>
+                <td>{{finder_email}}</td>
+                <td>{{finder_createdDate}}</td>
             </tr>
         </table>
+
+        <p>Since the ticket has been resolved, it has been moved from 'Unsolved tickets' to 'Solved tickets' section.
+        </p>
+
+        <h4>Sincerly,<br>
+            DocuFind Central<br>
+            docufind.central@gmail.com
+        </h4>
     </div>
 </body>
 

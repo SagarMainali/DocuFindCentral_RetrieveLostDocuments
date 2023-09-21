@@ -41,7 +41,7 @@ const ticketCreationAndMatching = (req, res) => {
                     else {
                         const dataToRespond = {
                             message: 'No ticket with the given information was found so a new ticket has been created with the provided information.',
-                            inserted_On: convertUTCtoLocal(),
+                            inserted_On: convertUTCtoLocal(dataToInsert.createdDate),
                             inserted_Data: {
                                 textData,
                                 imageFile
@@ -85,9 +85,19 @@ const ticketCreationAndMatching = (req, res) => {
                                 res.status(400).send(errorMsg);
                             }
                             else {
-                                const bothPartiesData = [textData, resultArr[0]];
+                                // send matched tickets data by converting the stored UTC time to localtime
+                                const matchedTickets = [
+                                    {
+                                        ...resultArr[0],
+                                        createdDate: convertUTCtoLocal(dataToInsert.createdDate)
+                                    },
+                                    {
+                                        ...textData,
+                                        createdDate: convertUTCtoLocal(dataToInsert.resolvedDate)
+                                    }
+                                ];
 
-                                sendEmailToUser(bothPartiesData)
+                                sendEmailToUser(matchedTickets)
                                     .then(resultFromMailServer => {
                                         if (resultFromMailServer.messageId) {
                                             const dataToRespond = {

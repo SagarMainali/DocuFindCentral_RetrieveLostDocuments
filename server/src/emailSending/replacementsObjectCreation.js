@@ -1,21 +1,24 @@
-function replacementsObjectCreation(bothPartiesData) {
+function replacementsObjectCreation(matchedTickets) {
+
     let replacements = {};
     // this array elements will be used to create property in 'replacements' object and also to access property in 'owner' or 'finder' objects
-    const propNames = ['fullName', 'contact', 'email', 'documentType', 'documetNumber'];
+    const propNames = ['fullName', 'documentType', 'documentNumber', 'contact', 'email', 'createdDate'];
 
     // creating replacments object...
-    bothPartiesData.forEach(party => {
-        const prefix = party.ticketType === 'Lost' ? 'owner_' : 'finder_';
+    matchedTickets.forEach(ticket => {
+        const prefix = ticket.ticketType === 'Lost' ? 'owner_' : 'finder_';
 
         // assigning key: value to replacements object
-        propNames.forEach((propName, index) => {
+        propNames.forEach(propName => {
             const key = prefix + propName;
-            // because one property of 'party' is like owner_fullname or finder_fullName, so can't access it by only 'propName' i.e fullName
-            if (index === 0) {
-                replacements[key] = party[key];
+
+            // because one property of 'ticket' is like owner_fullname or finder_fullName, so can't access it by only 'propName' i.e fullName
+            if (propName === 'fullName') {
+                replacements[key] = ticket[key];
             }
+
             else {
-                replacements[key] = party[propName];
+                replacements[key] = ticket[propName];
             }
         })
     })

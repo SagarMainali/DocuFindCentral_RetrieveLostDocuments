@@ -9,7 +9,11 @@ const userRoutes = require('./routes/userRoutes');
 const app = express();
 
 app.get('/api/test/email/', (req, res) => {
-    sendEmailToUser([{ email: 'sagarmainali78@gmail.com', ticketType: 'Lost' }])
+    const testData = [
+        { owner_fullName: 'sagar', email: 'sagarmainali78@gmail.com', documentType: 'Passport', documentNumber: 'za139948srer', contact: '9812308410', ticketType: 'Lost', createdDate: '2021' },
+        { finder_fullName: 'voodoo', email: 'voodoochild780@gmail.com', documentType: 'Passport', documentNumber: 'za139948srer', contact: '9812308410', ticketType: 'Found', createdDate: '2023' }
+    ]
+    sendEmailToUser(testData)
         .then(result => {
             if (result.messageId) {
                 console.log(result)
