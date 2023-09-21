@@ -2,14 +2,14 @@
 
 const express = require('express');
 const cors = require('cors');
-const sendMailToUser = require('./emailSending/sendMailToUser');
+const sendEmailToUser = require('./emailSending/sendEmailToUser');
 
 const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 
-app.get('/api/mail/', (req, res) => {
-    sendMailToUser(['sagarmainali78@gmail.com'])
+app.get('/api/email/', (req, res) => {
+    sendEmailToUser([{ email: 'sagarmainali78@gmail.com', ticketType: 'Lost' }])
         .then(result => {
             if (result.messageId) {
                 console.log(result)

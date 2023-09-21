@@ -1,6 +1,6 @@
 const database = require('../database/dbConfig');
 const { getCurrentUTC, convertUTCtoLocal } = require('../utils/handleDates');
-const sendMailToUser = require('../emailSending/sendMailToUser');
+const sendEmailToUser = require('../emailSending/sendEmailToUser');
 
 const ticketCreationAndMatching = (req, res) => {
     // parsed by multer middleware
@@ -87,7 +87,7 @@ const ticketCreationAndMatching = (req, res) => {
                             else {
                                 const bothPartiesData = [textData, resultArr[0]];
 
-                                sendMailToUser(bothPartiesData)
+                                sendEmailToUser(bothPartiesData)
                                     .then(resultFromMailServer => {
                                         if (resultFromMailServer.messageId) {
                                             const dataToRespond = {
