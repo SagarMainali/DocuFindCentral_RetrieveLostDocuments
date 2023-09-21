@@ -1,6 +1,7 @@
 const nodemailer = require("nodemailer");
 const handlebars = require('handlebars');
 const fs = require('fs');
+const path = require('path');
 
 const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -34,7 +35,9 @@ async function sendEmailToUser(bothPartiesData) {
     })
 
     // reading html file and coverting it into string
-    const htmlSource = fs.readFileSync('emailTemplate.html', 'utf-8').toString();
+    const absolutePath = path.join(__dirname, 'emailTemplate.html'); // Create the absolute path
+    const htmlSource = fs.readFileSync(absolutePath, 'utf-8');
+    // const htmlSource = fs.readFileSync('emailTemplate.html', 'utf-8');
     // compiling the source file 
     const template = handlebars.compile(htmlSource);
 
@@ -43,8 +46,9 @@ async function sendEmailToUser(bothPartiesData) {
 
     const emailData = {
         from: '"DocuFind Central 🏢" <docufind.central@gmail.com>',
-        to: [owner.email, finder.email],
+        to: [replacements.owner_email, replacements.finder_email],
         subject: "Good News! Your ticket match has been found.",
+        text: 'Ticket match found!!!', // only gets displayed where html is not supported
         html: emailTemplate
     }
 

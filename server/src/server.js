@@ -8,7 +8,7 @@ const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 
-app.get('/api/email/', (req, res) => {
+app.get('/api/test/email/', (req, res) => {
     sendEmailToUser([{ email: 'sagarmainali78@gmail.com', ticketType: 'Lost' }])
         .then(result => {
             if (result.messageId) {
