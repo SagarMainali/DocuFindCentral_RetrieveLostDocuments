@@ -5,7 +5,7 @@ function replacementsObjectCreation(matchedTickets) {
     const propNames = ['fullName', 'documentType', 'documentNumber', 'contact', 'email', 'createdDate'];
 
     // creating replacments object...
-    matchedTickets.forEach(ticket => {
+    matchedTickets.forEach((ticket, index) => {
         const prefix = ticket.ticketType === 'Lost' ? 'owner_' : 'finder_';
 
         // assigning key: value to replacements object
