@@ -13,6 +13,8 @@ import Feedback from './pages/Feedback'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import AboutUs from './pages/AboutUs'
 
+import './styles/theme.css';
+
 function App() {
 
   return (

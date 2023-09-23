@@ -3,11 +3,15 @@
 
 }
 
-.icon-center{
+.icon-center {
      display: flex;
      justify-content: center;
 }
 
-.navlink-active {
+.navlink-active-light-bg {
      background-color: #203158;
+}
+
+.navlink-active-dark-bg {
+     background-color: #8D91A1;
 }

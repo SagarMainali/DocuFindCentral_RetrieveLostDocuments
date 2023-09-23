@@ -1,5 +1,5 @@
-import { useAppDispatch, useAppSelector } from "../redux/hooks"
-import { toggleMenu, changeLanguage, changeTheme } from "../redux/navbarSlice"
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { toggleMenu, changeLanguage, changeTheme } from "../redux/navbarSlice";
 
 export default function TopNavbar() {
 
@@ -9,7 +9,8 @@ export default function TopNavbar() {
      const dispatch = useAppDispatch()
 
      return (
-          <header className="flex justify-between items-center h-[60px] bg-primary-dark px-6 drop-shadow-[0_10px_15px_rgba(0,0,0,0.25)]">
+          <header className={`flex justify-between items-center h-[60px] px-6 drop-shadow-[0_10px_15px_rgba(0,0,0,0.25)] 
+          ${isLight ? 'bg-primary-dark' : 'dark-mode'}`}>
                <span className="nav-left">
                     <svg onClick={() => dispatch(toggleMenu())}
                          className="fill-slate-50 cursor-pointer"
