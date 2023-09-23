@@ -3,8 +3,11 @@ import { FeedbackFormType } from '../types/globalTypes'
 import { useEffect } from 'react'
 import capitalizeAndLengthValidation from '../utils/capitalizeAndLengthValidation'
 import Loader from '../components/Loader'
+import { useAppSelector } from '../redux/hooks'
 
 export default function Feedback() {
+
+  const isLight = useAppSelector((state) => state.navbar.isLight)
 
   const {
     register,
@@ -72,7 +75,7 @@ export default function Feedback() {
 
         <button
           disabled={isSubmitting}
-          className='text-white bg-primary-dark disabled:bg-slate-400'>
+          className={`disabled:bg-slate-400 ${isLight ? 'button-light' : 'button-dark'}`}>
           {
             isSubmitting
               ?

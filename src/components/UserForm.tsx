@@ -9,6 +9,7 @@ import ControlledImagePicker from './customComponents/ControlledImagePicker';
 import documentTypeOptions from '../options/documentTypeOptions'
 import districtOptions from '../options/districtOptions'
 import { FormDataType } from '../types/globalTypes';
+import { useAppSelector } from '../redux/hooks'
 
 import '../styles/userForm.css'
 import Loader from './Loader';
@@ -19,6 +20,8 @@ export const requiredMsg = (fieldName: string) => {
 }
 
 function UserForm({ formType }: { formType: string }) {
+
+     const isLight = useAppSelector((state) => state.navbar.isLight)
 
      const { pathname } = useLocation();
 
@@ -258,7 +261,7 @@ function UserForm({ formType }: { formType: string }) {
 
                <button
                     disabled={isSubmitting}
-                    className='text-white bg-primary-dark disabled:bg-slate-400'>
+                    className={`disabled:bg-slate-400 ${isLight ? 'button-light' : 'button-dark'}`}>
                     {
                          isSubmitting
                               ?

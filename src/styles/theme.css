@@ -8,6 +8,17 @@
     color: #1A1C20;
 }
 
+/* for only buttons */
+.button-light {
+    background-color: #475585;
+    color: white;
+}
+
+.button-dark {
+    background-color: #1A1C20;
+    color: white;
+}
+
 /* for active navbars only */
 .navlink-active-light-bg {
     background-color: #203158;
