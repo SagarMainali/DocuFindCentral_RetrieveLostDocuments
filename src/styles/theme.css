@@ -4,7 +4,15 @@
 }
 
 .light-mode {
-    background-color:#EDEFF3;
+    background-color: #EDEFF3;
     color: #1A1C20;
 }
 
+/* for active navbars only */
+.navlink-active-light-bg {
+    background-color: #203158;
+}
+
+.navlink-active-dark-bg {
+    background-color: #5c5a5a;
+}
