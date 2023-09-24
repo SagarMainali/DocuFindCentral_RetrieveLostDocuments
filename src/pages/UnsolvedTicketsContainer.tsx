@@ -1,15 +1,18 @@
 import UnsolvedTicket from "../components/UnsolvedTicket";
+import { useAppSelector } from "../redux/hooks";
 import { UnsolvedTicketType } from "../types/globalTypes";
 import useFetchTickets from "../utils/useFetchTickets";
 
 export default function UnsolvedTickets() {
+
+    const isLight = useAppSelector((state) => state.navbar.isLight);
 
     const path = 'http://localhost:8000/api/get/unsolved_tickets';
     const { tickets, error } = useFetchTickets(path);
 
     return (
         <div className="cstm-paged flex-col justify-start gap-4">
-            <h1>Unsolved tickets</h1>
+            <h1 className={isLight ? 'title-light' : 'title-dark'}>Unsolved Tickets</h1>
 
             <h2 className="w-full text-end px-2">Total: <b>{tickets.length}</b></h2>
 

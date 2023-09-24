@@ -50,7 +50,7 @@ export default function Feedback() {
     <div className="cstm-paged">
       <form onSubmit={handleSubmit(onSubmit)} className='w-[500px] form flex flex-col gap-5'>
 
-        <h1>Feedback Hub</h1>
+        <h1 className={isLight ? 'title-light' : 'title-dark'}>Solved Tickets</h1>
 
         <div className='flex flex-col gap-1'>
           <label htmlFor="full-name">Your full name*</label>

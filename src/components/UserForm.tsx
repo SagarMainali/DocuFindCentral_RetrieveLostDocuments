@@ -77,10 +77,10 @@ function UserForm({ formType }: { formType: string }) {
 
      return (
           <form noValidate
-               className="form flex flex-col gap-7 select-none"
+               className={`form flex flex-col gap-7 select-none ${isLight ? 'form-lightmode' : 'form-darkmode'}`}
                onSubmit={handleSubmit(onSubmit)}>
 
-               <h1>
+               <h1 className={`${isLight ? 'title-light' : 'title-dark'}`}>
                     DOCUMENT
                     <span className='mx-[8px]'>
                          {

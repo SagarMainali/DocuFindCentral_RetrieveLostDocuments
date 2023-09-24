@@ -1,30 +1,52 @@
 /* for body */
-.body-light-mode {
+.body-lightmode {
     background-color: #FFFFFF;
     color: #0F0E11;
 }
 
-.body-dark-mode {
+.body-darkmode {
     background-color: #1B1D20;
     color: #FFFFFF;
 }
 
 /* for side and top navbars, buttons */
-.light-mode {
+.lightmode {
     background-color: #475585;
     color: #FFFFFF;
 }
 
-.dark-mode {
+.darkmode {
     background-color: #0F0E11;
     color: #FFFFFF;
 }
 
 /* for active navbars only */
 .navlink-active-light-bg {
-    background-color: #203158;
+    background-color: #2e3b5a;
 }
 
 .navlink-active-dark-bg {
-    background-color: #5c5a5a;
+    background-color: #313537;
+}
+
+/* for title */
+.title-light {
+    color: #FFFFFF;
+}
+
+.title-dark {
+    color: #ECEEF3;
+}
+
+/* for input fields and textarea */
+.form-lightmode input,
+.form-lightmode textarea {
+    background-color: #FFFFFF;
+    color: #0F0E11;
+}
+
+.form-darkmode input,
+.form-darkmode textarea {
+    background-color: #1B1D20;
+    color: #FFFFFF;
 }

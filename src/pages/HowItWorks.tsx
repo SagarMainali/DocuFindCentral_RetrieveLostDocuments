@@ -1,10 +1,14 @@
+import { useAppSelector } from "../redux/hooks"
 
 export default function HowItWorks() {
+
+  const isLight = useAppSelector((state) => state.navbar.isLight)
+
   return (
     <div className="cstm-paged justify-start">
 
       <div className="w-full">
-        <h1 className="mb-8">How does "DocuFind Central" work?</h1>
+        <h1 className={`mb-8 ${isLight ? 'title-light' : 'title-dark'}`}>Solved Tickets</h1>
 
         <ul className="flex flex-col gap-3 text-[14px]">
           <li>Step 1: Any of the user(document finder or document owner) fills up the form accordingly from 'Document found' or 'Document lost' section.</li>

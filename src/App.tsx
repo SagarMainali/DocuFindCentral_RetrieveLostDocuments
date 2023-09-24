@@ -21,7 +21,7 @@ function App() {
   const isLight = useAppSelector((state) => state.navbar.isLight);
 
   return (
-    <div className={`font-poppins ${isLight ? 'body-light-mode' : 'body-dark-mode'}`}>
+    <div className={`font-poppins ${isLight ? 'body-lightmode' : 'body-darkmode'}`}>
       <Routes >
         <Route path='/' element={<Layout />} >
           <Route index element={<WelcomePage />} />
