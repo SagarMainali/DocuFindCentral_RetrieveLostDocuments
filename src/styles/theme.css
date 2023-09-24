@@ -1,32 +1,21 @@
 /* for body */
-.body-dark-mode {
-    background-color: #1B1D20;
-    color: #FFFFFF;
-}
-
 .body-light-mode {
     background-color: #FFFFFF;
     color: #0F0E11;
 }
 
-/* for side and top navbars */
-.dark-mode {
-    background-color: #0F0E11;
+.body-dark-mode {
+    background-color: #1B1D20;
     color: #FFFFFF;
 }
 
+/* for side and top navbars, buttons */
 .light-mode {
-    background-color: #FFFFFF;
-    color: #0F0E11;
-}
-
-/* for buttons */
-.button-light {
     background-color: #475585;
     color: #FFFFFF;
 }
 
-.button-dark {
+.dark-mode {
     background-color: #0F0E11;
     color: #FFFFFF;
 }

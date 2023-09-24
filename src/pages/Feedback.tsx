@@ -2,8 +2,8 @@ import { useForm } from 'react-hook-form'
 import { FeedbackFormType } from '../types/globalTypes'
 import { useEffect } from 'react'
 import capitalizeAndLengthValidation from '../utils/capitalizeAndLengthValidation'
-import Loader from '../components/Loader'
 import { useAppSelector } from '../redux/hooks'
+import Button from '../components/Button'
 
 export default function Feedback() {
 
@@ -73,17 +73,7 @@ export default function Feedback() {
           {errors.feedback && <p className='errorMsg'>{`${errors.feedback.message}`}</p>}
         </div>
 
-        <button
-          disabled={isSubmitting}
-          className={`disabled:bg-slate-400 ${isLight ? 'button-light' : 'button-dark'}`}>
-          {
-            isSubmitting
-              ?
-              < Loader />
-              :
-              'Submit'
-          }
-        </button>
+        <Button isSubmitting={isSubmitting} isLight={isLight} />
 
       </form>
     </div>

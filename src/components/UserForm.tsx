@@ -12,7 +12,7 @@ import { FormDataType } from '../types/globalTypes';
 import { useAppSelector } from '../redux/hooks'
 
 import '../styles/userForm.css'
-import Loader from './Loader';
+import Button from './Button';
 
 // handling error message
 export const requiredMsg = (fieldName: string) => {
@@ -259,17 +259,7 @@ function UserForm({ formType }: { formType: string }) {
                     </div>
                </div>
 
-               <button
-                    disabled={isSubmitting}
-                    className={`disabled:bg-slate-400 ${isLight ? 'button-light' : 'button-dark'}`}>
-                    {
-                         isSubmitting
-                              ?
-                              < Loader />
-                              :
-                              'Submit'
-                    }
-               </button>
+               <Button isSubmitting={isSubmitting} isLight={isLight} />
           </form >
      )
 }
