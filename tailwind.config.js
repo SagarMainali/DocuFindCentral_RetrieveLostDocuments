@@ -14,7 +14,7 @@ export default {
       colors: {
         'primary-dark': '#475585',
         'secondary-dark': '#333A56',
-        'primary-light': '#EDEFF3',
+        'primary-light': '#FFFFFF',
         'ticket-bg': '#e9ecef'
       },
       screens: {

@@ -12,13 +12,16 @@ import HowItWorks from './pages/HowItWorks'
 import Feedback from './pages/Feedback'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import AboutUs from './pages/AboutUs'
+import { useAppSelector } from './redux/hooks'
 
 import './styles/theme.css';
 
 function App() {
 
+  const isLight = useAppSelector((state) => state.navbar.isLight);
+
   return (
-    <div className="font-poppins">
+    <div className={`font-poppins ${isLight ? 'body-light-mode' : 'body-dark-mode'}`}>
       <Routes >
         <Route path='/' element={<Layout />} >
           <Route index element={<WelcomePage />} />
