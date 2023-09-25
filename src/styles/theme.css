@@ -31,7 +31,7 @@
 
 /* for title */
 .title-light {
-    color: #FFFFFF;
+    color: #475585;
 }
 
 .title-dark {
@@ -39,14 +39,48 @@
 }
 
 /* for input fields and textarea */
+
+/* lightmode configs */
 .form-lightmode input,
-.form-lightmode textarea {
+.form-lightmode textarea,
+.input-lightmode {
     background-color: #FFFFFF;
     color: #0F0E11;
+    border: 2px solid rgba(128, 128, 128, 0.2);
 }
 
+.form-lightmode input:focus,
+.form-lightmode textarea:focus,
+.input-lightmode:focus {
+    border: 2px solid #475585;
+}
+
+.form-lightmode .form-sub-title,
+.form-lightmode .note,
+label,
+.form-lightmode ::placeholder {
+    color: rgb(128, 128, 128);
+}
+
+/* darkmode configs */
 .form-darkmode input,
-.form-darkmode textarea {
+.form-darkmode textarea,
+.input-darkmode {
     background-color: #1B1D20;
     color: #FFFFFF;
+    border: 2px solid rgba(181, 183, 186, 0.4);
 }
+
+.form-darkmode input:focus,
+.form-darkmode textarea:focus,
+.input-darkmode:focus {
+    border: 2px solid #ECEEF3;
+}
+
+.form-darkmode .form-sub-title,
+.form-darkmode .note,
+label,
+.form-darkmode ::placeholder {
+    color: rgb(181, 183, 186);
+}
+  

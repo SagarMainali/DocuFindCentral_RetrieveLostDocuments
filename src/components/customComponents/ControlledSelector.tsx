@@ -14,10 +14,11 @@ type PropsType = {
           label: string
      }[],
      requiredErrorMsg: string,
-     noOptionsMessage?: string
+     noOptionsMessage?: string,
+     isLight: boolean
 }
 
-export default function ControlledSelector({ control, inputName, placeholder, options, requiredErrorMsg, noOptionsMessage }: PropsType) {
+export default function ControlledSelector({ control, inputName, placeholder, options, requiredErrorMsg, noOptionsMessage, isLight }: PropsType) {
 
      const fontSize = '13px'
 
@@ -38,6 +39,7 @@ export default function ControlledSelector({ control, inputName, placeholder, op
                               placeholder={placeholder}
                               isSearchable={noOptionsMessage ? true : false}
                               noOptionsMessage={() => noOptionsMessage}
+                              className='react-select__input'
                               styles={{
                                    // not using baseStyles here because we get zIndex with it which i couuldn't override
                                    control: (_, state) => ({
@@ -46,7 +48,13 @@ export default function ControlledSelector({ control, inputName, placeholder, op
                                         alignItems: 'center',
                                         justifyContent: 'space-between',
                                         borderWidth: '2px',
-                                        borderColor: state.isFocused ? '#475585' : 'rgba(128, 128, 128, 0.2)',
+                                        borderColor: isLight && !state.isFocused
+                                             ? 'rgba(128, 128, 128, 0.2)'
+                                             : isLight && state.isFocused
+                                                  ? '#475585'
+                                                  : !isLight && !state.isFocused
+                                                       ? 'rgba(181, 183, 186, 0.4)'
+                                                       : '#ECEEF3',
                                         borderRadius: '6px',
                                         boxShadow: 'none',
                                         '&:hover': {
@@ -54,31 +62,39 @@ export default function ControlledSelector({ control, inputName, placeholder, op
                                         },
                                         transition: '200ms',
                                         padding: '2px 2px 2px 4px',
-                                        cursor: 'pointer'
+                                        cursor: 'pointer',
+                                        '& input': {
+                                             color: isLight ? '#0F0E11 !important' : '#FFFFFF !important',
+                                             padding: '0 !important'
+                                        }
                                    }),
                                    singleValue: (baseStyles) => ({
                                         ...baseStyles,
                                         fontSize: '14px',
-                                        color: '#1e1e1e'
+                                        color: isLight ? '#0F0E11' : '#FFFFFF'
                                    }),
                                    option: (baseStyles, state) => ({
                                         ...baseStyles,
                                         cursor: 'pointer',
                                         fontSize,
-                                        backgroundColor: state.isSelected ? '#475585' : '',
-                                        color: state.isSelected ? 'white' : '#1e1e1e',
+                                        backgroundColor: isLight && state.isSelected
+                                             ? '#475585'
+                                             : !isLight && state.isSelected
+                                                  ? '#1B1D20'
+                                                  : '#FFFFFF',
+                                        color: state.isSelected ? '#FFFFFF' : '#0F0E11',
                                         '&:hover': {
-                                             backgroundColor: 'rgba(71,85,133,0.1)'
+                                             backgroundColor: state.isSelected ? '' : 'rgba(181, 183, 186, 0.5)'
                                         }
                                    }),
                                    placeholder: (baseStyles) => ({
                                         ...baseStyles,
-                                        color: '#808080',
+                                        color: isLight ? '#808080' : '#b5b7ba',
                                         fontSize
                                    }),
                                    dropdownIndicator: (baseStyles) => ({
                                         ...baseStyles,
-                                        color: '#808080'
+                                        color: isLight ? '#808080' : '#b5b7ba'
                                    }),
                                    noOptionsMessage: (baseStyles) => ({
                                         ...baseStyles,

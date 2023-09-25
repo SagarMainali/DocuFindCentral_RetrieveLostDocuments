@@ -201,6 +201,7 @@ function UserForm({ formType }: { formType: string }) {
                               placeholder='Select document type*'
                               options={documentTypeOptions}
                               requiredErrorMsg='Document type'
+                              isLight={isLight}
                          />
 
                          <div>
@@ -221,12 +222,14 @@ function UserForm({ formType }: { formType: string }) {
                               options={districtOptions}
                               requiredErrorMsg='Document issued district'
                               noOptionsMessage='No district found'
+                              isLight={isLight}
                          />
 
                          <ControlledDatePicker
                               control={control}
                               inputName='documentIssuedDate'
                               placeholder='Document issued date*'
+                              isLight={isLight}
                          // requiredErrorMsg='Document issued date'
                          />
 
@@ -234,9 +237,10 @@ function UserForm({ formType }: { formType: string }) {
                               control={control}
                               inputName='documentExpiryDate'
                               placeholder='Document expiry date'
+                              isLight={isLight}
                          />
 
-                         <ControlledImagePicker control={control} />
+                         <ControlledImagePicker control={control} isLight={isLight} />
 
                     </div>
                </div>

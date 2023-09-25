@@ -48,7 +48,7 @@ export default function Feedback() {
 
   return (
     <div className="cstm-paged">
-      <form onSubmit={handleSubmit(onSubmit)} className='w-[500px] form flex flex-col gap-5'>
+      <form onSubmit={handleSubmit(onSubmit)} className={`w-[500px] form flex flex-col gap-5 ${isLight ? 'form-lightmode' : 'form-darkmode'}`}>
 
         <h1 className={isLight ? 'title-light' : 'title-dark'}>Solved Tickets</h1>
 
