@@ -1,9 +1,12 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
+const storedLang = localStorage.getItem('isEnglish');
+const storedTheme = localStorage.getItem('isLight');
+
 const navbarInitials = {
      isMenuOpened: false,
-     isEnglish: true,
-     isLight: true
+     isEnglish: storedLang ? JSON.parse(storedLang) : true,
+     isLight: storedTheme ? JSON.parse(storedTheme) : true
 }
 
 const navbarSlice = createSlice({
@@ -14,10 +17,12 @@ const navbarSlice = createSlice({
                state.isMenuOpened = action.payload ?? !state.isMenuOpened
           },
           changeLanguage(state) {
-               state.isEnglish = !state.isEnglish
+               state.isEnglish = !state.isEnglish;
+               localStorage.setItem('isEnglish', JSON.stringify(state.isEnglish)); //save as boolean
           },
           changeTheme(state) {
-               state.isLight = !state.isLight
+               state.isLight = !state.isLight;
+               localStorage.setItem('isLight', JSON.stringify(state.isLight)); // save as boolean
           }
      }
 })
