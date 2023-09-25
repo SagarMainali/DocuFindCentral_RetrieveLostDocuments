@@ -9,7 +9,7 @@ export default function TopNavbar() {
      const dispatch = useAppDispatch()
 
      return (
-          <header className={`flex justify-between items-center h-[60px] px-6 drop-shadow-[0_10px_15px_rgba(0,0,0,0.25)] 
+          <header className={`flex justify-between items-center h-[60px] px-6 drop-shadow-[0_10px_15px_rgba(0,0,0,0.25)] duration-200
           ${isLight ? 'lightmode' : 'darkmode'}`}>
                <span className="nav-left">
                     <svg onClick={() => dispatch(toggleMenu())}

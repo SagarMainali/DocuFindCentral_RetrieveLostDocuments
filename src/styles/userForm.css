@@ -1,3 +1,6 @@
+:root{
+     --transition-delay: 200ms;
+}
 
 .form {
      width: 600px;
@@ -39,7 +42,7 @@ input:not([type='date']),
      padding: 10px 14px !important;
      font-size: 14px !important;
      border-radius: 6px;
-     transition: 200ms;
+     transition: var(--transition-delay);
 }
 
 *::placeholder,
@@ -71,7 +74,7 @@ textarea {
      border-radius: 6px;
      padding: 10px 15px !important;
      font-size: 14px !important;
-     transition: 200ms;
+     transition: var(--transition-delay);
      margin-bottom: 0 !important;
 }
 
@@ -91,6 +94,7 @@ button {
      display: flex;
      justify-content: center;
      align-items: center;
+     transition: var(--transition-delay);
 }
 
 label {

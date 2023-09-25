@@ -1,23 +1,36 @@
+:root {
+    --primary-dark: #0F0E11;
+    --secondary-dark: #1B1D20;
+
+    --primary-gray: #808080;
+    --secondary-gray: #b5b7ba;
+
+    --primary-light: #FFFFFF;
+    --secondary-light: #ECEEF3;
+
+    --primary-blue: #475585;
+}
+
 /* for body */
 .body-lightmode {
-    background-color: #FFFFFF;
-    color: #0F0E11;
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
 }
 
 .body-darkmode {
-    background-color: #1B1D20;
-    color: #FFFFFF;
+    background-color: var(--secondary-dark);
+    color: var(--primary-light);
 }
 
 /* for side and top navbars, buttons */
 .lightmode {
-    background-color: #475585;
-    color: #FFFFFF;
+    background-color: var(--primary-blue);
+    color: var(--primary-light);
 }
 
 .darkmode {
-    background-color: #0F0E11;
-    color: #FFFFFF;
+    background-color: var(--primary-dark);
+    color: var(--primary-light);
 }
 
 /* for active navbars only */
@@ -31,56 +44,54 @@
 
 /* for title */
 .title-light {
-    color: #475585;
+    color: var(--primary-blue);
 }
 
 .title-dark {
-    color: #ECEEF3;
+    color: var(--secondary-light);
 }
 
 /* for input fields and textarea */
-
 /* lightmode configs */
 .form-lightmode input,
 .form-lightmode textarea,
 .input-lightmode {
-    background-color: #FFFFFF;
-    color: #0F0E11;
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
     border: 2px solid rgba(128, 128, 128, 0.2);
 }
 
 .form-lightmode input:focus,
 .form-lightmode textarea:focus,
 .input-lightmode:focus {
-    border: 2px solid #475585;
+    border: 2px solid var(--primary-blue);
 }
 
 .form-lightmode .form-sub-title,
 .form-lightmode .note,
 label,
 .form-lightmode ::placeholder {
-    color: rgb(128, 128, 128);
+    color: var(--primary-gray);
 }
 
 /* darkmode configs */
 .form-darkmode input,
 .form-darkmode textarea,
 .input-darkmode {
-    background-color: #1B1D20;
-    color: #FFFFFF;
+    background-color: var(--secondary-dark);
+    color: var(--primary-light);
     border: 2px solid rgba(181, 183, 186, 0.4);
 }
 
 .form-darkmode input:focus,
 .form-darkmode textarea:focus,
 .input-darkmode:focus {
-    border: 2px solid #ECEEF3;
+    border: 2px solid var(--secondary-light);
 }
 
 .form-darkmode .form-sub-title,
 .form-darkmode .note,
 label,
 .form-darkmode ::placeholder {
-    color: rgb(181, 183, 186);
+    color: var(--secondary-gray);
 }
-  

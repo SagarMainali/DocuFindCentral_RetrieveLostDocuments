@@ -11,6 +11,7 @@
           width: 100%;
           text-transform: uppercase;
           letter-spacing: .6px;
+          transition: 200ms;
           /* this color is custom congitured @tailwind.config.js */
      }
 
