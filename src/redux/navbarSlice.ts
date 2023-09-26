@@ -18,7 +18,7 @@ const navbarSlice = createSlice({
           },
           changeLanguage(state) {
                state.isEnglish = !state.isEnglish;
-               localStorage.setItem('isEnglish', JSON.stringify(state.isEnglish)); //save as boolean
+               localStorage.setItem('isEnglish', JSON.stringify(state.isEnglish)); // save as boolean
           },
           changeTheme(state) {
                state.isLight = !state.isLight;
