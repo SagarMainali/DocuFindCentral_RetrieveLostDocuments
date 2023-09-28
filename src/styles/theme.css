@@ -69,7 +69,7 @@
 
 .form-lightmode .form-sub-title,
 .form-lightmode .note,
-label,
+.form-lightmode label,
 .form-lightmode ::placeholder {
     color: var(--primary-gray);
 }
@@ -91,7 +91,7 @@ label,
 
 .form-darkmode .form-sub-title,
 .form-darkmode .note,
-label,
+.form-darkmode label,
 .form-darkmode ::placeholder {
     color: var(--secondary-gray);
 }

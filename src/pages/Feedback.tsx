@@ -1,11 +1,15 @@
 import { useForm } from 'react-hook-form'
-import { FeedbackFormType } from '../types/globalTypes'
 import { useEffect } from 'react'
+
+import { FeedbackFormType } from '../types/globalTypes'
 import capitalizeAndLengthValidation from '../utils/capitalizeAndLengthValidation'
 import { useAppSelector } from '../redux/hooks'
 import Button from '../components/Button'
+import { useTranslation } from 'react-i18next'
 
 export default function Feedback() {
+
+  const { t } = useTranslation('feedback_form_ns')
 
   const isLight = useAppSelector((state) => state.navbar.isLight)
 
@@ -50,24 +54,22 @@ export default function Feedback() {
     <div className="cstm-paged">
       <form onSubmit={handleSubmit(onSubmit)} className={`w-[500px] form flex flex-col gap-5 ${isLight ? 'form-lightmode' : 'form-darkmode'}`}>
 
-        <h1 className={isLight ? 'title-light' : 'title-dark'}>Solved Tickets</h1>
+        <h1 className={isLight ? 'title-light' : 'title-dark'}>{t('title')}</h1>
 
         <div className='flex flex-col gap-1'>
-          <label htmlFor="full-name">Your full name*</label>
-          <input type="text" placeholder='Sagar Mainali' id='full-name'
-            {...register('fullName', {
-              required: '*Please provide your full name!'
-            })}
+          <label htmlFor="full-name">{t('label_fullName')}</label>
+          <input type="text" placeholder={t('placeholder_fullName')} id='full-name'
+            {...register('fullName', { required: t('required_fullName') })}
             onChange={(e) => setValue('fullName', capitalizeAndLengthValidation(e.target.value, 'name'))}
           />
           {errors.fullName && <p className='errorMsg'>{`${errors.fullName.message}`}</p>}
         </div>
 
         <div className='flex flex-col gap-1'>
-          <label htmlFor="feedback">Your valuable feedback*</label>
+          <label htmlFor="feedback">{t('label_feedback')}</label>
           <textarea maxLength={150} rows={5} id='feedback'
-            placeholder="Write your feedback in about 150 words"
-            {...register('feedback', { required: 'Please provide your feedback!' })}
+            placeholder={t('placeholder_feedback')}
+            {...register('feedback', { required: t('required_feedback') })}
             onChange={(e) => setValue('feedback', capitalizeAndLengthValidation(e.target.value, 'feedback'))}
           />
           {errors.feedback && <p className='errorMsg'>{`${errors.feedback.message}`}</p>}
