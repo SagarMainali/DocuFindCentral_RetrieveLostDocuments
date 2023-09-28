@@ -1,12 +1,12 @@
 {
-    "appName": "DocuFind Central",
-    "lost": "Document Lost",
-    "found": "Document Found",
-    "unsolved": "Unsolved Tickets",
-    "solved": "Solved Tickets",
-    "greatBeings": "Great Beings",
-    "howItWorks": "How It Works",
-    "feedback": "Feedback",
-    "PrivacyPolicy": "Privacy Policy",
-    "aboutUs": "About Us"
+    "App Name": "DocuFind Central",
+    "Document Lost": "Document Lost",
+    "Document Found": "Document Found",
+    "Unsolved Tickets": "Unsolved Tickets",
+    "Solved Tickets": "Solved Tickets",
+    "Appreciation": "Appreciation",
+    "How It Works": "How It Works",
+    "Feedback": "feedback",
+    "Privacy Policy": "Privacy Policy",
+    "About Us": "About Us"
 }

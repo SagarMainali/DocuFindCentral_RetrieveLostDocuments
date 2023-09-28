@@ -1,12 +1,12 @@
 {
-    "appName": "DocuFind Central",
-    "lost": "Document Lost",
-    "found": "Document Found",
-    "unsolved": "Unsolved Tickets",
-    "solved": "Solved Tickets",
-    "greatBeings": "Great Beings",
-    "howItWorks": "How It Works",
-    "feedback": "feedback",
-    "PrivacyPolicy": "Privacy Policy",
-    "aboutUs": "About Us"
+    "App Name": "डकुफाइन्ड सेन्ट्रल",
+    "Document Lost": "कागजात हरायो",
+    "Document Found": "कागजात भेटियो",
+    "Unsolved Tickets": "समाधान नभएका टिकटहरू",
+    "Solved Tickets": "समाधान भएका टिकटहरू",
+    "Appreciation": "हाम्रो धन्यवाद",
+    "How It Works": "यसले कसरी काम गर्छ",
+    "Feedback": "प्रतिक्रिया",
+    "Privacy Policy": "गोपनीयता नीति",
+    "About Us": "हाम्रोबारे"
 }

@@ -13,14 +13,14 @@ i18next
     .init({
         resources: {
             en: {
-                homeNS: home_en_ts,
-                sideNavbarNS: sideNavbar_en_ts,
-                formNS: form_en_ts
+                home_ns: home_en_ts,
+                sideNavbar_ns: sideNavbar_en_ts,
+                form_ns: form_en_ts
             },
             np: {
-                homeNS: home_np_ts,
-                sideNavbarNS: sideNavbar_np_ts,
-                formNS: form_np_ts
+                home_ns: home_np_ts,
+                sideNavbar_ns: sideNavbar_np_ts,
+                form_ns: form_np_ts
             }
         },
         lng: 'np',
