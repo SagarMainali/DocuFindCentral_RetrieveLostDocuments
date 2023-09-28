@@ -64,11 +64,6 @@ function UserForm({ formType }: { formType: string }) {
           }
      }
 
-     // handling error message
-     const requiredMsg = (fieldName: string) => {
-          return `*${fieldName} ${t('suffix_for_RQ_func')}`;
-     }
-
      // reset inside useEffect to reset after everything is done
      useEffect(() => {
           // isSubmitSuccessful only signifies that the data has passed the validation and 
@@ -95,17 +90,23 @@ function UserForm({ formType }: { formType: string }) {
                     {t('form')}
                </h1>
 
+               <ul className='list-disc text-sm -my-[10px]'>
+                    <h2 className="form-sub-title -mb-[0px]">{t('before_proceeding')}</h2>
+                    <li className='note'>{t('msg1')}</li>
+                    <li className='note'>{t('msg2')}</li>
+               </ul>
+
                <div>
-                    <h2 className="form-sub-title">PERSONAL</h2>
+                    <h2 className="form-sub-title">{t('sub-title1')}</h2>
                     <div className='form-field-group'>
 
                          {
                               formType === 'lost-doc'
                                    ?
                                    <div>
-                                        <input type="text" placeholder='Full name of owner(as in document)*'
+                                        <input type="text" placeholder={t('owner_fullname_PH')}
                                              {...register('owner_fullName', {
-                                                  required: requiredMsg('Owner name')
+                                                  required: t('owner_name_RQ')
                                              })}
                                              onChange={(e) => {
                                                   setValue('owner_fullName', capitalizeAndLengthValidation(e.target.value, 'name'));
@@ -115,41 +116,41 @@ function UserForm({ formType }: { formType: string }) {
                                    </div>
                                    :
                                    <div>
-                                        <input type="text" placeholder='Full name of finder*'
+                                        <input type="text" placeholder={t('finder_fullname_PH')}
                                              {...register('finder_fullName')}
                                              onChange={(e) => {
                                                   setValue('finder_fullName', capitalizeAndLengthValidation(e.target.value, 'name'));
                                              }}
                                         />
-                                        {/* , { required: requiredMsg('Finder name') } */}
+                                        {/* , { required: t('finder_name_RQ') } */}
                                         {errors.finder_fullName && <p className='errorMsg'>{`${errors.finder_fullName.message}`}</p>}
                                    </div>
                          }
 
                          <div>
-                              <input type="number" placeholder='Contact number*'
+                              <input type="number" placeholder={t('contact_PH')}
                                    {...register('contact')}
                                    onChange={e => setValue('contact', capitalizeAndLengthValidation(e.target.value, 'contact'))}
                               />
-                              {/* , { required: requiredMsg('Contact number') } */}
+                              {/* , { required: t('contact_RQ') } */}
                               {errors.contact && <p className='errorMsg'>{`${errors.contact.message}`}</p>}
                          </div>
 
-                         <input type="text" placeholder='Current Address'
+                         <input type="text" placeholder={t('current_address_PH')}
                               {...register('currentAddress')}
                               onChange={e => setValue('currentAddress', capitalizeAndLengthValidation(e.target.value, 'currentAddress'))} />
 
                          {
                               formType === 'lost-doc'
                                    ?
-                                   <input type="text" placeholder='Permanent Address'
+                                   <input type="text" placeholder={t('permanent_address_PH')}
                                         {...register('permanentAddress')}
                                         onChange={(e) => {
                                              setValue('permanentAddress', capitalizeAndLengthValidation(e.target.value, 'permanentAddress'));
                                         }}
                                    />
                                    :
-                                   <input type="text" placeholder='Place where you found the document'
+                                   <input type="text" placeholder={t('document_found_place_PH')}
                                         {...register('documentFoundPlace')}
                                         onChange={(e) => {
                                              setValue('documentFoundPlace', capitalizeAndLengthValidation(e.target.value, 'documentFoundPlace'));
@@ -158,12 +159,12 @@ function UserForm({ formType }: { formType: string }) {
                          }
 
                          <div className='col-span-full'>
-                              <input type="email" placeholder='Your Email*'
+                              <input type="email" placeholder={t('email_PH')}
                                    {...register('email', {
-                                        required: requiredMsg('Email address'),
+                                        required: t('email_RQ'),
                                         pattern: {
                                              value: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
-                                             message: 'Invalid email address'
+                                             message: t('invalid_email_msg')
                                         }
                                    })}
                                    onChange={(e) => {
@@ -171,29 +172,27 @@ function UserForm({ formType }: { formType: string }) {
                                    }}
                               />
                               {errors.email && <p className='errorMsg'>{`${errors.email.message}`}</p>}
-                              <p className="col-span-full note">
-                                   *Please enter correct email since you will be notified in this email if we find your ticket match in our system.
-                              </p>
+                              <p className="col-span-full note">{t('note')}</p>
                          </div>
 
                     </div>
                </div>
 
                <div>
-                    <h2 className="form-sub-title">DOCUMENT</h2>
+                    <h2 className="form-sub-title">{t('sub-title2')}</h2>
                     <div className='form-field-group'>
                          {
                               formType === 'found-doc'
                               &&
                               <div>
                                    <input
-                                        type="text" placeholder='Full Name of owner(as in document)*'
+                                        type="text" placeholder={t('owner_fullname_PH')}
                                         {...register('owner_fullName')}
                                         onChange={(e) => {
                                              setValue('owner_fullName', capitalizeAndLengthValidation(e.target.value, 'name'));
                                         }}
                                    />
-                                   {/* , { required: requiredMsg('Owner name') } */}
+                                   {/* , { required: t('owner_name_RQ') } */}
                                    {errors.owner_fullName && <p className='errorMsg'>{`${errors.owner_fullName.message}`}</p>}
                               </div>
                          }
@@ -201,29 +200,29 @@ function UserForm({ formType }: { formType: string }) {
                          <ControlledSelector
                               control={control}
                               inputName='documentType'
-                              placeholder='Select document type*'
+                              placeholder={t('document_type_PH')}
                               options={documentTypeOptions}
-                              requiredErrorMsg='Document type'
+                              requiredErrorMsg={t('document_type_RQ')}
                               isLight={isLight}
                          />
 
                          <div>
-                              <input type="text" placeholder='Document number*'
+                              <input type="text" placeholder={t('document_number_PH')}
                                    {...register('documentNumber')}
                                    onChange={(e) => {
                                         setValue('documentNumber', capitalizeAndLengthValidation(e.target.value, 'documentNumber'));
                                    }}
                               />
-                              {/* , { required: requiredMsg('Document number') } */}
+                              {/* , { required: t('document_number_RQ') } */}
                               {errors.documentNumber && <p className='errorMsg'>{`${errors.documentNumber.message}`}</p>}
                          </div>
 
                          <ControlledSelector
                               control={control}
                               inputName='documentIssuedDistrict'
-                              placeholder='Select document issued district*'
+                              placeholder={t('document_issued_district_PH')}
                               options={districtOptions}
-                              requiredErrorMsg='Document issued district'
+                              requiredErrorMsg={t('document_issued_district_RQ')}
                               noOptionsMessage='No district found'
                               isLight={isLight}
                          />
@@ -231,36 +230,36 @@ function UserForm({ formType }: { formType: string }) {
                          <ControlledDatePicker
                               control={control}
                               inputName='documentIssuedDate'
-                              placeholder='Document issued date*'
+                              placeholder={t('document_issued_date_PH')}
                               isLight={isLight}
-                         // requiredErrorMsg='Document issued date'
+                         // requiredErrorMsg={t('document_issued_date_RQ)}
                          />
 
                          <ControlledDatePicker
                               control={control}
                               inputName='documentExpiryDate'
-                              placeholder='Document expiry date'
+                              placeholder={t('document_expiry_date_PH')}
                               isLight={isLight}
                          />
 
-                         <ControlledImagePicker control={control} isLight={isLight} placeholder='Choose image file' fileTypeErrorMsg='Only jpg, jpeg and png types are allowed!' />
+                         <ControlledImagePicker control={control} isLight={isLight} placeholder={t('document_photo_PH')} fileTypeErrorMsg={t('invalid_image_msg')} />
 
                     </div>
                </div>
 
                <div>
-                    <h2 className="form-sub-title">MESSAGE</h2>
+                    <h2 className="form-sub-title">{t('sub-title3')}</h2>
                     <div className='form-field-group'>
                          {/* flex to remove unusual space between its childrens */}
                          <div className='col-span-full flex flex-col'>
                               <textarea maxLength={200} rows={3}
-                                   placeholder="Write short message to display*"
+                                   placeholder={t('message_PH')}
                                    {...register('shortMessage')}
                                    onChange={(e) => {
                                         setValue('shortMessage', capitalizeAndLengthValidation(e.target.value, 'shortMessage'));
                                    }}
                               />
-                              {/* , { required: requiredMsg('Message') } */}
+                              {/* , { required: t('message_RQ') } */}
                               {errors.shortMessage && <p className='errorMsg'>{`${errors.shortMessage.message}`}</p>}
                          </div>
                     </div>

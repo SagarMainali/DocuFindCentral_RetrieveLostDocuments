@@ -17,7 +17,6 @@
 }
 
 .form-field-group {
-     /* border: 1px solid red; */
      display: grid;
      gap: 12px;
      grid-template-columns: calc(50% - 6px) calc(50% - 6px);
