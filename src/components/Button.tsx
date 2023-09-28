@@ -1,4 +1,5 @@
 import Loader from "./Loader"
+import {useTranslation} from 'react-i18next'
 
 type ButtonPropsType = {
     isSubmitting: boolean,
@@ -6,6 +7,9 @@ type ButtonPropsType = {
 }
 
 function Button({ isSubmitting, isLight }: ButtonPropsType) {
+
+    const {t} = useTranslation('button')
+
     return (
         <button
             disabled={isSubmitting}
@@ -15,7 +19,7 @@ function Button({ isSubmitting, isLight }: ButtonPropsType) {
                     ?
                     < Loader />
                     :
-                    'Submit'
+                    t('text')
             }
         </button>
     )
