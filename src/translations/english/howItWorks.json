@@ -1,5 +1,5 @@
 {
-    "title": "How It Works",
+    "title": "How It Works ?",
     "1": "Step 1: Document owner or Documet finder fills the appropriate form and submits to generate a new ticket.",
     "2": "Step 2: The newly generated ticket will be labelled <b>'Lost'</b> or <b>'Found'</b> based on which party generated the ticket.",
     "3": "Step 3: Upon every generation of a ticket, the system searches if the ticket with the same information exist in our system.",

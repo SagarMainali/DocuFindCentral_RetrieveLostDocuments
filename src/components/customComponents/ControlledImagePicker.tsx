@@ -4,11 +4,13 @@ import { Control, Controller } from "react-hook-form"
 import { FormDataType } from "../../types/globalTypes"
 
 type PropsType = {
-     control: Control<FormDataType>
-     isLight: boolean
+     control: Control<FormDataType>,
+     isLight: boolean,
+     placeholder: string,
+     fileTypeErrorMsg: string
 }
 
-export default function ControlledImagePicker({ control, isLight }: PropsType) {
+export default function ControlledImagePicker({ control, isLight, placeholder, fileTypeErrorMsg }: PropsType) {
 
      const imgPickerInput = useRef<HTMLInputElement>(null)
 
@@ -29,7 +31,7 @@ export default function ControlledImagePicker({ control, isLight }: PropsType) {
                     return selectedFile;
                }
                else {
-                    setError('Only jpg, jpeg and png types are allowed!')
+                    setError(fileTypeErrorMsg)
                }
           }
      }
@@ -53,7 +55,7 @@ export default function ControlledImagePicker({ control, isLight }: PropsType) {
                                                   ? 'text-[#b5b7ba] text-[13px]'
                                                   : 'text-[#FFFFFF] text-[14px]'
                                    }`}>
-                                   {value?.name ?? 'Choose image file'}
+                                   {value?.name ?? placeholder}
                               </h2>
                               <svg className={`h-[15px] ${isLight ? 'fill-[#808080]' : 'fill-[#b5b7ba]'}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
                                    <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />

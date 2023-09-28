@@ -58,7 +58,7 @@ export default function Feedback() {
 
         <div className='flex flex-col gap-1'>
           <label htmlFor="full-name">{t('label_fullName')}</label>
-          <input type="text" placeholder={t('placeholder_fullName')} id='full-name'
+          <input type="text" placeholder={t('fullName_PH')} id='full-name'
             {...register('fullName', { required: t('required_fullName') })}
             onChange={(e) => setValue('fullName', capitalizeAndLengthValidation(e.target.value, 'name'))}
           />
@@ -68,7 +68,7 @@ export default function Feedback() {
         <div className='flex flex-col gap-1'>
           <label htmlFor="feedback">{t('label_feedback')}</label>
           <textarea maxLength={150} rows={5} id='feedback'
-            placeholder={t('placeholder_feedback')}
+            placeholder={t('feedback_PH')}
             {...register('feedback', { required: t('required_feedback') })}
             onChange={(e) => setValue('feedback', capitalizeAndLengthValidation(e.target.value, 'feedback'))}
           />

@@ -19,7 +19,7 @@ export default function Layout() {
                <div className="flex-1 relative" onClick={() => isMenuOpened && dispatch(toggleMenu(false))}>
 
                     {/* add overlay when menu is opened */}
-                    {isMenuOpened && <div className="absolute inset-0 bg-secondary-dark/60 z-20"></div>}
+                    {isMenuOpened && <div className="bg-slate-900/60 absolute inset-0 z-20"></div>}
 
                     <TopNavbar />
 

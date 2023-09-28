@@ -240,7 +240,7 @@ function UserForm({ formType }: { formType: string }) {
                               isLight={isLight}
                          />
 
-                         <ControlledImagePicker control={control} isLight={isLight} />
+                         <ControlledImagePicker control={control} isLight={isLight} placeholder='Choose image file' fileTypeErrorMsg='Only jpg, jpeg and png types are allowed!' />
 
                     </div>
                </div>

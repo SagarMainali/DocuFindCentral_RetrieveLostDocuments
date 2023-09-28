@@ -1,9 +1,9 @@
 {
     "title": "Feedback Hub",
     "label_fullName": "Your full name*",
-    "placeholder_fullName": "Sagar Mainali",
+    "fullName_PH": "Sagar Mainali",
     "required_fullName": "*Please provide your full name!",
     "label_feedback": "Your valuable feedback*",
-    "placeholder_feedback": "Please write your feedback in about 150 words",
+    "feedback_PH": "Please write your feedback in about 150 words",
     "required_feedback": "*Please provide your feedback!"
 }
