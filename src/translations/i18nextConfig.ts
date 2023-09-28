@@ -9,10 +9,10 @@ i18next
     .init({
         resources: {
             en: {
-                translations: enTranslations
+                translation: enTranslations
             },
             np: {
-                translations: npTranslations
+                translation: npTranslations
             }
         },
         lng: 'en',

@@ -1,5 +1,15 @@
 {
-    "home": {
-        "welcome": "नमस्ते र स्वागत छ!🙏🏼 <br />तपाईंको आवश्यकता अनुसार उपयुक्त <br /> खण्डमा नेभिगेट गर्नुहोस्।"
+    "appName": "DocuFind Central",
+    "welcome": "नमस्ते र स्वागत छ!🙏🏼 <br />तपाईंको आवश्यकता अनुसार उपयुक्त <br /> खण्डमा नेभिगेट गर्नुहोस्।",
+    "sideNavbar": {
+        "lost": "Document Lost",
+        "found": "Document Found",
+        "unsolved": "Unsolved Tickets",
+        "solved": "Solved Tickets",
+        "greatBeings": "Great Beings",
+        "howItWorks": "How It Works",
+        "feedback": "feedback",
+        "PrivacyPolicy": "Privacy Policy",
+        "aboutUs": "About Us"
     }
 }
