@@ -1,3 +1,9 @@
 {
-    "step1": ""
+    "1": "Step 1: Document owner or Documet finder fills the appropriate form and submits to generate a new ticket.",
+    "2": "Step 2: The newly generated ticket will be labelled 'Lost' or 'Found' based on which party generated the ticket.",
+    "3": "Step 3: Upon every generation of a ticket, the system searches if the ticket with the same information exist in our system.",
+    "4": "Step 4: If that ticket exist, the resolved ticket will be moved to 'Solved tickets' section.",
+    "5": "Step 5: If the ticket doesn't exist, it is kept on hold in the 'Unsolved Tickets' section waiting for another party to generate a new ticket with the same information.",
+    "6": "Step 6: As soon as the information of two tickets match, the users are contacted through their provided email.",
+    "note": "As an appreciation, if any document finder is able to match the ticket with document owner then their name and photo are displayed in 'Appreciation' section."
 }
