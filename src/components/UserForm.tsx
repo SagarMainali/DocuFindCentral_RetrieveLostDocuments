@@ -90,11 +90,13 @@ function UserForm({ formType }: { formType: string }) {
                     {t('form')}
                </h1>
 
-               <ul className='list-disc text-sm -my-[10px]'>
-                    <h2 className="form-sub-title -mb-[0px]">{t('before_proceeding')}</h2>
-                    <li className='note'>{t('msg1')}</li>
-                    <li className='note'>{t('msg2')}</li>
-               </ul>
+               <div>
+                    <h2 className="form-sub-title">{t('before_proceeding')}</h2>
+                    <ul className='list-disc note -my-[4px] ml-[17px]'>
+                         <li>{t('msg1')}</li>
+                         <li>{t('msg2')}</li>
+                    </ul>
+               </div>
 
                <div>
                     <h2 className="form-sub-title">{t('sub-title1')}</h2>

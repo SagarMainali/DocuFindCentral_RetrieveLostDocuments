@@ -38,7 +38,7 @@ i18next
                 button: button_np_ts
             }
         },
-        lng: 'np',
+        lng: 'en',
         fallbackLng: 'en'
     })
 
