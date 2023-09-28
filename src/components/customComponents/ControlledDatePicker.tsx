@@ -1,6 +1,5 @@
 import { Control, Controller } from 'react-hook-form'
 
-import { requiredMsg } from '../UserForm'
 import { FormDataType } from '../../types/globalTypes'
 import { getDateOfToday, formatDate } from '../../utils/handleDates'
 
@@ -19,7 +18,7 @@ export default function ControlledDatePicker({ control, inputName, placeholder, 
                control={control}
                name={inputName}
                rules={{
-                    required: requiredErrorMsg ? requiredMsg(requiredErrorMsg) : false
+                    required: requiredErrorMsg ?? false
                }}
                render={({ field: { onChange, value }, fieldState: { error } }) => (
                     <>

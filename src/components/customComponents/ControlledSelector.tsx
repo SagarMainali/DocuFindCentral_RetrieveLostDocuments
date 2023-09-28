@@ -2,7 +2,6 @@ import Select from 'react-select'
 import { Control, Controller } from 'react-hook-form'
 
 import { FormDataType } from '../../types/globalTypes'
-import { requiredMsg } from '../UserForm'
 
 type PropsType = {
      // an object that contains methods to link useForm and the Component where it is being used
@@ -28,7 +27,7 @@ export default function ControlledSelector({ control, inputName, placeholder, op
                control={control}
                name={inputName}
                rules={{
-                    required: requiredMsg(requiredErrorMsg)
+                    required: requiredErrorMsg
                }}
                render={({ field: { onChange, value }, fieldState: { error } }) => (
                     <div>

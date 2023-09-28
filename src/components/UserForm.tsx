@@ -10,16 +10,14 @@ import documentTypeOptions from '../options/documentTypeOptions'
 import districtOptions from '../options/districtOptions'
 import { FormDataType } from '../types/globalTypes';
 import { useAppSelector } from '../redux/hooks'
+import Button from './Button';
+import { useTranslation } from 'react-i18next'
 
 import '../styles/userForm.css'
-import Button from './Button';
-
-// handling error message
-export const requiredMsg = (fieldName: string) => {
-     return `*${fieldName} is required!`;
-}
 
 function UserForm({ formType }: { formType: string }) {
+
+     const { t } = useTranslation('user_form_ns')
 
      const isLight = useAppSelector((state) => state.navbar.isLight)
 
@@ -66,6 +64,11 @@ function UserForm({ formType }: { formType: string }) {
           }
      }
 
+     // handling error message
+     const requiredMsg = (fieldName: string) => {
+          return `*${fieldName} ${t('suffix_for_RQ_func')}`;
+     }
+
      // reset inside useEffect to reset after everything is done
      useEffect(() => {
           // isSubmitSuccessful only signifies that the data has passed the validation and 
@@ -81,15 +84,15 @@ function UserForm({ formType }: { formType: string }) {
                onSubmit={handleSubmit(onSubmit)}>
 
                <h1 className={`${isLight ? 'title-light' : 'title-dark'}`}>
-                    DOCUMENT
-                    <span className='mx-[8px]'>
+                    {t('document')}
+                    <span className='mx-[8px] underline underline-offset-4'>
                          {
                               formType === 'lost-doc'
-                                   ? '"OWNER"'
-                                   : '"FINDER"'
+                                   ? t('owner')
+                                   : t('finder')
                          }
                     </span>
-                    FORM
+                    {t('form')}
                </h1>
 
                <div>
