@@ -1,10 +1,13 @@
 import { NavLink } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 import { useAppSelector } from '../redux/hooks'
 
 import CustomNavlink from './CustomNavlink'
 
 export default function SideNavbar() {
+
+     const { t } = useTranslation()
 
      const isMenuOpened = useAppSelector((state) => state.navbar.isMenuOpened)
      const isLight = useAppSelector((state) => state.navbar.isLight)
@@ -22,7 +25,7 @@ export default function SideNavbar() {
 
                <div className="text-slate-50 flex flex-col gap-2">
 
-                    <CustomNavlink path='lost-document' text='Document Lost' />
+                    <CustomNavlink path='lost-document' text={t('sideNavbar.lost')} />
                     <CustomNavlink path='found-document' text='Document Found' />
                     <CustomNavlink path='unsolved-tickets' text='Unsolved Tickets' />
                     <CustomNavlink path='solved-tickets' text='Solved Tickets' />
