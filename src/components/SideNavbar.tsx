@@ -1,11 +1,20 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { useEffect } from 'react'
 
-import { useAppSelector } from '../redux/hooks'
+import { useAppSelector, useAppDispatch } from '../redux/hooks'
+import { toggleMenu } from '../redux/navbarSlice'
 
 import CustomNavlink from './CustomNavlink'
 
 export default function SideNavbar() {
+
+     const { pathname } = useLocation()
+     const dispatch = useAppDispatch()
+
+     useEffect(() => {
+          dispatch(toggleMenu(false))
+     }, [pathname])
 
      const { t } = useTranslation('sideNavbar_ns') // load sideNavbar namespace
 

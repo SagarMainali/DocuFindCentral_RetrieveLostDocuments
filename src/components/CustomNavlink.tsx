@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom'
 
-import { useAppDispatch, useAppSelector } from '../redux/hooks'
-import { toggleMenu } from "../redux/navbarSlice"
+import { useAppSelector } from '../redux/hooks'
 
 import '../styles/side-navbar.css'
 
@@ -17,10 +16,8 @@ function CustomNavlink({ path, text, spacing, width }: NavlinkPropTypes) {
     const isMenuOpened = useAppSelector((state) => state.navbar.isMenuOpened)
     const isLight = useAppSelector((state) => state.navbar.isLight)
 
-    const dispatch = useAppDispatch()
-
     return (
-        <NavLink to={`/${path}`} onClick={() => isMenuOpened && dispatch(toggleMenu(false))} //close menu when route changes
+        <NavLink to={`/${path}`}
             className={({ isActive }) => `navlink flex gap-2 items-center ${spacing ?? ''} 
                          ${isMenuOpened ? '' : 'icon-center'} 
                          ${isActive && isLight
