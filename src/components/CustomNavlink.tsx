@@ -25,7 +25,7 @@ function CustomNavlink({ path, text, spacing, width }: NavlinkPropTypes) {
                     : isActive && !isLight
                         ? 'navlink-active-dark-bg'
                         : ''}`}>
-            <img src={`./icons/nav-icons/${path}.svg`} className={`${width ?? 'w-[22px]'}`} />
+            <img title={isMenuOpened ? '' : text} src={`./icons/nav-icons/${path}.svg`} className={`${width ?? 'w-[22px]'}`} />
             <h2 className={`text-[17px] overflow-hidden ${isMenuOpened ? '' : 'w-[0px]'}`} >{text}</h2>
         </NavLink>
     )

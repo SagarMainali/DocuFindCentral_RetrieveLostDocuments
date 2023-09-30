@@ -1,8 +1,6 @@
 import i18next from "i18next";
 import { initReactI18next } from 'react-i18next';
 
-import store from "../redux/store";
-
 // english translations files
 import home_en_ts from './english/home.json';
 import sideNavbar_en_ts from './english/sideNavbar.json';
@@ -40,7 +38,7 @@ i18next
                 button: button_np_ts
             }
         },
-        lng: (store.getState().navbar.isEnglish) ? 'en' : 'np',
+        lng: 'en',
         fallbackLng: 'en'
     })
 
