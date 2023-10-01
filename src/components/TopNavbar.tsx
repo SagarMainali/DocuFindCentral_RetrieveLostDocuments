@@ -1,12 +1,22 @@
+import { useTranslation } from 'react-i18next'
+
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { toggleMenu, changeLanguage, changeTheme } from "../redux/navbarSlice";
+import { toggleMenu, changeTheme } from "../redux/navbarSlice";
 
 export default function TopNavbar() {
 
-     const isEnglish = useAppSelector((state) => state.navbar.isEnglish)
      const isLight = useAppSelector((state) => state.navbar.isLight)
 
      const dispatch = useAppDispatch()
+
+     const { i18n } = useTranslation()
+
+     function changeLanguage() {
+          const currentLng = i18n.language;
+          const newLng = currentLng === 'en' ? 'np' : 'en';
+          i18n.changeLanguage(newLng);
+          localStorage.setItem('language', newLng);
+     }
 
      return (
           <header className={`flex justify-between items-center h-[60px] px-6 drop-shadow-[0_10px_15px_rgba(0,0,0,0.25)] duration-200 select-none
@@ -22,8 +32,8 @@ export default function TopNavbar() {
                </span>
 
                <div className="nav-right flex items-center gap-6">
-                    <span onClick={() => dispatch(changeLanguage())} className="cursor-pointer">
-                         {isEnglish
+                    <span onClick={changeLanguage} className="cursor-pointer">
+                         {i18n.language === 'en'
                               ?
                               <span className="flex items-center gap-1">
                                    <img src="./icons/nav-icons/nepal.svg" alt="language-mode-Nepali" className="w-[14px]" />

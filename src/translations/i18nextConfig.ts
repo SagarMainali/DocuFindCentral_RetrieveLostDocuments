@@ -17,6 +17,8 @@ import feedback_form_np_ts from './nepali/feedbackForm.json';
 import howItWorks_np_ts from './nepali/howItWorks.json'
 import button_np_ts from './nepali/button.json'
 
+const savedLng = localStorage.getItem('language');
+
 i18next
     .use(initReactI18next)
     .init({
@@ -38,7 +40,7 @@ i18next
                 button: button_np_ts
             }
         },
-        lng: 'en',
+        lng: savedLng ?? 'en',
         fallbackLng: 'en'
     })
 
