@@ -14,8 +14,9 @@ export default function TopNavbar() {
      function changeLanguage() {
           const currentLng = i18n.language;
           const newLng = currentLng === 'en' ? 'np' : 'en';
-          i18n.changeLanguage(newLng);
-          localStorage.setItem('language', newLng);
+          i18n.changeLanguage(newLng, () => {
+               localStorage.setItem('language', newLng);
+          });
      }
 
      return (
