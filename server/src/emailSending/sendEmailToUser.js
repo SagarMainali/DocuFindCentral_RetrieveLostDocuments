@@ -3,12 +3,16 @@ const handlebars = require('handlebars');
 const fs = require('fs');
 const path = require('path');
 const replacementsObjectCreation = require('./replacementsObjectCreation');
+require('dotenv').config();
+
+const email = process.env.EMAIL;
+const password = process.env.PASSWORD;
 
 const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-        user: 'docufind.central@gmail.com',
-        pass: 'qwtn pkkh dgyj xdqh',
+        user: email,
+        pass: password,
     }
 });
 
