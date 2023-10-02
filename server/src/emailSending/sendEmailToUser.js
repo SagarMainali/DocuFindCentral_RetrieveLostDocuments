@@ -5,6 +5,7 @@ const path = require('path');
 const replacementsObjectCreation = require('./replacementsObjectCreation');
 require('dotenv').config();
 
+// configure email and password credentials @.env file to send emails
 const email = process.env.EMAIL;
 const password = process.env.PASSWORD;
 
