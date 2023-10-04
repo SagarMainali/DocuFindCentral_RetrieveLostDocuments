@@ -3,7 +3,7 @@ import { SolvedTicketType } from "../types/globalTypes"
 // owner_fullName, finder_fullName, documentType, createdDate, resolvedDate
 function SolvedTicket({ owner_fullName, finder_fullName, documentType, createdDate, resolvedDate }: SolvedTicketType) {
     return (
-        <div className="bg-ticket-bg px-4 py-6 rounded-md flex flex-col gap-2">
+        <div className="bg-ticket-bg px-4 py-6 rounded-md flex flex-col gap-2 text-slate-900">
             <div className="flex justify-between mb-4">
                 <h2 className="underline underline-offset-4">{finder_fullName}</h2>
                 <svg className="" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
