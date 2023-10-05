@@ -28,8 +28,11 @@ function UserForm({ formType }: { formType: string }) {
           handleSubmit,
           formState: { errors, isSubmitting },
           control,
+          watch,
           reset
      } = useForm<FormDataType>()
+
+     const documentType = watch('documentType')
 
      // custom function to handle submission of form data
      const onSubmit = async (data: FormDataType) => {
@@ -233,6 +236,7 @@ function UserForm({ formType }: { formType: string }) {
                               inputName='documentExpiryDate'
                               placeholder={t('document_expiry_date_PH')}
                               isLight={isLight}
+                              disabled={documentType === 'Citizenship'}
                          />
 
                          <ControlledImagePicker control={control} isLight={isLight} placeholder={t('document_photo_PH')} fileTypeErrorMsg={t('invalid_image_msg')} />

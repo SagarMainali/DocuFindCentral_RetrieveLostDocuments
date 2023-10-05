@@ -8,11 +8,11 @@ type PropsType = {
      inputName: string,
      placeholder: string,
      requiredErrorMsg?: string,
-     isLight: boolean
+     isLight: boolean,
+     disabled?: boolean
 }
 
-export default function ControlledDatePicker({ control, inputName, placeholder, requiredErrorMsg, isLight }: PropsType) {
-
+export default function ControlledDatePicker({ control, inputName, placeholder, requiredErrorMsg, isLight, disabled }: PropsType) {
      return (
           <Controller
                control={control}
@@ -22,7 +22,8 @@ export default function ControlledDatePicker({ control, inputName, placeholder, 
                }}
                render={({ field: { onChange, value }, fieldState: { error } }) => (
                     <>
-                         <div className={`input flex items-center justify-between cursor-pointer ${isLight ? 'input-lightmode' : 'input-darkmode'}`}>
+                         <div className={`input flex items-center justify-between cursor-pointer
+                         ${isLight ? 'input-lightmode' : 'input-darkmode'} ${disabled ? 'bg-slate-300' : ''}`}>
                               <h2 className={`w-[240px] 
                               ${isLight && !value
                                         ? 'text-[#808080] text-[13px]'
@@ -44,6 +45,7 @@ export default function ControlledDatePicker({ control, inputName, placeholder, 
                                         name={inputName}
                                         onChange={(event) => onChange(formatDate(event.target.value))}
                                         max={inputName === 'documentIssuedDate' ? getDateOfToday() : ''}
+                                        disabled={disabled}
                                         // overlaying the actual calendar icon on top and reducing the opacity to 0 while still keeping its functionality there
                                         className="absolute -top-[3px] -left-[1px] w-[17px] scale-[1.5] focus:border-0 opacity-0"
                                    />
