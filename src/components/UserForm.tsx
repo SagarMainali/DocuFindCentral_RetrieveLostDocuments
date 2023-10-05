@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useForm } from 'react-hook-form'
 import { useLocation } from 'react-router-dom'
 
@@ -27,7 +26,7 @@ function UserForm({ formType }: { formType: string }) {
           register,
           setValue,
           handleSubmit,
-          formState: { errors, isSubmitSuccessful, isSubmitting },
+          formState: { errors, isSubmitting },
           control,
           reset
      } = useForm<FormDataType>()
@@ -54,24 +53,19 @@ function UserForm({ formType }: { formType: string }) {
                if (responseObj.ok) {
                     const parsedData = await responseObj.json();
                     console.log(parsedData);
+                    alert(parsedData.message);
+                    reset();
                }
                else {
                     console.error(responseObj.statusText);
+                    alert(responseObj.statusText);
                }
           }
           catch (error) {
                console.error(error);
+               alert(error);
           }
      }
-
-     // reset inside useEffect to reset after everything is done
-     useEffect(() => {
-          // isSubmitSuccessful only signifies that the data has passed the validation and 
-          // is passed by the handleSubmit function to the custom function
-          if (isSubmitSuccessful) {
-               reset();
-          }
-     }, [isSubmitSuccessful])
 
      return (
           <form noValidate
@@ -211,9 +205,6 @@ function UserForm({ formType }: { formType: string }) {
                          <div>
                               <input type="text" placeholder={t('document_number_PH')}
                                    {...register('documentNumber')}
-                                   onChange={(e) => {
-                                        setValue('documentNumber', capitalizeAndLengthValidation(e.target.value, 'documentNumber'));
-                                   }}
                               />
                               {/* , { required: t('document_number_RQ') } */}
                               {errors.documentNumber && <p className='errorMsg'>{`${errors.documentNumber.message}`}</p>}
