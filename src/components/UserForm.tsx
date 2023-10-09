@@ -76,7 +76,6 @@ function UserForm({ formType }: { formType: string }) {
      }
 
      return (
-
           response
                ?
                <Alert message={response} resetResponse={setResponse} />
@@ -181,7 +180,7 @@ function UserForm({ formType }: { formType: string }) {
                                         }}
                                    />
                                    {errors.email && <p className='errorMsg'>{`${errors.email.message}`}</p>}
-                                   <p className="col-span-full note">{t('note')}</p>
+                                   <p className="col-span-full note">{t('note1')}</p>
                               </div>
 
                          </div>
@@ -270,6 +269,7 @@ function UserForm({ formType }: { formType: string }) {
                                    {errors.shortMessage && <p className='errorMsg'>{`${errors.shortMessage.message}`}</p>}
                               </div>
                          </div>
+                         <p className="col-span-full note">{t('note2')}</p>
                     </div>
 
                     <Button isSubmitting={isSubmitting} isLight={isLight} />

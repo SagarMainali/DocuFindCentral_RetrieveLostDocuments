@@ -20,6 +20,7 @@
 
      .cstm-paged {
           /* 60px is top-navbar's height */
+          /* position: relative; */
           width: 100%;
           height: calc(100vh - 60px);
           display: flex;

@@ -19,7 +19,7 @@
     "email_PH": "Your valid email address*",
     "email_RQ": "*Email Address is required!",
     "invalid_email_msg": "*Invalid email address",
-    "note": "*Please enter correct email address since you will be notified in this email if we find your ticket match in our system.",
+    "note1": "*Please enter correct email address since you will be notified in this email if we find your ticket match in our system.",
     "sub-title2": "DOCUMENT",
     "document_type_PH": "Select document type*",
     "document_type_RQ": "*Document type is required!",
@@ -34,5 +34,6 @@
     "invalid_image_msg": "*Only jpg, jpeg and png types are allowed!",
     "sub-title3": "Message",
     "message_PH": "Write short message to display*",
-    "message_RQ": "*Message is required!"
+    "message_RQ": "*Message is required!",
+    "note2": "*Please do not share your document details and addresses since this message would be visible to everyone."
 }
