@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { useLocation } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import capitalizeAndLengthValidation from '../utils/capitalizeAndLengthValidation';
 import ControlledSelector from './customComponents/ControlledSelector'
@@ -12,9 +12,9 @@ import { FormDataType } from '../types/globalTypes';
 import { useAppSelector } from '../redux/hooks'
 import Button from './Button';
 import { useTranslation } from 'react-i18next'
+import Alert from './Alert';
 
 import '../styles/userForm.css'
-import Alert from './Alert';
 
 function UserForm({ formType }: { formType: string }) {
 
@@ -75,6 +75,10 @@ function UserForm({ formType }: { formType: string }) {
           }
      }
 
+     useEffect(() => {
+          setResponse(null)
+     }, [pathname])
+
      return (
           response
                ?
@@ -113,9 +117,7 @@ function UserForm({ formType }: { formType: string }) {
                                         ?
                                         <div>
                                              <input type="text" placeholder={t('owner_fullname_PH')}
-                                                  {...register('owner_fullName', {
-                                                       required: t('owner_name_RQ')
-                                                  })}
+                                                  {...register('owner_fullName', { required: t('owner_name_RQ') })}
                                                   onChange={(e) => {
                                                        setValue('owner_fullName', capitalizeAndLengthValidation(e.target.value, 'name'));
                                                   }}
@@ -125,12 +127,11 @@ function UserForm({ formType }: { formType: string }) {
                                         :
                                         <div>
                                              <input type="text" placeholder={t('finder_fullname_PH')}
-                                                  {...register('finder_fullName')}
+                                                  {...register('finder_fullName', { required: t('finder_name_RQ') })}
                                                   onChange={(e) => {
                                                        setValue('finder_fullName', capitalizeAndLengthValidation(e.target.value, 'name'));
                                                   }}
                                              />
-                                             {/* , { required: t('finder_name_RQ') } */}
                                              {errors.finder_fullName && <p className='errorMsg'>{`${errors.finder_fullName.message}`}</p>}
                                         </div>
                               }

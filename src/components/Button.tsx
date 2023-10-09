@@ -2,8 +2,8 @@ import Loader from "./Loader"
 import {useTranslation} from 'react-i18next'
 
 type ButtonPropsType = {
-    isSubmitting?: boolean,
-    isLight?: boolean,
+    isSubmitting: boolean,
+    isLight: boolean,
 }
 
 function Button({ isSubmitting, isLight }: ButtonPropsType) {

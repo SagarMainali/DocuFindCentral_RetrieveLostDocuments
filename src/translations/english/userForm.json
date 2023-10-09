@@ -26,7 +26,7 @@
     "document_number_PH": "Document number*",
     "document_number_RQ": "*Document number is required!",
     "document_issued_district_PH": "Select document issued district*",
-    "document_issued_disctict_RQ": "*Document issued district is required!",
+    "document_issued_district_RQ": "*Document issued district is required!",
     "document_issued_date_PH": "Document issued date*",
     "document_issued_date_RQ": "*Document issued date is required!",
     "document_expiry_date_PH": "Document expiry date",
