@@ -1,5 +1,5 @@
 import Loader from "./Loader"
-import {useTranslation} from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
 type ButtonPropsType = {
     isSubmitting: boolean,
@@ -8,12 +8,13 @@ type ButtonPropsType = {
 
 function Button({ isSubmitting, isLight }: ButtonPropsType) {
 
-    const {t} = useTranslation('button')
+    const { t } = useTranslation('button')
 
     return (
         <button
-            disabled={isSubmitting}
-            className={`disabled:bg-slate-400 ${isLight ? 'lightmode' : 'darkmode'} drop-shadow-[0_5px_10px_rgba(0,0,0,0.25)]`}>
+            disabled={true}
+            className={`drop-shadow-[0_5px_10px_rgba(0,0,0,0.25)] 
+            ${isLight ? 'lightmode disabled:bg-slate-400' : 'darkmode disabled:bg-neutral-700'}`}>
             {
                 isSubmitting
                     ?
