@@ -22,8 +22,13 @@ export default function ControlledDatePicker({ control, inputName, placeholder, 
                }}
                render={({ field: { onChange, value }, fieldState: { error } }) => (
                     <>
-                         <div className={`input flex items-center justify-between cursor-pointer
-                         ${isLight ? 'input-lightmode' : 'input-darkmode'} ${disabled ? 'bg-slate-300' : ''}`}>
+                         <div className={`input flex items-center justify-between
+                         ${isLight ? 'input-lightmode' : 'input-darkmode'} 
+                         ${disabled && isLight
+                                   ? 'bg-slate-100'
+                                   : disabled && !isLight
+                                        ? 'bg-zinc-800'
+                                        : 'cursor-pointer'}`}>
                               <h2 className={`w-[240px] 
                               ${isLight && !value
                                         ? 'text-[#808080] text-[13px]'

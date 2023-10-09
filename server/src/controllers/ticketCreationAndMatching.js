@@ -9,10 +9,10 @@ const ticketCreationAndMatching = (req, res) => {
 
     // console.log(`data:${imageFile.mimetype};base64,${imageFile.buffer.toString('base64')}`);
 
-    const sqlSelectQuery = 'SELECT * FROM unsolved_tickets WHERE ticketType=? AND documentType=? AND documentNumber=?';
+    const sqlSelectQuery = 'SELECT * FROM unsolved_tickets WHERE ticketType=? AND documentType=? AND documentIssuedDistrict=? AND documentNumber=?';
     // look for matching ticket in opposite of provided ticket type
     const ticketTypeOpposite = textData.ticketType === 'Lost' ? 'Found' : 'Lost';
-    const valuesToLookFor = [ticketTypeOpposite, textData.documentType, textData.documentNumber];
+    const valuesToLookFor = [ticketTypeOpposite, textData.documentType, textData.documentIssuedDistrict, textData.documentNumber];
 
     console.log('Searching for a match...');
     database.query(sqlSelectQuery, valuesToLookFor, (error, resultArr) => {
@@ -112,7 +112,7 @@ const ticketCreationAndMatching = (req, res) => {
                                         }
                                         else {
                                             console.log(`Matched ticket resolved but got error while sending mail!\n:${resultFromMailServer.message}`);
-                                            res.status(400).send(`Matched ticket resolved but got error while sending mail!\n:${resultFromMailServer.message}`);
+                                            res.json(`Matched ticket resolved but got error while sending mail!\n:${resultFromMailServer.message}`);
                                         }
                                     });
                             }
