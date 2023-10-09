@@ -11,6 +11,7 @@ import { FormDataType } from '../types/globalTypes';
 import { useAppSelector } from '../redux/hooks'
 import Button from './Button';
 import { useTranslation } from 'react-i18next'
+import Alert from './Alert';
 
 import '../styles/userForm.css'
 
@@ -74,6 +75,8 @@ function UserForm({ formType }: { formType: string }) {
           <form noValidate
                className={`form flex flex-col gap-7 select-none ${isLight ? 'form-lightmode' : 'form-darkmode'}`}
                onSubmit={handleSubmit(onSubmit)}>
+
+               <Alert message='The form has been successfully submitted!' />
 
                <h1 className={`${isLight ? 'title-light' : 'title-dark'}`}>
                     {t('document')}
