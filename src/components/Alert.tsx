@@ -1,14 +1,18 @@
+import { Dispatch, SetStateAction } from 'react'
 
 type AlertMsg = {
-    message: string
+    message: string,
+    resetResponse: Dispatch<SetStateAction<string | null>>
 }
 
-function Alert({ message }: AlertMsg) {
+function Alert({ message, resetResponse }: AlertMsg) {
     return (
-        <div className="fixed inset-0 flex justify-center items-center bg-slate-400/90 z-50">
+        <div className="absolute inset-0 flex justify-center items-center bg-white">
             <div className="flex flex-col gap-3 items-center">
                 <div>{message}</div>
-                <button className="bg-black text-white w-[200px]">OK</button>
+                <button className="bg-black w-[100px] h-[35px] text-white" onClick={() => resetResponse(null)}>
+                    OK
+                </button>
             </div>
         </div>
     )
