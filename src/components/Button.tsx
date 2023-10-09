@@ -12,7 +12,7 @@ function Button({ isSubmitting, isLight }: ButtonPropsType) {
 
     return (
         <button
-            disabled={true}
+            disabled={isSubmitting}
             className={`drop-shadow-[0_5px_10px_rgba(0,0,0,0.25)] 
             ${isLight ? 'lightmode disabled:bg-slate-400' : 'darkmode disabled:bg-neutral-700'}`}>
             {
