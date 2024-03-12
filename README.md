@@ -92,7 +92,7 @@ Add three tables:
 - feedbacks
 ## Environment Variables
 
-This project can run without any environment variables. However, if you want the 'automatic-email-sending' feature to work, you will need to add your own email credentials. To do this, navigate to the following directory and edit the existing file.
+This project can run without any environment variables. However, if you want the 'automatic-email-sending' feature to work, you will need to add your own email credentials. To do this, navigate to the following directory and uncomment the environment variables and add your own credentials to it.
 ```bash
 /server/.env
 ``` 
