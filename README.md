@@ -15,6 +15,59 @@ DocuFind Central is a web-based application that connects document finders and d
 - Multilingual support (English/Nepali) [persistent]
 - Light/dark mode toggle [persistent]
 
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/SagarMainali/DocuFindCentral_RetrieveLostDocuments.git
+```
+
+Go to the project's 'root' directory
+
+```bash
+  cd DocuFindCentral_RetrieveLostDocuments
+```
+:::Frontend server setup:::
+
+Go to the project's 'client' directory
+
+```bash
+  cd client
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the client-server
+
+```bash
+  npm run client
+```
+
+:::Backend server setup:::
+
+Go to the project 'server' directory
+
+```bash
+  cd server
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the backend-server
+
+```bash
+  npm run server
+```
+
 
 ## Database setup
 
@@ -46,34 +99,3 @@ This project can run without any environment variables. However, if you want the
 `EMAIL`
 
 `PASSWORD`
-## Run Locally
-
-Clone the project
-
-```bash
-  git clone https://github.com/SagarMainali/DocuFindCentral_RetrieveLostDocuments.git
-```
-
-Go to the project directory
-
-```bash
-  cd DocuFindCentral_RetrieveLostDocuments
-```
-
-Install dependencies
-
-```bash
-  npm install
-```
-
-Start the client-server
-
-```bash
-  npm run client
-```
-
-Start the backend-server
-
-```bash
-  npm run server
-```
