@@ -5,8 +5,11 @@ const sendEmailToUser = require('../emailSending/sendEmailToUser');
 const ticketCreationAndMatching = (req, res) => {
     // parsed by multer middleware
     const textData = req.body;
-    // accessing the raw binary data of the file that's been stored in the buffer memory of the RAM
-    const imageFile = req.file.buffer;
+    // we can directly store buffer data by 'req.file.buffer' but since we need the filename to dynamically assign the file extension in nodemailer
+    // and might possibly need other data as well about the image in the future, we store the file as a JSON object. 
+    // we can simply deserialize afterwards by parsing it like normal json and retrieving the buffer data.
+    // see 'sendEmailToUser.js' where all this has happened
+    const imageFile = JSON.stringify(req.file);
 
     // console.log(`data:${imageFile.mimetype};base64,${imageFile.buffer.toString('base64')}`);
 
