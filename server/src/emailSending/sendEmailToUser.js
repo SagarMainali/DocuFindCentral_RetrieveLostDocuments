@@ -44,16 +44,27 @@ async function sendEmailToUser(bothPartiesData) {
         }
     }
 
+    const attachments = []
+    function imageFileLookUp() {
+        // check if any of the array contains an image
+        const exist = bothPartiesData.some((party) => {
+            return party.imageFile !== undefined && party.imageFile !== null
+        })
+        if (exist) {
+            attachments = [
+                getImageNameAndBufferData(bothPartiesData[0].imageFile, bothPartiesData[0].email),
+                getImageNameAndBufferData(bothPartiesData[1].imageFile, bothPartiesData[1].email)
+            ]
+        }
+    }
+
     const emailData = {
         from: '"DocuFind Central 🏢" <docufind.central@gmail.com>',
         to: [replacements.owner_email, replacements.finder_email],
         subject: "Good News! Your ticket match has been found.",
         text: 'Ticket match found!!!', // only gets displayed where html is not supported
         html: emailTemplate,
-        attachments: [
-            getImageNameAndBufferData(bothPartiesData[0].imageFile, bothPartiesData[0].email),
-            getImageNameAndBufferData(bothPartiesData[1].imageFile, bothPartiesData[1].email)
-        ]
+        attachments: imageFileLookUp()
     }
 
     try {
