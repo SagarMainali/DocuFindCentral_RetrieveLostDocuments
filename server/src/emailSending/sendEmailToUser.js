@@ -29,12 +29,24 @@ async function sendEmailToUser(bothPartiesData) {
     // template ready to be sent
     const emailTemplate = template(replacements);
 
+    const attachments = [
+        {
+            filename: document_image_1.jpg,
+            content: bothPartiesData[0].imageFile
+        },
+        {
+            filename: document_image_2.jpg,
+            content: bothPartiesData[1].imageFile
+        }
+    ]
+
     const emailData = {
         from: '"DocuFind Central 🏢" <docufind.central@gmail.com>',
         to: [replacements.owner_email, replacements.finder_email],
         subject: "Good News! Your ticket match has been found.",
         text: 'Ticket match found!!!', // only gets displayed where html is not supported
-        html: emailTemplate
+        html: emailTemplate,
+        attachments
     }
 
     try {

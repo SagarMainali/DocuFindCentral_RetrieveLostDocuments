@@ -5,7 +5,8 @@ const sendEmailToUser = require('../emailSending/sendEmailToUser');
 const ticketCreationAndMatching = (req, res) => {
     // parsed by multer middleware
     const textData = req.body;
-    const imageFile = req.file;
+    // accessing the raw binary data of the file that's been stored in the buffer memory of the RAM
+    const imageFile = req.file.buffer;
 
     // console.log(`data:${imageFile.mimetype};base64,${imageFile.buffer.toString('base64')}`);
 
@@ -26,7 +27,6 @@ const ticketCreationAndMatching = (req, res) => {
                 const sqlInsertQuery = 'INSERT INTO unsolved_tickets SET ?';
                 const dataToInsert = {
                     ...textData,
-                    // storing the base64 data of the image in the database which is ready to be used on src attribute of img
                     imageFile,
                     createdDate: getCurrentUTC()
                 }
@@ -93,6 +93,7 @@ const ticketCreationAndMatching = (req, res) => {
                                     },
                                     {
                                         ...textData,
+                                        imageFile,
                                         createdDate: convertUTCtoLocal(dataToInsert.resolvedDate)
                                     }
                                 ];
