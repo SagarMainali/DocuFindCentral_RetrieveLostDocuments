@@ -17,6 +17,11 @@ function replacementsObjectCreation(matchedTickets) {
                 replacements[key] = ticket[key];
             }
 
+            else if (propName === 'email') {
+                replacements[key] = ticket[propName];
+                replacements[`${prefix}cid`] = `cid:${ticket[propName]}`;
+            }
+
             else {
                 replacements[key] = ticket[propName];
             }
