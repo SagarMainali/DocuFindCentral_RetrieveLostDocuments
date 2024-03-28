@@ -29,16 +29,20 @@ async function sendEmailToUser(bothPartiesData) {
     // template ready to be sent
     const emailTemplate = template(replacements);
 
-    const attachments = [
-        {
-            filename: 'document_image_1.jpg',
-            content: bothPartiesData[0].imageFile
-        },
-        {
-            filename: 'document_image_2.jpg',
-            content: bothPartiesData[1].imageFile
+    const getImageNameAndBufferData = (serializedImageFile, email) => {
+        const deserializedImageFile = JSON.parse(serializedImageFile);
+
+        const imageFileName = deserializedImageFile.originalname;
+        const bufferData = Buffer.from(deserializedImageFile.buffer.data);
+        const imageContentType = deserializedImageFile.mimeType;
+
+        return {
+            filename: imageFileName,
+            content: bufferData,
+            contentType: imageContentType,
+            cid: email
         }
-    ]
+    }
 
     const emailData = {
         from: '"DocuFind Central 🏢" <docufind.central@gmail.com>',
@@ -46,7 +50,10 @@ async function sendEmailToUser(bothPartiesData) {
         subject: "Good News! Your ticket match has been found.",
         text: 'Ticket match found!!!', // only gets displayed where html is not supported
         html: emailTemplate,
-        attachments
+        attachments: [
+            getImageNameAndBufferData(bothPartiesData[0].imageFile, bothPartiesData[0].email),
+            getImageNameAndBufferData(bothPartiesData[1].imageFile, bothPartiesData[1].email)
+        ]
     }
 
     try {
