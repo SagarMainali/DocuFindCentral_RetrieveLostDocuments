@@ -44,7 +44,7 @@ async function sendEmailToUser(bothPartiesData) {
         }
     }
 
-    const attachments = []
+    let attachments = [];
     function imageFileLookUp() {
         // check if any of the array contains an image
         const exist = bothPartiesData.some((party) => {
@@ -56,6 +56,7 @@ async function sendEmailToUser(bothPartiesData) {
                 getImageNameAndBufferData(bothPartiesData[1].imageFile, bothPartiesData[1].email)
             ]
         }
+        return attachments;
     }
 
     const emailData = {
