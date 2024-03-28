@@ -64,7 +64,7 @@ const ticketCreationAndMatching = (req, res) => {
 
                 const sqlDeleteQuery = 'DELETE FROM unsolved_tickets WHERE id=?';
 
-                console.log('\nMATCH FOUND! so moving it from existing table...');
+                console.log('MATCH FOUND! so moving it from existing table...');
                 database.query(sqlDeleteQuery, id, (error, result) => {
                     if (error) {
                         const errorMsg = 'A ticket has been found with the same information as provided by the user but got error while resolving it!\n' + error;
