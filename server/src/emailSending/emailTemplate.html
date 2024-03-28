@@ -55,12 +55,25 @@
         td {
             background-color: #e9ecef;
         }
+
+        .image_section {
+            margin-top: 20px;
+        }
+
+        img {
+            margin-top: 10px;
+            width: 100%;
+            max-width: 500px;
+            max-height: 500px;
+            object-fit: contain;
+        }
     </style>
 </head>
 
 <body>
     <div>
-        <p>Greetings,<br> A ticket has been found with the provided information! Please see the detailed information
+        <p>Greetings,<br> We are happy to announce that our system has detected a match of your ticket with the provided
+            information! Please see the detailed information
             below
             and contact the respective party.</p>
 
@@ -94,6 +107,16 @@
                 <td>{{finder_createdDate}}</td>
             </tr>
         </table>
+
+        <div class="image_section">
+            <p style="margin:0px">Image uploaded by <strong>Document owner:</strong></p>
+            <img src="{{owner_cid}}" alt="Failed to load document image!">
+        </div>
+
+        <div class="image_section">
+            <p style="margin:0px">Image uploaded by <strong>Document Finder:</strong></p>
+            <img src="{{finder_cid}}" alt="Failed to load document image!">
+        </div>
 
         <p>Since the ticket has been resolved, it has been moved from 'Unsolved tickets' to 'Solved tickets' section.
         </p>
