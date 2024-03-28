@@ -38,4 +38,4 @@ app.use('/api', userRoutes);
 // dynamic assignment of port number
 const port = process.env.PORT || 8000;
 
-app.listen(port, () => console.log(`The server is running at ${port}...`));
+app.listen(port, () => console.log(`\n***The server is running at ${port}***\n`));

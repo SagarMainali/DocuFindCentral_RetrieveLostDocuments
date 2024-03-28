@@ -16,6 +16,7 @@ const ticketCreationAndMatching = (req, res) => {
     const valuesToLookFor = [ticketTypeOpposite, textData.documentType, textData.documentIssuedDistrict, textData.documentNumber];
 
     console.log('Searching for a match...');
+
     database.query(sqlSelectQuery, valuesToLookFor, (error, resultArr) => {
         if (error) {
             const errorMsg = 'Error while searching for a ticket in the database!\n' + error;
@@ -49,7 +50,7 @@ const ticketCreationAndMatching = (req, res) => {
                             from_Database: result
                         }
 
-                        console.log('New ticket was created.');
+                        console.log('New ticket was created.\n');
                         res.json(dataToRespond);
                     }
                 })
@@ -60,7 +61,7 @@ const ticketCreationAndMatching = (req, res) => {
 
                 const sqlDeleteQuery = 'DELETE FROM unsolved_tickets WHERE id=?';
 
-                console.log('MATCH FOUND! so moving it from existing table...');
+                console.log('\nMATCH FOUND! so moving it from existing table...');
                 database.query(sqlDeleteQuery, id, (error, result) => {
                     if (error) {
                         const errorMsg = 'A ticket has been found with the same information as provided by the user but got error while resolving it!\n' + error;
@@ -108,7 +109,7 @@ const ticketCreationAndMatching = (req, res) => {
                                                 from_Database: result
                                             }
 
-                                            console.log('Matched ticket resolved and mail sent successfully.');
+                                            console.log('\nMatched ticket resolved and mail sent successfully.\n');
                                             res.json(dataToRespond);
                                         }
                                         else {
