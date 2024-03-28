@@ -31,11 +31,11 @@ async function sendEmailToUser(bothPartiesData) {
 
     const attachments = [
         {
-            filename: document_image_1.jpg,
+            filename: 'document_image_1.jpg',
             content: bothPartiesData[0].imageFile
         },
         {
-            filename: document_image_2.jpg,
+            filename: 'document_image_2.jpg',
             content: bothPartiesData[1].imageFile
         }
     ]
