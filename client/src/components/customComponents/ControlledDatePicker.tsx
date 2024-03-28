@@ -21,7 +21,7 @@ export default function ControlledDatePicker({ control, inputName, placeholder, 
                     required: requiredErrorMsg ?? false
                }}
                render={({ field: { onChange, value }, fieldState: { error } }) => (
-                    <>
+                    <div>
                          <div className={`input flex items-center justify-between
                          ${isLight ? 'input-lightmode' : 'input-darkmode'} 
                          ${disabled && isLight
@@ -58,7 +58,7 @@ export default function ControlledDatePicker({ control, inputName, placeholder, 
                          </div>
 
                          {error && <p className='errorMsg'>{`${error.message}`}</p>}
-                    </>
+                    </div>
                )}
           />
      )

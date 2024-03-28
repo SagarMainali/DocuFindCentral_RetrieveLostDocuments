@@ -138,10 +138,9 @@ function UserForm({ formType }: { formType: string }) {
 
                               <div>
                                    <input type="number" placeholder={t('contact_PH')}
-                                        {...register('contact')}
+                                        {...register('contact', { required: t('contact_RQ') })}
                                         onChange={e => setValue('contact', capitalizeAndLengthValidation(e.target.value, 'contact'))}
                                    />
-                                   {/* , { required: t('contact_RQ') } */}
                                    {errors.contact && <p className='errorMsg'>{`${errors.contact.message}`}</p>}
                               </div>
 
@@ -196,12 +195,11 @@ function UserForm({ formType }: { formType: string }) {
                                    <div>
                                         <input
                                              type="text" placeholder={t('owner_fullname_PH')}
-                                             {...register('owner_fullName')}
+                                             {...register('owner_fullName', { required: t('owner_name_RQ') })}
                                              onChange={(e) => {
                                                   setValue('owner_fullName', capitalizeAndLengthValidation(e.target.value, 'name'));
                                              }}
                                         />
-                                        {/* , { required: t('owner_name_RQ') } */}
                                         {errors.owner_fullName && <p className='errorMsg'>{`${errors.owner_fullName.message}`}</p>}
                                    </div>
                               }
@@ -217,9 +215,8 @@ function UserForm({ formType }: { formType: string }) {
 
                               <div>
                                    <input type="text" placeholder={t('document_number_PH')}
-                                        {...register('documentNumber')}
+                                        {...register('documentNumber', { required: t('document_number_RQ') })}
                                    />
-                                   {/* , { required: t('document_number_RQ') } */}
                                    {errors.documentNumber && <p className='errorMsg'>{`${errors.documentNumber.message}`}</p>}
                               </div>
 
@@ -238,7 +235,7 @@ function UserForm({ formType }: { formType: string }) {
                                    inputName='documentIssuedDate'
                                    placeholder={t('document_issued_date_PH')}
                                    isLight={isLight}
-                              // requiredErrorMsg={t('document_issued_date_RQ)}
+                                   requiredErrorMsg={t('document_issued_date_RQ')}
                               />
 
                               <ControlledDatePicker
@@ -261,12 +258,11 @@ function UserForm({ formType }: { formType: string }) {
                               <div className='col-span-full flex flex-col'>
                                    <textarea maxLength={200} rows={3}
                                         placeholder={t('message_PH')}
-                                        {...register('shortMessage')}
+                                        {...register('shortMessage', { required: t('message_RQ') })}
                                         onChange={(e) => {
                                              setValue('shortMessage', capitalizeAndLengthValidation(e.target.value, 'shortMessage'));
                                         }}
                                    />
-                                   {/* , { required: t('message_RQ') } */}
                                    {errors.shortMessage && <p className='errorMsg'>{`${errors.shortMessage.message}`}</p>}
                               </div>
                          </div>
