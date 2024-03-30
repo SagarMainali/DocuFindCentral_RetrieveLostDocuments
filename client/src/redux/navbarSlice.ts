@@ -27,7 +27,6 @@ const navbarSlice = createSlice({
           // },
           toggleMenu(state, action: PayloadAction<boolean | undefined>) {
                state.isMenuOpened = action.payload ?? !state.isMenuOpened;
-               console.log('first')
           },
           changeTheme(state) {
                state.isLight = !state.isLight;

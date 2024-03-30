@@ -1,7 +1,7 @@
 
 # DocuFind Central
 
-DocuFind Central is a web-based application that connects document finders and document owners. The users of this application are the document finders and document owners. Both parties are required to generate a ticket by filling out an application form. Each ticket is displayed in the appropriate navigation based on its label, either 'Found' or 'Lost.' However, these tickets are only displayed to represent the current state of the database. Since it is solely for display purposes, users cannot access confidential data. To resolve a ticket, a newly generated ticket from either party should be matched with the ticket from the opposite party. Afterward, users receive an email at their provided email addresses.
+DocuFind Central is a web-based application that connects document finders and document owners. Here, document refers to the official documents like Citizenship ID card, Driving License, Bluebook, Passport, Voter Card and PAN Card. The users of this application are the document finders and document owners. Both parties are required to generate a ticket by filling out an application form. Each ticket is displayed in the appropriate navigation based on its label, either 'Found' or 'Lost.' However, these tickets are only displayed to represent the current state of the database. Since it is solely for display purposes, users cannot access confidential data. To resolve a ticket, a newly generated ticket from either party should be matched with the ticket from the opposite party. Afterward, users receive an email at their provided email addresses.
 ## Application objectives
 
 - To improve document retrieval process by creating a dedicated system to find lost documents and minimize the challenges associated with document loss.
