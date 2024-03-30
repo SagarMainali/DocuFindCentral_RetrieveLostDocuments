@@ -21,7 +21,7 @@ export default function TopNavbar() {
 
      return (
           <header className={`flex justify-between items-center h-[60px] px-6 drop-shadow-[0_10px_15px_rgba(0,0,0,0.25)] duration-200 select-none
-          relative z-40 ${isLight ? 'lightmode' : 'darkmode'}`}>
+          relative z-30 ${isLight ? 'lightmode' : 'darkmode'}`}>
                <span className="nav-left">
                     <svg onClick={(e) => { dispatch(toggleMenu()); e.stopPropagation(); }}
                          className="fill-white cursor-pointer"
