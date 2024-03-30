@@ -9,7 +9,8 @@ import ControlledImagePicker from './customComponents/ControlledImagePicker';
 import documentTypeOptions from '../options/documentTypeOptions'
 import districtOptions from '../options/districtOptions'
 import { FormDataType } from '../types/globalTypes';
-import { useAppSelector } from '../redux/hooks'
+import { useAppSelector, useAppDispatch } from '../redux/hooks'
+import { toggleLoader } from '../redux/loaderSlice';
 import Button from './Button';
 import { useTranslation } from 'react-i18next'
 import Alert from './Alert';
@@ -21,8 +22,9 @@ function UserForm({ formType }: { formType: string }) {
      const { t } = useTranslation('user_form_ns')
 
      const isLight = useAppSelector((state) => state.navbar.isLight)
+     const dispatch = useAppDispatch()
 
-     const { pathname } = useLocation();
+     const { pathname } = useLocation()
 
      const {
           register,
@@ -78,6 +80,11 @@ function UserForm({ formType }: { formType: string }) {
      useEffect(() => {
           setResponse(null)
      }, [pathname])
+
+     // when form gets submitted, the isSubmitting state is changed so this useEffect runs immediately even beofore the onSubmit function gets called 
+     useEffect(() => {
+          dispatch(toggleLoader(isSubmitting));
+     }, [isSubmitting])
 
      return (
           response
