@@ -4,11 +4,13 @@ import SideNavbar from "../SideNavbar"
 import TopNavbar from "../TopNavbar"
 import { useAppSelector, useAppDispatch } from "../../redux/hooks"
 import { toggleMenu } from "../../redux/navbarSlice"
+import Loader from "../Loader"
 
 export default function Layout() {
 
      const isMenuOpened = useAppSelector((state) => state.navbar.isMenuOpened)
      const isLight = useAppSelector((state) => state.navbar.isLight)
+     const isLoaderActive = useAppSelector((state) => state.loader)
 
      const dispatch = useAppDispatch()
 
@@ -26,6 +28,14 @@ export default function Layout() {
 
                     <Outlet />
                </div>
+
+               {
+                    isLoaderActive
+                    &&
+                    <div className="absolute z-50 h-full w-full flex justify-center items-center bg-slate-500/75">
+                         <Loader />
+                    </div>
+               }
 
           </div>
      )
