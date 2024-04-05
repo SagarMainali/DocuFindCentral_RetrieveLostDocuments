@@ -3,7 +3,7 @@ import { useAppSelector } from "../redux/hooks";
 import { UnsolvedTicketType } from "../types/globalTypes";
 import useFetchTickets from "../utils/useFetchTickets";
 
-export default function UnsolvedTickets() {
+export default function UnsolvedTicketsContainer() {
 
     const isLight = useAppSelector((state) => state.navbar.isLight);
 

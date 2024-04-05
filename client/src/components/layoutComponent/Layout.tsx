@@ -29,6 +29,7 @@ export default function Layout() {
                     <Outlet />
                </div>
 
+               {/* a loader that covers the entire screen */}
                {
                     isLoaderActive
                     &&
