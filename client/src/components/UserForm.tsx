@@ -77,6 +77,13 @@ function UserForm({ formType }: { formType: string }) {
           }
      }
 
+     // disable form submission on pressing 'enter' key
+     const handleEnterKeyPress = (event: React.KeyboardEvent<HTMLFormElement>): void => {
+          if (event.key === 'Enter') {
+               event.preventDefault();
+          }
+     }
+
      useEffect(() => {
           setResponse(null)
      }, [pathname])
@@ -93,7 +100,9 @@ function UserForm({ formType }: { formType: string }) {
                :
                <form noValidate
                     className={`form flex flex-col gap-7 select-none ${isLight ? 'form-lightmode' : 'form-darkmode'}`}
-                    onSubmit={handleSubmit(onSubmit)}>
+                    onSubmit={handleSubmit(onSubmit)}
+                    onKeyDown={(e) => handleEnterKeyPress(e)}
+               >
 
                     <h1 className={`${isLight ? 'title-light' : 'title-dark'}`}>
                          {t('document')}
