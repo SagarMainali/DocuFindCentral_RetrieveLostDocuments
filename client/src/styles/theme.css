@@ -1,6 +1,6 @@
 :root {
     --primary-dark: #0F0E11;
-    --secondary-dark: #1B1D20;
+    --secondary-dark: #313537;
 
     --primary-gray: #808080;
     --secondary-gray: #b5b7ba;
@@ -39,7 +39,7 @@
 }
 
 .navlink-active-dark-bg {
-    background-color: #313537;
+    background-color: var(--secondary-dark);
 }
 
 /* for title */
