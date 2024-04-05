@@ -30,18 +30,22 @@ async function sendEmailToUser(bothPartiesData) {
     const emailTemplate = template(replacements);
 
     const getImageNameAndBufferData = (serializedImageFile, email) => {
-        const deserializedImageFile = JSON.parse(serializedImageFile);
+        if (serializedImageFile !== undefined) {
+            const deserializedImageFile = JSON.parse(serializedImageFile);
 
-        const imageFileName = deserializedImageFile.originalname;
-        const bufferData = Buffer.from(deserializedImageFile.buffer.data);
-        const imageContentType = deserializedImageFile.mimeType;
+            const imageFileName = deserializedImageFile.originalname;
+            const bufferData = Buffer.from(deserializedImageFile.buffer.data);
+            const imageContentType = deserializedImageFile.mimeType;
 
-        return {
-            filename: imageFileName,
-            content: bufferData,
-            contentType: imageContentType,
-            cid: email
+            return {
+                filename: imageFileName,
+                content: bufferData,
+                contentType: imageContentType,
+                cid: email
+            }
         }
+        // returning empty object if the user has not uploaded any images
+        else return {}
     }
 
     let attachments = [];

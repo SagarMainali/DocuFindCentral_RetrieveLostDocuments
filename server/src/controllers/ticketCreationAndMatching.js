@@ -116,7 +116,7 @@ const ticketCreationAndMatching = (req, res) => {
                                             res.json(dataToRespond);
                                         }
                                         else {
-                                            console.log(`Matched ticket resolved but got error while sending mail!\n:${resultFromMailServer.message}`);
+                                            console.log(`\nMatched ticket resolved but got error while sending mail!\n:${resultFromMailServer.message}`);
                                             res.json(`Matched ticket resolved but got error while sending mail!\n:${resultFromMailServer.message}`);
                                         }
                                     });
