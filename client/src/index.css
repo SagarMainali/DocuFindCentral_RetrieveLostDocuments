@@ -19,10 +19,10 @@
      }
 
      .cstm-paged {
-          /* 60px is top-navbar's height */
           position: relative;
           width: 100%;
           height: calc(100vh - 60px);
+          /* 60px is top-navbar's height */
           display: flex;
           /* without 'align-items:flex-start' the height of the child will be fixed */
           align-items: flex-start;

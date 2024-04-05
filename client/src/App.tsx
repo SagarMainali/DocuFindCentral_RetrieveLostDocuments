@@ -5,8 +5,8 @@ import WelcomePage from './pages/WelcomePage'
 import PageNotFound from './pages/handlers/PageNotFound'
 import LostDocument from './pages/LostDocument'
 import FoundDocument from './pages/FoundDocument'
-import SolvedTickets from './pages/SolvedTicketsContainer'
-import UnsolvedTickets from './pages/UnsolvedTicketsContainer'
+import SolvedTicketsContainer from './pages/SolvedTicketsContainer'
+import UnsolvedTicketsContainer from './pages/UnsolvedTicketsContainer'
 import GreatBeings from './pages/GreatBeings'
 import HowItWorks from './pages/HowItWorks'
 import Feedback from './pages/Feedback'
@@ -27,8 +27,8 @@ function App() {
           <Route index element={<WelcomePage />} />
           <Route path='lost-document' element={<LostDocument />} />
           <Route path='found-document' element={<FoundDocument />} />
-          <Route path='solved-tickets' element={<SolvedTickets />} />
-          <Route path='unsolved-tickets' element={<UnsolvedTickets />} />
+          <Route path='solved-tickets' element={<SolvedTicketsContainer />} />
+          <Route path='unsolved-tickets' element={<UnsolvedTicketsContainer />} />
           <Route path='great-beings' element={<GreatBeings />} />
           <Route path='how-it-works' element={<HowItWorks />} />
           <Route path='feedback' element={<Feedback />} />
