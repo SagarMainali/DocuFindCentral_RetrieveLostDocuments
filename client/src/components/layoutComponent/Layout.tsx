@@ -33,7 +33,7 @@ export default function Layout() {
                {
                     isLoaderActive
                     &&
-                    <div className="absolute z-50 h-full w-full flex justify-center items-center bg-slate-500/75">
+                    <div className={`absolute z-50 h-full w-full flex justify-center items-center ${isLight ? 'bg-slate-500/75' : 'bg-black/50'}`}>
                          <Loader />
                     </div>
                }
