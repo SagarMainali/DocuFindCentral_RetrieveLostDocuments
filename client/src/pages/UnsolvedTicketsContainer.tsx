@@ -7,6 +7,8 @@ import useFetchTickets from "../utils/useFetchTickets";
 
 export default function UnsolvedTicketsContainer() {
 
+    const {t} = useTranslation('unsolved_tickets_ns');
+
     const isLight = useAppSelector((state) => state.navbar.isLight);
 
     const path = 'http://localhost:8000/api/get/unsolved_tickets';
@@ -14,9 +16,9 @@ export default function UnsolvedTicketsContainer() {
 
     return (
         <div className="cstm-paged flex-col justify-start gap-4">
-            <h1 className={isLight ? 'title-light' : 'title-dark'}>Unsolved Tickets</h1>
+            <h1 className={isLight ? 'title-light' : 'title-dark'}>{t('title')}</h1>
 
-            <h2 className="w-full text-end px-2">Total: <b>{tickets.length}</b></h2>
+            <h2 className="w-full text-end px-2">{t('total')}: <b>{tickets.length}</b></h2>
 
             {
                 error
@@ -25,7 +27,7 @@ export default function UnsolvedTicketsContainer() {
                     :
                     tickets.length < 1
                         ?
-                        <h2>There are no unsolved tickets at the moment.</h2>
+                        <h2>{t('null_tickets_message')}</h2>
                         :
                         <div className="w-full flex flex-col gap-4">
                             {

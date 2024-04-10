@@ -1,3 +1,5 @@
 {
-    "title": "Solved Tickets"
+    "title": "Solved Tickets",
+    "null_tickets_message": "There are no solved tickets at the moment.",
+    "total": "Total"
 }
