@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 import SolvedTicket from "../components/SolvedTicket";
 import { SolvedTicketType } from "../types/globalTypes";
 import useFetchTickets from "../utils/useFetchTickets";

@@ -29,7 +29,7 @@ i18next
                 user_form_ns: user_form_en_ts,
                 feedback_form_ns: feedback_form_en_ts,
                 howItWorks_ns: howItWorks_en_ts,
-                button: button_en_ts
+                button_ns: button_en_ts
             },
             np: {
                 home_ns: home_np_ts,
@@ -37,7 +37,7 @@ i18next
                 user_form_ns: user_form_np_ts,
                 feedback_form_ns: feedback_form_np_ts,
                 howItWorks_ns: howItWorks_np_ts,
-                button: button_np_ts
+                button_ns: button_np_ts
             }
         },
         lng: savedLng ?? 'en',

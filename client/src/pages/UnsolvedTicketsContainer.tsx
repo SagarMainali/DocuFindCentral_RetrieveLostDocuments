@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 import UnsolvedTicket from "../components/UnsolvedTicket";
 import { useAppSelector } from "../redux/hooks";
 import { UnsolvedTicketType } from "../types/globalTypes";
