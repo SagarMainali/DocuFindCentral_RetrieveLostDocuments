@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import capitalizeAndLengthValidation from '../utils/capitalizeAndLengthValidation';
 import ControlledSelector from './customComponents/ControlledSelector'
@@ -12,7 +13,6 @@ import { FormDataType } from '../types/globalTypes';
 import { useAppSelector, useAppDispatch } from '../redux/hooks'
 import { toggleLoader } from '../redux/loaderSlice';
 import Button from './Button';
-import { useTranslation } from 'react-i18next'
 import Alert from './Alert';
 
 import '../styles/userForm.css'

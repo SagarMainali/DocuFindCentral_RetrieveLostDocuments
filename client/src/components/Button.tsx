@@ -1,5 +1,6 @@
-import Loader from "./Loader"
 import { useTranslation } from 'react-i18next'
+
+import Loader from "./Loader"
 
 type ButtonPropsType = {
     isSubmitting: boolean,
@@ -8,7 +9,7 @@ type ButtonPropsType = {
 
 function Button({ isSubmitting, isLight }: ButtonPropsType) {
 
-    const { t } = useTranslation('button')
+    const { t } = useTranslation('button_ns')
 
     return (
         <button
