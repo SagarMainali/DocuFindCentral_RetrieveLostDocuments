@@ -1,6 +1,18 @@
+import { useAppSelector } from "../redux/hooks"
+import { useTranslation } from 'react-i18next'
 
-export default function AboutUs() {
+export default function HowItWorks() {
+
+  const isLight = useAppSelector((state) => state.navbar.isLight)
+  const { t } = useTranslation('about_us_ns')
+
   return (
-    <div className="cstm-paged">AboutUs</div>
+    <div className="cstm-paged justify-start">
+
+      <div className="w-full">
+        <h1 className={`mb-8 ${isLight ? 'title-light' : 'title-dark'}`}>{t('title')}</h1>
+      </div>
+
+    </div>
   )
 }
