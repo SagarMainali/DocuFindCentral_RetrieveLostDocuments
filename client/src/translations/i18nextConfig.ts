@@ -12,6 +12,7 @@ import unsolved_tickets_en_ts from './english/unsolvedTickets.json'
 import solved_tickets_en_ts from './english/solvedTickets.json'
 import great_beings_en_ts from './english/greatBeings.json'
 import about_us_en_ts from './english/aboutUs.json'
+import privacy_policy_en_ts from './english/pPolicy.json'
 
 // nepali translations files
 import home_np_ts from './nepali/home.json';
@@ -24,6 +25,7 @@ import unsolved_tickets_np_ts from './nepali/unsolvedTickets.json'
 import solved_tickets_np_ts from './nepali/solvedTickets.json'
 import great_beings_np_ts from './nepali/greatBeings.json'
 import about_us_np_ts from './nepali/aboutUs.json'
+import privacy_policy_np_ts from './nepali/pPolicy.json'
 
 const savedLng = localStorage.getItem('language');
 
@@ -41,7 +43,8 @@ i18next
                 unsolved_tickets_ns: unsolved_tickets_en_ts,
                 solved_tickets_ns: solved_tickets_en_ts,
                 great_beings_ns: great_beings_en_ts,
-                about_us_ns: about_us_en_ts
+                about_us_ns: about_us_en_ts,
+                privacy_policy_ns: privacy_policy_en_ts
             },
             np: {
                 home_ns: home_np_ts,
@@ -53,7 +56,8 @@ i18next
                 unsolved_tickets_ns: unsolved_tickets_np_ts,
                 solved_tickets_ns: solved_tickets_np_ts,
                 great_beings_ns: great_beings_np_ts,
-                about_us_ns: about_us_np_ts
+                about_us_ns: about_us_np_ts,
+                privacy_policy_ns: privacy_policy_np_ts
             }
         },
         lng: savedLng ?? 'en',

@@ -1,5 +1,6 @@
-import { useAppSelector } from "../redux/hooks"
 import { useTranslation } from 'react-i18next'
+
+import { useAppSelector } from "../redux/hooks"
 
 export default function HowItWorks() {
 
