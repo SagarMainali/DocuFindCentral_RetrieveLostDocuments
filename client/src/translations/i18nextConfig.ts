@@ -10,6 +10,7 @@ import howItWorks_en_ts from './english/howItWorks.json'
 import button_en_ts from './english/button.json'
 import unsolved_tickets_en_ts from './english/unsolvedTickets.json'
 import solved_tickets_en_ts from './english/solvedTickets.json'
+import great_beings_en_ts from './english/greatBeings.json'
 
 // nepali translations files
 import home_np_ts from './nepali/home.json';
@@ -20,6 +21,7 @@ import howItWorks_np_ts from './nepali/howItWorks.json'
 import button_np_ts from './nepali/button.json'
 import unsolved_tickets_np_ts from './nepali/unsolvedTickets.json'
 import solved_tickets_np_ts from './nepali/solvedTickets.json'
+import great_beings_np_ts from './nepali/greatBeings.json'
 
 const savedLng = localStorage.getItem('language');
 
@@ -35,7 +37,8 @@ i18next
                 howItWorks_ns: howItWorks_en_ts,
                 button_ns: button_en_ts,
                 unsolved_tickets_ns: unsolved_tickets_en_ts,
-                solved_tickets_ns: solved_tickets_en_ts
+                solved_tickets_ns: solved_tickets_en_ts,
+                great_beings_ns: great_beings_en_ts
             },
             np: {
                 home_ns: home_np_ts,
@@ -45,7 +48,8 @@ i18next
                 howItWorks_ns: howItWorks_np_ts,
                 button_ns: button_np_ts,
                 unsolved_tickets_ns: unsolved_tickets_np_ts,
-                solved_tickets_ns: solved_tickets_np_ts
+                solved_tickets_ns: solved_tickets_np_ts,
+                great_beings_ns: great_beings_np_ts
             }
         },
         lng: savedLng ?? 'en',
