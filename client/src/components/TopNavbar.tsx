@@ -36,12 +36,12 @@ export default function TopNavbar() {
                     <span onClick={changeLanguage} className="cursor-pointer">
                          {i18n.language === 'en'
                               ?
-                              <span className="flex items-center gap-1" title="Change language to English">
+                              <span className="flex items-center gap-1" title="Change language to Nepali">
                                    <img src="./icons/nav-icons/nepal.svg" alt="language-mode-Nepali" className="w-[14px]" />
                                    <h2 className="text-white text-[14px] tracking-wide mt-1">नेपाली</h2>
                               </span>
                               :
-                              <span className="flex items-center gap-1" title="Change language to Nepali">
+                              <span className="flex items-center gap-1" title="Change language to English">
                                    <img src="./icons/nav-icons/usa.svg" alt="language-mode-English" className="w-[24px]" />
                                    <h2 className="text-white text-[14px]">ENG</h2>
                               </span>
