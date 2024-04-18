@@ -19,7 +19,7 @@ export default function ControlledDatePicker({ control, inputName, placeholder, 
                control={control}
                name={inputName}
                rules={{
-                    required: requiredErrorMsg ?? false
+                    required: !disabled ? requiredErrorMsg : false
                }}
                render={({ field: { onChange, value }, fieldState: { error } }) => (
                     <div>
