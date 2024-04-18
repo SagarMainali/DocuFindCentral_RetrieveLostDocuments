@@ -13,6 +13,7 @@ type PropsType = {
 }
 
 export default function ControlledDatePicker({ control, inputName, placeholder, requiredErrorMsg, isLight, disabled }: PropsType) {
+
      return (
           <Controller
                control={control}
