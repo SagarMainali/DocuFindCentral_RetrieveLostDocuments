@@ -33,7 +33,7 @@ export default function ControlledSelector({ control, inputName, placeholder, op
                     <div>
                          <Select
                               options={options}
-                              value={options.find((option) => option.value === value) || null} //return null if no match is found
+                              value={options.find((option) => option.value === value) || undefined} //return undefined if no match is found
                               onChange={(selectedOption) => onChange(selectedOption?.value)}
                               placeholder={placeholder}
                               isSearchable={noOptionsMessage ? true : false}

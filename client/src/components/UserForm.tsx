@@ -259,9 +259,8 @@ function UserForm({ formType }: { formType: string }) {
                                    inputName='documentExpiryDate'
                                    placeholder={t('document_expiry_date_PH')}
                                    isLight={isLight}
-                                   disabled={
-                                       documentType === undefined || documentType === 'Citizenship' || documentType === 'Bluebook' || documentType === 'PAN' || documentType === 'Voter Card'
-                                   }
+                                   requiredErrorMsg={t('document_expiry_date_RQ')}
+                                   disabled={documentType !== 'Driving License' && documentType !== 'Passport'}
                               />
 
                               <ControlledImagePicker control={control} isLight={isLight} placeholder={t('document_photo_PH')} fileTypeErrorMsg={t('invalid_image_msg')} />
