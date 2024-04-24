@@ -21,6 +21,8 @@ function UserForm({ formType }: { formType: string }) {
 
      const { t } = useTranslation('user_form_ns')
 
+     const { i18n } = useTranslation()
+
      const isLight = useAppSelector((state) => state.navbar.isLight)
      const dispatch = useAppDispatch()
 
@@ -33,7 +35,8 @@ function UserForm({ formType }: { formType: string }) {
           formState: { errors, isSubmitting },
           control,
           watch,
-          reset
+          reset,
+          trigger
      } = useForm<FormDataType>()
 
      const [response, setResponse] = useState<string | null>(null)
@@ -84,6 +87,7 @@ function UserForm({ formType }: { formType: string }) {
           }
      }
 
+     // when route gets changed, the response(message sent from the server which is displayed after submitting the form) is reset
      useEffect(() => {
           setResponse(null)
      }, [pathname])
@@ -92,6 +96,16 @@ function UserForm({ formType }: { formType: string }) {
      useEffect(() => {
           dispatch(toggleLoader(isSubmitting));
      }, [isSubmitting])
+
+     // special useEffect to translate the 'required messages text' as well when clicking the 'change language button' since the required function 
+     // where the translation is being passed only gets called upon submitting the form, so we trigger each 'required field' upon clicking the 
+     // 'change lanaguage button' 
+     useEffect(() => {
+          // condition to check if the 'errors' object is empty, if not it means the validation has failed
+          if (Object.keys(errors).length > 0) {
+               trigger();
+          }
+     }, [i18n.language])
 
      return (
           response
