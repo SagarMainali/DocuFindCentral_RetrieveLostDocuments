@@ -208,7 +208,7 @@ function UserForm({ formType }: { formType: string }) {
                               />
 
                               {
-                                   formType === 'found-doc'
+                                   (documentType && formType === 'found-doc')
                                    &&
                                    <div>
                                         <input
@@ -222,41 +222,55 @@ function UserForm({ formType }: { formType: string }) {
                                    </div>
                               }
 
-                              <div>
-                                   <input type="text" placeholder={t('document_number_PH')}
-                                        {...register('documentNumber', { required: t('document_number_RQ') })}
+                              {
+                                   documentType &&
+                                   <div>
+                                        <input type="text" placeholder={t('document_number_PH')}
+                                             {...register('documentNumber', { required: t('document_number_RQ') })}
+                                        />
+                                        {errors.documentNumber && <p className='errorMsg'>{`${errors.documentNumber.message}`}</p>}
+                                   </div>
+                              }
+
+                              {
+                                   documentType &&
+                                   <ControlledSelector
+                                        control={control}
+                                        inputName='documentIssuedDistrict'
+                                        placeholder={t('document_issued_district_PH')}
+                                        options={districtOptions}
+                                        requiredErrorMsg={t('document_issued_district_RQ')}
+                                        noOptionsMessage='No district found'
+                                        isLight={isLight}
                                    />
-                                   {errors.documentNumber && <p className='errorMsg'>{`${errors.documentNumber.message}`}</p>}
-                              </div>
+                              }
 
-                              <ControlledSelector
-                                   control={control}
-                                   inputName='documentIssuedDistrict'
-                                   placeholder={t('document_issued_district_PH')}
-                                   options={districtOptions}
-                                   requiredErrorMsg={t('document_issued_district_RQ')}
-                                   noOptionsMessage='No district found'
-                                   isLight={isLight}
-                              />
+                              {
+                                   documentType &&
+                                   <ControlledDatePicker
+                                        control={control}
+                                        inputName='documentIssuedDate'
+                                        placeholder={t('document_issued_date_PH')}
+                                        isLight={isLight}
+                                        requiredErrorMsg={t('document_issued_date_RQ')}
+                                   />
+                              }
 
-                              <ControlledDatePicker
-                                   control={control}
-                                   inputName='documentIssuedDate'
-                                   placeholder={t('document_issued_date_PH')}
-                                   isLight={isLight}
-                                   requiredErrorMsg={t('document_issued_date_RQ')}
-                              />
+                              {
+                                   (documentType === 'Driving License' || documentType === 'Passport') &&
+                                   < ControlledDatePicker
+                                        control={control}
+                                        inputName='documentExpiryDate'
+                                        placeholder={t('document_expiry_date_PH')}
+                                        isLight={isLight}
+                                        requiredErrorMsg={t('document_expiry_date_RQ')}
+                                   />
+                              }
 
-                              <ControlledDatePicker
-                                   control={control}
-                                   inputName='documentExpiryDate'
-                                   placeholder={t('document_expiry_date_PH')}
-                                   isLight={isLight}
-                                   requiredErrorMsg={t('document_expiry_date_RQ')}
-                                   disabled={documentType !== 'Driving License' && documentType !== 'Passport'}
-                              />
-
-                              <ControlledImagePicker control={control} isLight={isLight} placeholder={t('document_photo_PH')} fileTypeErrorMsg={t('invalid_image_msg')} />
+                              {
+                                   documentType &&
+                                   <ControlledImagePicker control={control} isLight={isLight} placeholder={t('document_photo_PH')} fileTypeErrorMsg={t('invalid_image_msg')} />
+                              }
 
                          </div>
                     </div>
