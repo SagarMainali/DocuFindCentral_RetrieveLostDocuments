@@ -1,0 +1,11 @@
+# Nepali translations
+
+"current_address_PH": "हालको ठेगाना",
+"permanent_address_PH": "स्थाई ठेगाना",
+"document_found_place_PH": "कागजात फेला परेको ठाउँ",
+
+# English translations
+
+"current_address_PH": "Current Address",
+"permanent_address_PH": "Permanent Address",
+"document_found_place_PH": "Document Found Place",
