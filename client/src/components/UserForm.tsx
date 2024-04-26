@@ -197,6 +197,16 @@ function UserForm({ formType }: { formType: string }) {
                     <div>
                          <h2 className="form-sub-title">{t('sub-title2')}</h2>
                          <div className='form-field-group'>
+
+                              <ControlledSelector
+                                   control={control}
+                                   inputName='documentType'
+                                   placeholder={t('document_type_PH')}
+                                   options={documentTypeOptions}
+                                   requiredErrorMsg={t('document_type_RQ')}
+                                   isLight={isLight}
+                              />
+
                               {
                                    formType === 'found-doc'
                                    &&
@@ -211,15 +221,6 @@ function UserForm({ formType }: { formType: string }) {
                                         {errors.owner_fullName && <p className='errorMsg'>{`${errors.owner_fullName.message}`}</p>}
                                    </div>
                               }
-
-                              <ControlledSelector
-                                   control={control}
-                                   inputName='documentType'
-                                   placeholder={t('document_type_PH')}
-                                   options={documentTypeOptions}
-                                   requiredErrorMsg={t('document_type_RQ')}
-                                   isLight={isLight}
-                              />
 
                               <div>
                                    <input type="text" placeholder={t('document_number_PH')}
