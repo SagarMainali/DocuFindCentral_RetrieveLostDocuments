@@ -1,0 +1,22 @@
+# temporary address field snippet
+<input type="text" placeholder={t('current_address_PH')} {...register('currentAddress')}
+        onChange={e => setValue('currentAddress', capitalizeAndLengthValidation(e.target.value, 'currentAddress'))} />
+
+# permanent address/document found place field snippet
+{
+    formType === 'lost-doc'
+        ?
+        <input type="text" placeholder={t('permanent_address_PH')}
+                {...register('permanentAddress')}
+                onChange={(e) => {
+                    setValue('permanentAddress', capitalizeAndLengthValidation(e.target.value, 'permanentAddress'));
+                }}
+        />
+        :
+        <input type="text" placeholder={t('document_found_place_PH')}
+                {...register('documentFoundPlace')}
+                onChange={(e) => {
+                    setValue('documentFoundPlace', capitalizeAndLengthValidation(e.target.value, 'documentFoundPlace'));
+                }}
+        />
+}
