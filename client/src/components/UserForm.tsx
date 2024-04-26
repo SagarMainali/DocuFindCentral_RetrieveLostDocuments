@@ -233,7 +233,7 @@ function UserForm({ formType }: { formType: string }) {
                               }
 
                               {
-                                   documentType &&
+                                   (documentType && documentType !== 'PAN') &&
                                    <ControlledSelector
                                         control={control}
                                         inputName='documentIssuedDistrict'
@@ -246,7 +246,7 @@ function UserForm({ formType }: { formType: string }) {
                               }
 
                               {
-                                   documentType &&
+                                   (documentType && documentType !== 'PAN') &&
                                    <ControlledDatePicker
                                         control={control}
                                         inputName='documentIssuedDate'
