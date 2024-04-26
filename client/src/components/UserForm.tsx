@@ -174,28 +174,6 @@ function UserForm({ formType }: { formType: string }) {
                                    {errors.contact && <p className='errorMsg'>{`${errors.contact.message}`}</p>}
                               </div>
 
-                              <input type="text" placeholder={t('current_address_PH')}
-                                   {...register('currentAddress')}
-                                   onChange={e => setValue('currentAddress', capitalizeAndLengthValidation(e.target.value, 'currentAddress'))} />
-
-                              {
-                                   formType === 'lost-doc'
-                                        ?
-                                        <input type="text" placeholder={t('permanent_address_PH')}
-                                             {...register('permanentAddress')}
-                                             onChange={(e) => {
-                                                  setValue('permanentAddress', capitalizeAndLengthValidation(e.target.value, 'permanentAddress'));
-                                             }}
-                                        />
-                                        :
-                                        <input type="text" placeholder={t('document_found_place_PH')}
-                                             {...register('documentFoundPlace')}
-                                             onChange={(e) => {
-                                                  setValue('documentFoundPlace', capitalizeAndLengthValidation(e.target.value, 'documentFoundPlace'));
-                                             }}
-                                        />
-                              }
-
                               <div className='col-span-full'>
                                    <input type="email" placeholder={t('email_PH')}
                                         {...register('email', {
