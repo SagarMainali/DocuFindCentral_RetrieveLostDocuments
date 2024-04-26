@@ -30,7 +30,7 @@ export default function ControlledSelector({ control, inputName, placeholder, op
                     required: requiredErrorMsg
                }}
                render={({ field: { onChange, value }, fieldState: { error } }) => (
-                    <div>
+                    <div className={inputName === 'documentType' ? 'col-span-full' : ''}>
                          <Select
                               options={options}
                               value={options.find((option) => option.value === value) || undefined} //return undefined if no match is found
@@ -38,7 +38,6 @@ export default function ControlledSelector({ control, inputName, placeholder, op
                               placeholder={placeholder}
                               isSearchable={noOptionsMessage ? true : false}
                               noOptionsMessage={() => noOptionsMessage}
-                              className='react-select__input'
                               styles={{
                                    // not using baseStyles here because we get zIndex with it which i couuldn't override
                                    control: (_, state) => ({
