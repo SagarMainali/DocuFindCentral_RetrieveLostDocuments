@@ -246,7 +246,7 @@ function UserForm({ formType }: { formType: string }) {
                               }
 
                               {
-                                   (documentType && documentType !== 'PAN') &&
+                                   (documentType && documentType !== 'PAN' && documentType !== 'Bluebook') &&
                                    <ControlledDatePicker
                                         control={control}
                                         inputName='documentIssuedDate'

@@ -26,7 +26,7 @@
     "document_issued_district_RQ": "*Document issued district is required!",
     "document_issued_date_PH": "Document issued date*",
     "document_issued_date_RQ": "*Document issued date is required!",
-    "document_expiry_date_PH": "Document expiry date",
+    "document_expiry_date_PH": "Document expiry date*",
     "document_expiry_date_RQ": "*Document expiry date is required!",
     "document_photo_PH": "Choose image file",
     "invalid_image_msg": "*Only jpg, jpeg and png types are allowed!",
