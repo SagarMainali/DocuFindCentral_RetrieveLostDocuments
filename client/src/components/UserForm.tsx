@@ -19,7 +19,8 @@ import '../styles/userForm.css'
 
 function UserForm({ formType }: { formType: string }) {
 
-     const { t } = useTranslation('user_form_ns')
+     const { t: general_T } = useTranslation('user_form_ns')
+     const { t: document_T } = useTranslation('user_form_documents_ns')
 
      const { i18n } = useTranslation()
 
@@ -119,35 +120,35 @@ function UserForm({ formType }: { formType: string }) {
                >
 
                     <h1 className={`${isLight ? 'title-light' : 'title-dark'}`}>
-                         {t('document')}
+                         {general_T('document')}
                          <span className='mx-[8px] underline underline-offset-4'>
                               {
                                    formType === 'lost-doc'
-                                        ? t('owner')
-                                        : t('finder')
+                                        ? general_T('owner')
+                                        : general_T('finder')
                               }
                          </span>
-                         {t('form')}
+                         {general_T('form')}
                     </h1>
 
                     <div>
-                         <h2 className="form-sub-title">{t('before_proceeding')}</h2>
+                         <h2 className="form-sub-title">{general_T('before_proceeding')}</h2>
                          <ul className='list-disc note -my-[4px] ml-[17px]'>
-                              <li>{t('msg1')}</li>
-                              <li>{t('msg2')}</li>
+                              <li>{general_T('msg1')}</li>
+                              <li>{general_T('msg2')}</li>
                          </ul>
                     </div>
 
                     <div>
-                         <h2 className="form-sub-title">{t('sub-title1')}</h2>
+                         <h2 className="form-sub-title">{general_T('sub-title1')}</h2>
                          <div className='form-field-group'>
 
                               {
                                    formType === 'lost-doc'
                                         ?
                                         <div>
-                                             <input type="text" placeholder={t('owner_fullname_PH')}
-                                                  {...register('owner_fullName', { required: t('owner_name_RQ') })}
+                                             <input type="text" placeholder={general_T('owner_fullname_PH')}
+                                                  {...register('owner_fullName', { required: general_T('owner_name_RQ') })}
                                                   onChange={(e) => {
                                                        setValue('owner_fullName', capitalizeAndLengthValidation(e.target.value, 'name'));
                                                   }}
@@ -156,8 +157,8 @@ function UserForm({ formType }: { formType: string }) {
                                         </div>
                                         :
                                         <div>
-                                             <input type="text" placeholder={t('finder_fullname_PH')}
-                                                  {...register('finder_fullName', { required: t('finder_name_RQ') })}
+                                             <input type="text" placeholder={general_T('finder_fullname_PH')}
+                                                  {...register('finder_fullName', { required: general_T('finder_name_RQ') })}
                                                   onChange={(e) => {
                                                        setValue('finder_fullName', capitalizeAndLengthValidation(e.target.value, 'name'));
                                                   }}
@@ -167,20 +168,20 @@ function UserForm({ formType }: { formType: string }) {
                               }
 
                               <div>
-                                   <input type="number" placeholder={t('contact_PH')}
-                                        {...register('contact', { required: t('contact_RQ') })}
+                                   <input type="number" placeholder={general_T('contact_PH')}
+                                        {...register('contact', { required: general_T('contact_RQ') })}
                                         onChange={e => setValue('contact', capitalizeAndLengthValidation(e.target.value, 'contact'))}
                                    />
                                    {errors.contact && <p className='errorMsg'>{`${errors.contact.message}`}</p>}
                               </div>
 
                               <div className='col-span-full'>
-                                   <input type="email" placeholder={t('email_PH')}
+                                   <input type="email" placeholder={general_T('email_PH')}
                                         {...register('email', {
-                                             required: t('email_RQ'),
+                                             required: general_T('email_RQ'),
                                              pattern: {
                                                   value: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
-                                                  message: t('invalid_email_msg')
+                                                  message: general_T('invalid_email_msg')
                                              }
                                         })}
                                         onChange={(e) => {
@@ -188,22 +189,22 @@ function UserForm({ formType }: { formType: string }) {
                                         }}
                                    />
                                    {errors.email && <p className='errorMsg'>{`${errors.email.message}`}</p>}
-                                   <p className="col-span-full note">{t('note1')}</p>
+                                   <p className="col-span-full note">{general_T('note1')}</p>
                               </div>
 
                          </div>
                     </div>
 
                     <div>
-                         <h2 className="form-sub-title">{t('sub-title2')}</h2>
+                         <h2 className="form-sub-title">{document_T('sub-title2')}</h2>
                          <div className='form-field-group'>
 
                               <ControlledSelector
                                    control={control}
                                    inputName='documentType'
-                                   placeholder={t('document_type_PH')}
+                                   placeholder={document_T('document_type_PH')}
                                    options={documentTypeOptions}
-                                   requiredErrorMsg={t('document_type_RQ')}
+                                   requiredErrorMsg={document_T('document_type_RQ')}
                                    isLight={isLight}
                               />
 
@@ -212,8 +213,8 @@ function UserForm({ formType }: { formType: string }) {
                                    &&
                                    <div>
                                         <input
-                                             type="text" placeholder={t('owner_fullname_PH')}
-                                             {...register('owner_fullName', { required: t('owner_name_RQ') })}
+                                             type="text" placeholder={general_T('owner_fullname_PH')}
+                                             {...register('owner_fullName', { required: general_T('owner_name_RQ') })}
                                              onChange={(e) => {
                                                   setValue('owner_fullName', capitalizeAndLengthValidation(e.target.value, 'name'));
                                              }}
@@ -225,8 +226,8 @@ function UserForm({ formType }: { formType: string }) {
                               {
                                    documentType &&
                                    <div>
-                                        <input type="text" placeholder={t('document_number_PH')}
-                                             {...register('documentNumber', { required: t('document_number_RQ') })}
+                                        <input type="text" placeholder={document_T(`${documentType}_number_PH`)}
+                                             {...register('documentNumber', { required: document_T(`${documentType}_number_RQ`) })}
                                         />
                                         {errors.documentNumber && <p className='errorMsg'>{`${errors.documentNumber.message}`}</p>}
                                    </div>
@@ -237,9 +238,9 @@ function UserForm({ formType }: { formType: string }) {
                                    <ControlledSelector
                                         control={control}
                                         inputName='documentIssuedDistrict'
-                                        placeholder={t('document_issued_district_PH')}
+                                        placeholder={document_T(`${documentType}_issued_district_PH`)}
                                         options={districtOptions}
-                                        requiredErrorMsg={t('document_issued_district_RQ')}
+                                        requiredErrorMsg={document_T(`${documentType}_issued_district_RQ`)}
                                         noOptionsMessage='No district found'
                                         isLight={isLight}
                                    />
@@ -250,9 +251,9 @@ function UserForm({ formType }: { formType: string }) {
                                    <ControlledDatePicker
                                         control={control}
                                         inputName='documentIssuedDate'
-                                        placeholder={t('document_issued_date_PH')}
+                                        placeholder={document_T(`${documentType}_issued_date_PH`)}
                                         isLight={isLight}
-                                        requiredErrorMsg={t('document_issued_date_RQ')}
+                                        requiredErrorMsg={document_T(`${documentType}_issued_date_RQ`)}
                                    />
                               }
 
@@ -261,28 +262,33 @@ function UserForm({ formType }: { formType: string }) {
                                    < ControlledDatePicker
                                         control={control}
                                         inputName='documentExpiryDate'
-                                        placeholder={t('document_expiry_date_PH')}
+                                        placeholder={document_T(`${documentType}_expiry_date_PH`)}
                                         isLight={isLight}
-                                        requiredErrorMsg={t('document_expiry_date_RQ')}
+                                        requiredErrorMsg={document_T(`${documentType}_expiry_date_RQ`)}
                                    />
                               }
 
                               {
                                    documentType &&
-                                   <ControlledImagePicker control={control} isLight={isLight} placeholder={t('document_photo_PH')} fileTypeErrorMsg={t('invalid_image_msg')} />
+                                   <ControlledImagePicker
+                                        control={control}
+                                        isLight={isLight}
+                                        placeholder={document_T('document_photo_PH')}
+                                        fileTypeErrorMsg={document_T('invalid_image_msg')}
+                                   />
                               }
 
                          </div>
                     </div>
 
                     <div>
-                         <h2 className="form-sub-title">{t('sub-title3')}</h2>
+                         <h2 className="form-sub-title">{general_T('sub-title3')}</h2>
                          <div className='form-field-group'>
                               {/* flex to remove unusual space between its childrens */}
                               <div className='col-span-full flex flex-col'>
                                    <textarea maxLength={200} rows={3}
-                                        placeholder={t('message_PH')}
-                                        {...register('shortMessage', { required: t('message_RQ') })}
+                                        placeholder={general_T('message_PH')}
+                                        {...register('shortMessage', { required: general_T('message_RQ') })}
                                         onChange={(e) => {
                                              setValue('shortMessage', capitalizeAndLengthValidation(e.target.value, 'shortMessage'));
                                         }}
@@ -290,7 +296,7 @@ function UserForm({ formType }: { formType: string }) {
                                    {errors.shortMessage && <p className='errorMsg'>{`${errors.shortMessage.message}`}</p>}
                               </div>
                          </div>
-                         <p className="col-span-full note">{t('note2')}</p>
+                         <p className="col-span-full note">{general_T('note2')}</p>
                     </div>
 
                     <Button isSubmitting={isSubmitting} isLight={isLight} />
