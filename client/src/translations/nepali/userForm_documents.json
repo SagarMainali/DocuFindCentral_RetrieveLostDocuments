@@ -1,0 +1,42 @@
+{
+    "sub-title2": "कागजात",
+
+    "document_type_PH": "कागजातको प्रकार*",
+    "document_type_RQ": "*कागजातको प्रकार आवश्यक छ!",
+
+    "Citizenship_number_PH": "नागरिकता नम्बर*",
+    "Citizenship_number_RQ": "*नागरिकता नम्बर आवश्यक छ!",
+    "Citizenship_issued_district_PH": "नागरिकता जारी भयेको जिल्ला*",
+    "Citizenship_issued_district_RQ": "*नागरिकता जारी भयेको जिल्ला आवश्यक छ!",
+    "Citizenship_issued_date_PH": "नागरिकता जारी भयेको मिति *",
+    "Citizenship_issued_date_RQ": "*नागरिकता जारी भयेको मिति आवश्यक छ!",
+
+    "Driving License_number_PH": "सवारी चालक अनुमतिपत्र नम्बर*",
+    "Driving License_number_RQ": "*सवारी चालक अनुमतिपत्र नम्बर आवश्यक छ!",
+    "Driving License_issued_district_PH": "सवारी चालक अनुमतिपत्र जारी भयेको जिल्ला*",
+    "Driving License_issued_district_RQ": "*सवारी चालक अनुमतिपत्र जारी भयेको जिल्ला आवश्यक छ!",
+    "Driving License_issued_date_PH": "सवारी चालक अनुमतिपत्र जारी भयेको मिति *",
+    "Driving License_issued_date_RQ": "*सवारी चालक अनुमतिपत्र जारी भयेको मिति आवश्यक छ!",
+    "Driving License_expiry_date_PH": "सवारी चालक अनुमतिपत्रको समाप्ति मिति*",
+    "Driving License_expiry_date_RQ": "*सवारी चालक अनुमतिपत्रको समाप्ति हुने मिति आवश्यक छ!",
+
+    "Passport_number_PH": "राहदानी नम्बर*",
+    "Passport_number_RQ": "*राहदानी नम्बर आवश्यक छ!",
+    "Passport_issued_district_PH": "राहदानी जारी भयेको जिल्ला*",
+    "Passport_issued_district_RQ": "*राहदानी जारी भयेको जिल्ला आवश्यक छ!",
+    "Passport_issued_date_PH": "राहदानी जारी भयेको मिति *",
+    "Passport_issued_date_RQ": "*राहदानी जारी भयेको मिति आवश्यक छ!",
+    "Passport_expiry_date_PH": "राहदानीको समाप्ति मिति*",
+    "Passport_expiry_date_RQ": "*राहदानीको समाप्ति हुने मिति आवश्यक छ!",
+
+    "Bluebook_number_PH": "सवारी साधनको नम्बर*",
+    "Bluebook_number_RQ": "*सवारी साधनको नम्बर आवश्यक छ!",
+    "Bluebook_issued_district_PH": "ब्लूबुक जारी भयेको जिल्ला*",
+    "Bluebook_issued_district_RQ": "*ब्लूबुक जारी भयेको जिल्ला आवश्यक छ!",
+
+    "PAN_number_PH": "स्थायी लेखा कार्ड नम्बर*",  
+    "PAN_number_RQ": "*स्थायी लेखा कार्ड नम्बर आवश्यक छ!",
+
+    "document_photo_PH": "फोटो फाइल छान्नुहोस्",
+    "invalid_image_msg": "*केवल jpg, jpeg र png प्रकारहरूलाई मात्र अनुमति छ!"
+}
