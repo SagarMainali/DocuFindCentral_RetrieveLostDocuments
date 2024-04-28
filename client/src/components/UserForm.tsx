@@ -106,7 +106,8 @@ function UserForm({ formType }: { formType: string }) {
           if (Object.keys(errors).length > 0) {
                trigger();
           }
-     }, [i18n.language])
+     }, [i18n.language, documentType])
+     // documentType dependency was added later for the same reason explained above
 
      return (
           response
