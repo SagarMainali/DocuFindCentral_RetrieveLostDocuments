@@ -17,7 +17,7 @@
     "email_RQ": "*Email Address is required!",
     "invalid_email_msg": "*Invalid email address",
     "note1": "*Please enter correct email address since you will be notified in this email if we find your ticket match in our system.",
-   
+
     "sub-title3": "Message",
     "message_PH": "Write short message to display*",
     "message_RQ": "*Message is required!",
