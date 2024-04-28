@@ -1,0 +1,42 @@
+{
+    "sub-title2": "DOCUMENT",
+
+    "document_type_PH": "Select document type*",
+    "document_type_RQ": "*Document type is required!",
+
+    "Citizenship_number_PH": "Citizenship number*",
+    "Citizenship_number_RQ": "*Citizenship number is required!",
+    "Citizenship_issued_district_PH": "Select Citizenship issued district*",
+    "Citizenship_issued_district_RQ": "*Citizenship issued district is required!",
+    "Citizenship_issued_date_PH": "Citizenship issued date*",
+    "Citizenship_issued_date_RQ": "*Citizenship issued date is required!",
+
+    "Driving License_number_PH": "Driving License number*",
+    "Driving License_number_RQ": "*Driving License number is required!",
+    "Driving License_issued_district_PH": "Select Driving License issued district*",
+    "Driving License_issued_district_RQ": "*Driving License issued district is required!",
+    "Driving License_issued_date_PH": "Driving License issued date*",
+    "Driving License_issued_date_RQ": "*Driving License issued date is required!",
+    "Driving License_expiry_date_PH": "Driving License expiry date*",
+    "Driving License_expiry_date_RQ": "*Driving License expiry date is required!",
+
+    "Passport_number_PH": "Passport number*",
+    "Passport_number_RQ": "*Passport number is required!",
+    "Passport_issued_district_PH": "Select Passport issued district*",
+    "Passport_issued_district_RQ": "*Passport issued district is required!",
+    "Passport_issued_date_PH": "Passport issued date*",
+    "Passport_issued_date_RQ": "*Passport issued date is required!",
+    "Passport_expiry_date_PH": "Passport expiry date*",
+    "Passport_expiry_date_RQ": "*Passport expiry date is required!",
+
+    "Bluebook_number_PH": "Vehicle number*",
+    "Bluebook_number_RQ": "*Vehicle number is required!",
+    "Bluebook_issued_district_PH": "Select Bluebook issued district*",
+    "Bluebook_issued_district_RQ": "*Bluebook issued district is required!",
+
+    "PAN_number_PH": "Vehicle number*",
+    "PAN_number_RQ": "*Vehicle number is required!",
+    
+    "document_photo_PH": "Choose image file",
+    "invalid_image_msg": "*Only jpg, jpeg and png types are allowed!"
+}
