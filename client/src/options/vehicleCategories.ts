@@ -1,4 +1,4 @@
-const vehicleCategory = [
+const vehicleCategories = [
     {label: "A - Motorcycle, Scooter, Moped", value: "A"},
     {label: "B - Car, Jeep, Delivery Van", value: "B"},
     {label: "C - Tempo, Auto Rickshaw", value: "C"},
@@ -21,3 +21,5 @@ const vehicleCategory = [
     {label: "J5 - Other", value: "J5"},
     {label: "K - Scooter, Moped", value: "K"}
 ]
+
+export default vehicleCategories

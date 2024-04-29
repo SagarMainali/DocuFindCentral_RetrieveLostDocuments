@@ -9,6 +9,7 @@ import ControlledDatePicker from './customComponents/ControlledDatePicker';
 import ControlledImagePicker from './customComponents/ControlledImagePicker';
 import documentTypeOptions from '../options/documentTypeOptions'
 import districtOptions from '../options/districtOptions'
+import vehicleCategories from '../options/vehicleCategories'
 import { FormDataType } from '../types/globalTypes';
 import { useAppSelector, useAppDispatch } from '../redux/hooks'
 import { toggleLoader } from '../redux/loaderSlice';
@@ -242,7 +243,20 @@ function UserForm({ formType }: { formType: string }) {
                                         placeholder={document_T(`${documentType}_issued_district_PH`)}
                                         options={districtOptions}
                                         requiredErrorMsg={document_T(`${documentType}_issued_district_RQ`)}
-                                        noOptionsMessage='No district found'
+                                        noOptionsMessage='District not found'
+                                        isLight={isLight}
+                                   />
+                              }
+
+                              {
+                                   (documentType === 'Driving License') &&
+                                   <ControlledSelector
+                                        control={control}
+                                        inputName='vehicleCategory'
+                                        placeholder={document_T(`${documentType}_issued_district_PH`)}
+                                        options={vehicleCategories}
+                                        requiredErrorMsg={document_T(`${documentType}_issued_district_RQ`)}
+                                        noOptionsMessage='Vehicle category not found'
                                         isLight={isLight}
                                    />
                               }
