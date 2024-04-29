@@ -15,6 +15,8 @@
     "Driving License_number_RQ": "*Driving License number is required!",
     "Driving License_issued_district_PH": "Select Driving License issued district*",
     "Driving License_issued_district_RQ": "*Driving License issued district is required!",
+    "Driving License_vehicle_category_PH": "Select vehicle category",
+    "Driving License_vehicle_category_RQ": "*Vehicle category is required!",
     "Driving License_issued_date_PH": "Driving License issued date*",
     "Driving License_issued_date_RQ": "*Driving License issued date is required!",
     "Driving License_expiry_date_PH": "Driving License expiry date*",

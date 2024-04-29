@@ -226,6 +226,19 @@ function UserForm({ formType }: { formType: string }) {
                               }
 
                               {
+                                   (documentType === 'Driving License') &&
+                                   <ControlledSelector
+                                        control={control}
+                                        inputName='vehicleCategory'
+                                        placeholder={document_T(`${documentType}_vehicle_category_PH`)}
+                                        options={vehicleCategories}
+                                        requiredErrorMsg={document_T(`${documentType}_vehicle_category_RQ`)}
+                                        noOptionsMessage='Vehicle category not found'
+                                        isLight={isLight}
+                                   />
+                              }
+
+                              {
                                    documentType &&
                                    <div>
                                         <input type="text" placeholder={document_T(`${documentType}_number_PH`)}
@@ -244,19 +257,6 @@ function UserForm({ formType }: { formType: string }) {
                                         options={districtOptions}
                                         requiredErrorMsg={document_T(`${documentType}_issued_district_RQ`)}
                                         noOptionsMessage='District not found'
-                                        isLight={isLight}
-                                   />
-                              }
-
-                              {
-                                   (documentType === 'Driving License') &&
-                                   <ControlledSelector
-                                        control={control}
-                                        inputName='vehicleCategory'
-                                        placeholder={document_T(`${documentType}_issued_district_PH`)}
-                                        options={vehicleCategories}
-                                        requiredErrorMsg={document_T(`${documentType}_issued_district_RQ`)}
-                                        noOptionsMessage='Vehicle category not found'
                                         isLight={isLight}
                                    />
                               }
