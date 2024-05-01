@@ -10,6 +10,7 @@ export type FormDataType = {
     email: string,
 
     documentType: string,
+    vehicleCategory: string,
     documentIssuedDistrict: string,
     documentNumber: string,
     imageFile: File,
