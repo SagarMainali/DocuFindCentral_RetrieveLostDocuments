@@ -234,7 +234,7 @@ function UserForm({ formType }: { formType: string }) {
                                         placeholder={document_T(`${documentType}_vehicle_category_PH`)}
                                         options={vehicleCategories}
                                         requiredErrorMsg={document_T(`${documentType}_vehicle_category_RQ`)}
-                                        noOptionsMessage='Vehicle category not found'
+                                        noOptionsMessage='Vehicle category not found!'
                                         isLight={isLight}
                                    />
                               }
@@ -257,7 +257,7 @@ function UserForm({ formType }: { formType: string }) {
                                         placeholder={document_T(`${documentType}_issued_district_PH`)}
                                         options={districtOptions}
                                         requiredErrorMsg={document_T(`${documentType}_issued_district_RQ`)}
-                                        noOptionsMessage='District not found'
+                                        noOptionsMessage='District not found!'
                                         isLight={isLight}
                                    />
                               }
@@ -267,10 +267,10 @@ function UserForm({ formType }: { formType: string }) {
                                    <ControlledSelector
                                         control={control}
                                         inputName='licenseIssuedPlace'
-                                        placeholder=""
+                                        placeholder={document_T(`${documentType}_licenseIssuedPlace_PH`)}
                                         options={licenseIssuedPlace}
-                                        requiredErrorMsg=""
-                                        noOptionsMessage=''
+                                        requiredErrorMsg={document_T(`${documentType}_licenseIssuedPlace_RQ`)}
+                                        noOptionsMessage='Place not found!'
                                         isLight={isLight}
                                    />
                               }

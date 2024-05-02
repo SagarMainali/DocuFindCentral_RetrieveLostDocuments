@@ -13,8 +13,8 @@
 
     "Driving License_number_PH": "Driving License number*",
     "Driving License_number_RQ": "*Driving License number is required!",
-    "Driving License_issued_district_PH": "Select Driving License issued district*",
-    "Driving License_issued_district_RQ": "*Driving License issued district is required!",
+    "Driving License_licenseIssuedPlace_PH": "Select Driving License issued place*",
+    "Driving License_licenseIssuedPlace_RQ": "*Driving License issued place is required!",
     "Driving License_vehicle_category_PH": "Select vehicle category",
     "Driving License_vehicle_category_RQ": "*Vehicle category is required!",
     "Driving License_issued_date_PH": "Driving License issued date*",
