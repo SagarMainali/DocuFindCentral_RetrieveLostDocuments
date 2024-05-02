@@ -231,10 +231,10 @@ function UserForm({ formType }: { formType: string }) {
                                    <ControlledSelector
                                         control={control}
                                         inputName='vehicleCategory'
-                                        placeholder={document_T(`${documentType}_vehicle_category_PH`)}
+                                        placeholder={document_T('Vehicle_category_PH')}
                                         options={vehicleCategories}
-                                        requiredErrorMsg={document_T(`${documentType}_vehicle_category_RQ`)}
-                                        noOptionsMessage='Vehicle category not found!'
+                                        requiredErrorMsg={document_T('Vehicle_category_RQ')}
+                                        noOptionsMessage={document_T('Vehicle_category_not_found')}
                                         isLight={isLight}
                                    />
                               }
@@ -250,14 +250,14 @@ function UserForm({ formType }: { formType: string }) {
                               }
 
                               {
-                                   (documentType && documentType !== 'PAN' && documentType !== 'Driving License') &&
+                                   (documentType === 'Citizenship') &&
                                    <ControlledSelector
                                         control={control}
                                         inputName='documentIssuedDistrict'
-                                        placeholder={document_T(`${documentType}_issued_district_PH`)}
+                                        placeholder={document_T('Citizenship_issued_district_PH')}
                                         options={districtOptions}
-                                        requiredErrorMsg={document_T(`${documentType}_issued_district_RQ`)}
-                                        noOptionsMessage='District not found!'
+                                        requiredErrorMsg={document_T('Citizenship_issued_district_RQ')}
+                                        noOptionsMessage={document_T('Citizenship_issued_district_not_found')}
                                         isLight={isLight}
                                    />
                               }
@@ -267,10 +267,10 @@ function UserForm({ formType }: { formType: string }) {
                                    <ControlledSelector
                                         control={control}
                                         inputName='licenseIssuedPlace'
-                                        placeholder={document_T(`${documentType}_licenseIssuedPlace_PH`)}
+                                        placeholder={document_T('License_issued_place_PH')}
                                         options={licenseIssuedPlace}
-                                        requiredErrorMsg={document_T(`${documentType}_licenseIssuedPlace_RQ`)}
-                                        noOptionsMessage='Place not found!'
+                                        requiredErrorMsg={document_T('License_issued_place_RQ')}
+                                        noOptionsMessage={document_T('License_issued_place_not_found')}
                                         isLight={isLight}
                                    />
                               }
