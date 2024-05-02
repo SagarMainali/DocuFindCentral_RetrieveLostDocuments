@@ -13,8 +13,8 @@
 
     "Driving License_number_PH": "सवारी चालक अनुमतिपत्र नम्बर*",
     "Driving License_number_RQ": "*सवारी चालक अनुमतिपत्र नम्बर आवश्यक छ!",
-    "Driving License_issued_district_PH": "सवारी चालक अनुमतिपत्र जारी भयेको जिल्ला*",
-    "Driving License_issued_district_RQ": "*सवारी चालक अनुमतिपत्र जारी भयेको जिल्ला आवश्यक छ!",
+    "Driving License_licenseIssuedPlace_PH": "सवारी चालक अनुमतिपत्र जारी भयेको ठाउँ*",
+    "Driving License_licenseIssuedPlace_RQ": "*सवारी चालक अनुमतिपत्र जारी भयेको ठाउँ आवश्यक छ!",
     "Driving License_vehicle_category_PH": "सवारी साधनको श्रेणी",
     "Driving License_vehicle_category_RQ": "*सवारी साधनको श्रेणी आवश्यक छ!",
     "Driving License_issued_date_PH": "सवारी चालक अनुमतिपत्र जारी भयेको मिति *",
