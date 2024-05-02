@@ -10,6 +10,7 @@ import ControlledImagePicker from './customComponents/ControlledImagePicker';
 import documentTypeOptions from '../options/documentTypeOptions'
 import districtOptions from '../options/districtOptions'
 import vehicleCategories from '../options/vehicleCategories'
+import licenseIssuedPlace from '../options/licenseIssuedPlace';
 import { FormDataType } from '../types/globalTypes';
 import { useAppSelector, useAppDispatch } from '../redux/hooks'
 import { toggleLoader } from '../redux/loaderSlice';
@@ -249,7 +250,7 @@ function UserForm({ formType }: { formType: string }) {
                               }
 
                               {
-                                   (documentType && documentType !== 'PAN') &&
+                                   (documentType && documentType !== 'PAN' && documentType !== 'Driving License') &&
                                    <ControlledSelector
                                         control={control}
                                         inputName='documentIssuedDistrict'
@@ -257,6 +258,19 @@ function UserForm({ formType }: { formType: string }) {
                                         options={districtOptions}
                                         requiredErrorMsg={document_T(`${documentType}_issued_district_RQ`)}
                                         noOptionsMessage='District not found'
+                                        isLight={isLight}
+                                   />
+                              }
+
+                              {
+                                   (documentType === 'Driving License') &&
+                                   <ControlledSelector
+                                        control={control}
+                                        inputName='licenseIssuedPlace'
+                                        placeholder=""
+                                        options={licenseIssuedPlace}
+                                        requiredErrorMsg=""
+                                        noOptionsMessage=''
                                         isLight={isLight}
                                    />
                               }
