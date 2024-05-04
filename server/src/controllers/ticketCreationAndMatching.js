@@ -13,10 +13,38 @@ const ticketCreationAndMatching = (req, res) => {
 
     // console.log(`data:${imageFile.mimetype};base64,${imageFile.buffer.toString('base64')}`);
 
-    const sqlSelectQuery = 'SELECT * FROM unsolved_tickets WHERE ticketType=? AND documentType=? AND documentIssuedDistrict=? AND documentNumber=?';
     // look for matching ticket in opposite of provided ticket type
     const ticketTypeOpposite = textData.ticketType === 'Lost' ? 'Found' : 'Lost';
-    const valuesToLookFor = [ticketTypeOpposite, textData.documentType, textData.documentIssuedDistrict, textData.documentNumber];
+
+    let sqlSelectQuery = ''
+    let valuesToLookFor = []
+
+    switch (textData.documentType) {
+        case "Citizenship":
+            sqlSelectQuery = 'SELECT * FROM unsolved_tickets WHERE ticketType=? AND documentType=? AND documentNumber=? AND documentIssuedDistrict=?'
+            valuesToLookFor = [ticketTypeOpposite, textData.documentType, textData.documentNumber, textData.documentIssuedDistrict];
+            break
+
+        case "Driving License":
+            sqlSelectQuery = 'SELECT * FROM unsolved_tickets WHERE ticketType=? AND documentType=? AND documentNumber=? AND documentIssuedPlace=? AND vehicleCategory=?';
+            valuesToLookFor = [ticketTypeOpposite, textData.documentType, textData.documentNumber, textData.documentIssuedPlace, textData.vehicleCategory];
+            break
+
+        case "Passport":
+            sqlSelectQuery = 'SELECT * FROM unsolved_tickets WHERE ticketType=? AND documentType=? AND documentNumber=? AND documentIssuedDate=? AND documentExpiryDate'
+            valuesToLookFor = [ticketTypeOpposite, textData.documentType, textData.documentNumber, textData.documentIssuedDate, textData.documentExpirtyDate];
+            break
+
+        case "Bluebook":
+            sqlSelectQuery = 'SELECT * FROM unsolved_tickets WHERE ticketType=? AND documentType=? AND documentNumber=?'
+            valuesToLookFor = [ticketTypeOpposite, textData.documentType, textData.documentNumber];
+            break
+
+        case "PAN":
+            sqlSelectQuery = 'SELECT * FROM unsolved_tickets WHERE ticketType=? AND documentType=? AND documentNumber=?'
+            valuesToLookFor = [ticketTypeOpposite, textData.documentType, textData.documentNumber];
+            break
+    }
 
     console.log('Searching for a match...');
 
