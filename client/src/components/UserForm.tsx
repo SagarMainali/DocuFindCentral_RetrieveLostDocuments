@@ -227,7 +227,7 @@ function UserForm({ formType }: { formType: string }) {
                               }
 
                               {
-                                   (documentType === 'Driving License') &&
+                                   (documentType === 'Driving License' || documentType === 'Bluebook') &&
                                    <ControlledSelector
                                         control={control}
                                         inputName='vehicleCategory'

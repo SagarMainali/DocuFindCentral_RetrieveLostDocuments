@@ -27,8 +27,8 @@ const ticketCreationAndMatching = (req, res) => {
         }
 
         case "Driving License": {
-            sqlSelectQuery = 'SELECT * FROM unsolved_tickets WHERE ticketType=? AND documentType=? AND documentNumber=? AND documentIssuedPlace=? AND vehicleCategory=?';
-            valuesToLookFor = [ticketTypeOpposite, textData.documentType, textData.documentNumber, textData.documentIssuedPlace, textData.vehicleCategory];
+            sqlSelectQuery = 'SELECT * FROM unsolved_tickets WHERE ticketType=? AND documentType=? AND documentNumber=? AND documentIssuedPlace=? AND vehicleCategory=? AND documentIssuedDate=? AND documentExpiryDate=?';
+            valuesToLookFor = [ticketTypeOpposite, textData.documentType, textData.documentNumber, textData.documentIssuedPlace, textData.vehicleCategory, textData.documentIssuedDate, textData.documentExpirtyDate];
             break
         }
 
@@ -38,7 +38,12 @@ const ticketCreationAndMatching = (req, res) => {
             break
         }
 
-        case "Bluebook":
+        case "Bluebook": {
+            sqlSelectQuery = 'SELECT * FROM unsolved_tickets WHERE ticketType=? AND documentType=? AND documentNumber=? AND vehicleCategory=?'
+            valuesToLookFor = [ticketTypeOpposite, textData.documentType, textData.documentNumber, textData.vehicleCategory];
+            break
+        }
+
         case "PAN": {
             sqlSelectQuery = 'SELECT * FROM unsolved_tickets WHERE ticketType=? AND documentType=? AND documentNumber=?'
             valuesToLookFor = [ticketTypeOpposite, textData.documentType, textData.documentNumber];
