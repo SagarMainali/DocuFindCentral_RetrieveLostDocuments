@@ -21,9 +21,14 @@
             font-size: 17px;
         }
 
-        h3 {
+        h2 {
+            font-size: 19px;
             text-align: center;
+        }
+
+        h3 {
             font-size: 17px;
+            text-align: center;
         }
 
         table {
@@ -77,13 +82,17 @@
             below
             and contact the respective party.</p>
 
-        <h3>Matched Ticket Info</h3>
+        <h2>Matched Ticket Info</h2>
+
+        <div style="margin: 10px 0;">
+            <h4>Document Type: {{owner_documentType}}</h4>
+            <h4>Document Number: {{owner_documentNumber}}</h4>
+        </div>
+
         <table>
             <tr>
                 <th>Party</th>
                 <th>Full Name</th>
-                <th>Document Type</th>
-                <th>Document Number</th>
                 <th>Contact No.</th>
                 <th>Email Address</th>
                 <th>Ticket Issued Date</th>
@@ -91,8 +100,6 @@
             <tr>
                 <th><b>Document Owner</b></th>
                 <td>{{owner_fullName}}</td>
-                <td>{{owner_documentType}}</td>
-                <td>{{owner_documentNumber}}</td>
                 <td>{{owner_contact}}</td>
                 <td>{{owner_email}}</td>
                 <td>{{owner_createdDate}}</td>
@@ -100,8 +107,6 @@
             <tr>
                 <th><b>Document Finder</b></th>
                 <td>{{finder_fullName}}</td>
-                <td>{{finder_documentType}}</td>
-                <td>{{finder_documentNumber}}</td>
                 <td>{{finder_contact}}</td>
                 <td>{{finder_email}}</td>
                 <td>{{finder_createdDate}}</td>
@@ -110,16 +115,17 @@
 
         <div class="image_section">
             <p style="margin:0px">Image uploaded by <strong>Document owner:</strong></p>
-            <img src="{{owner_cid}}" alt="Document owner has not uploaded any image!">
+            <img src="{{owner_cid}}" alt="*Document owner has not uploaded any image!*">
         </div>
 
         <div class="image_section">
             <p style="margin:0px">Image uploaded by <strong>Document Finder:</strong></p>
-            <img src="{{finder_cid}}" alt="Document finder has not uploaded any image!">
+            <img src="{{finder_cid}}" alt="*Document finder has not uploaded any image!*">
         </div>
 
-        <p>Since the ticket has been resolved, it has been moved from 'Unsolved tickets' to 'Solved tickets' section.
-        </p>
+        <p style="margin:30px 0px"><i>Since the ticket has been resolved, it has been moved from 'Unsolved tickets' to
+                'Solved tickets'
+                section.</i></p>
 
         <h4>Sincerly,<br>
             DocuFind Central<br>
