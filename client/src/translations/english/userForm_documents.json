@@ -6,9 +6,9 @@
 
     "Citizenship_number_PH": "Citizenship number*",
     "Citizenship_number_RQ": "*Citizenship number is required!",
-    "Citizenship_issued_district_PH": "Citizenship issued district*",
-    "Citizenship_issued_district_RQ": "*Citizenship issued district is required!",
-    "Citizenship_issued_district_not_found": "Mentioned district not found!",
+    "Citizenship_issued_place_PH": "Citizenship issued district*",
+    "Citizenship_issued_place_RQ": "*Citizenship issued district is required!",
+    "Citizenship_issued_place_not_found": "Mentioned district not found!",
     "Citizenship_issued_date_PH": "Citizenship issued date*",
     "Citizenship_issued_date_RQ": "*Citizenship issued date is required!",
 

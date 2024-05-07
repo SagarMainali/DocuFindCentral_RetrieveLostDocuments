@@ -1,4 +1,4 @@
-const licenseIssuedPlace = [
+const issuedPlace = [
     { label: "Bagmati", value: "Bagmati" },
     { label: "Gandaki", value: "Gandaki" },
     { label: "Lumbini", value: "Lumbini" },
@@ -15,4 +15,4 @@ const licenseIssuedPlace = [
     { label: "Mechi", value: "Mechi" }
 ]
 
-export default licenseIssuedPlace
+export default issuedPlace
