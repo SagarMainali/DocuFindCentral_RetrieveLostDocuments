@@ -17,7 +17,7 @@
     "License_issued_place_PH": "Select Driving License issued place*",
     "License_issued_place_RQ": "*Driving License issued place is required!",
     "License_issued_place_not_found": "Mentioned place not found!",
-    "Vehicle_category_PH": "Select vehicle category",
+    "Vehicle_category_PH": "Select vehicle category*",
     "Vehicle_category_RQ": "*Vehicle category is required!",
     "Vehicle_category_not_found": "Invalid vehicle category!",
     "Driving License_issued_date_PH": "Driving License issued date*",

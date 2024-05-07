@@ -263,7 +263,17 @@ function UserForm({ formType }: { formType: string }) {
                               }
 
                               {
-                                   (documentType === 'Driving License') &&
+                                   documentType === 'Bluebook' &&
+                                   <div>
+                                        <input type="text" placeholder='Vehicle lot number*'
+                                             {...register('vehicleLotNumber', { required: '*Vehicle lot number is required!' })}
+                                        />
+                                        {errors.vehicleLotNumber && <p className='errorMsg'>{`${errors.vehicleLotNumber.message}`}</p>}
+                                   </div>
+                              }
+
+                              {
+                                   (documentType === 'Driving License' || documentType === 'Bluebook') &&
                                    <ControlledSelector
                                         control={control}
                                         inputName='licenseIssuedPlace'

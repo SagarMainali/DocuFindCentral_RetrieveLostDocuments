@@ -4,18 +4,17 @@ export type FormDataType = {
     owner_fullName: string,
     finder_fullName: string,
     contact: string,
-    currentAddress: string,
-    permanentAddress: string,
-    documentFoundPlace: string,
     email: string,
 
     documentType: string,
-    vehicleCategory: string,
-    documentIssuedDistrict: string,
     documentNumber: string,
-    imageFile: File,
+    documentIssuedDistrict: string,
     documentIssuedDate: string,
     documentExpiryDate: string,
+    imageFile: File,
+    vehicleCategory: string,
+    licenseIssuedPlace: string,
+    vehicleLotNumber: string,
 
     shortMessage: string
 }
