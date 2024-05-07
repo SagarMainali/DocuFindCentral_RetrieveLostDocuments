@@ -9,7 +9,8 @@ import ControlledDatePicker from './customComponents/ControlledDatePicker';
 import ControlledImagePicker from './customComponents/ControlledImagePicker';
 import documentTypeOptions from '../options/documentTypeOptions'
 import districtOptions from '../options/districtOptions'
-import vehicleCategories from '../options/vehicleCategories'
+import vehicleCategoriesForLicense from '../options/vehicleCategoriesForLicense'
+import vehicleClassificationForBluebook from '../options/vehicleClassificationForBluebook'
 import licenseIssuedPlace from '../options/licenseIssuedPlace';
 import { FormDataType } from '../types/globalTypes';
 import { useAppSelector, useAppDispatch } from '../redux/hooks'
@@ -46,6 +47,9 @@ function UserForm({ formType }: { formType: string }) {
 
      // this variable is used to determine whether to disable 'Document Expiray date' field or not
      const documentType = watch('documentType')
+
+     // dynamic variable for load license issued/vehicle registered place's translations 
+     const issuedPlace_DYNAMIC = `${documentType === 'Bluebook' ? 'vehicle_registered_' : 'license_issued_'}`
 
      // custom function to handle submission of form data
      const onSubmit = async (data: FormDataType) => {
@@ -227,29 +231,6 @@ function UserForm({ formType }: { formType: string }) {
                               }
 
                               {
-                                   (documentType === 'Driving License' || documentType === 'Bluebook') &&
-                                   <ControlledSelector
-                                        control={control}
-                                        inputName='vehicleCategory'
-                                        placeholder={document_T('Vehicle_category_PH')}
-                                        options={vehicleCategories}
-                                        requiredErrorMsg={document_T('Vehicle_category_RQ')}
-                                        noOptionsMessage={document_T('Vehicle_category_not_found')}
-                                        isLight={isLight}
-                                   />
-                              }
-
-                              {
-                                   documentType &&
-                                   <div>
-                                        <input type="text" placeholder={document_T(`${documentType}_number_PH`)}
-                                             {...register('documentNumber', { required: document_T(`${documentType}_number_RQ`) })}
-                                        />
-                                        {errors.documentNumber && <p className='errorMsg'>{`${errors.documentNumber.message}`}</p>}
-                                   </div>
-                              }
-
-                              {
                                    (documentType === 'Citizenship') &&
                                    <ControlledSelector
                                         control={control}
@@ -258,6 +239,44 @@ function UserForm({ formType }: { formType: string }) {
                                         options={districtOptions}
                                         requiredErrorMsg={document_T('Citizenship_issued_district_RQ')}
                                         noOptionsMessage={document_T('Citizenship_issued_district_not_found')}
+                                        isLight={isLight}
+                                   />
+                              }
+
+                              {
+                                   (documentType === 'Driving License' || documentType === 'Bluebook') &&
+                                   <ControlledSelector
+                                        control={control}
+                                        inputName='documentIssuedPlace'
+                                        placeholder={document_T(`${issuedPlace_DYNAMIC}place_PH`)}
+                                        options={licenseIssuedPlace}
+                                        requiredErrorMsg={document_T(`${issuedPlace_DYNAMIC}place_RQ`)}
+                                        noOptionsMessage={document_T(`${issuedPlace_DYNAMIC}place_not_found`)}
+                                        isLight={isLight}
+                                   />
+                              }
+
+                              {
+                                   (documentType === 'Driving License') &&
+                                   <ControlledSelector
+                                        control={control}
+                                        inputName='vehicleCategoryForLicense'
+                                        placeholder={document_T('vehicle_category_PH')}
+                                        options={vehicleCategoriesForLicense}
+                                        requiredErrorMsg={document_T('vehicle_category_RQ')}
+                                        noOptionsMessage={document_T('vehicle_category_not_found')}
+                                        isLight={isLight}
+                                   />
+                              }
+
+                              {
+                                   (documentType === 'Bluebook') &&
+                                   <ControlledSelector
+                                        control={control}
+                                        inputName='vehicleClassificationForBluebook'
+                                        placeholder={document_T('vehicle_classification_PH')}
+                                        options={vehicleClassificationForBluebook}
+                                        requiredErrorMsg={document_T('vehicle_classification_RQ')}
                                         isLight={isLight}
                                    />
                               }
@@ -273,16 +292,13 @@ function UserForm({ formType }: { formType: string }) {
                               }
 
                               {
-                                   (documentType === 'Driving License' || documentType === 'Bluebook') &&
-                                   <ControlledSelector
-                                        control={control}
-                                        inputName='licenseIssuedPlace'
-                                        placeholder={document_T('License_issued_place_PH')}
-                                        options={licenseIssuedPlace}
-                                        requiredErrorMsg={document_T('License_issued_place_RQ')}
-                                        noOptionsMessage={document_T('License_issued_place_not_found')}
-                                        isLight={isLight}
-                                   />
+                                   documentType &&
+                                   <div>
+                                        <input type="text" placeholder={document_T(`${documentType}_number_PH`)}
+                                             {...register('documentNumber', { required: document_T(`${documentType}_number_RQ`) })}
+                                        />
+                                        {errors.documentNumber && <p className='errorMsg'>{`${errors.documentNumber.message}`}</p>}
+                                   </div>
                               }
 
                               {
