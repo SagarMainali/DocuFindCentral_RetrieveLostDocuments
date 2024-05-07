@@ -11,7 +11,7 @@ import documentTypeOptions from '../options/documentTypeOptions'
 import districtOptions from '../options/districtOptions'
 import vehicleCategoriesForLicense from '../options/vehicleCategoriesForLicense'
 import vehicleClassificationForBluebook from '../options/vehicleClassificationForBluebook'
-import licenseIssuedPlace from '../options/licenseIssuedPlace';
+import issuedPlace from '../options/issuedPlace';
 import { FormDataType } from '../types/globalTypes';
 import { useAppSelector, useAppDispatch } from '../redux/hooks'
 import { toggleLoader } from '../redux/loaderSlice';
@@ -48,8 +48,12 @@ function UserForm({ formType }: { formType: string }) {
      // this variable is used to determine whether to disable 'Document Expiray date' field or not
      const documentType = watch('documentType')
 
-     // dynamic variable for load license issued/vehicle registered place's translations 
-     const issuedPlace_DYNAMIC = `${documentType === 'Bluebook' ? 'vehicle_registered_' : 'license_issued_'}`
+     // dynamic variable for loading citizenship_issued/license_issued/vehicle_registered place/district's translations 
+     const issuedPlace_DYNAMIC = `${documentType === 'Citizenship'
+          ? 'Citizenship_issued_'
+          : documentType === 'Driving License'
+               ? 'license_issued_'
+               : 'vehicle_registered_'}`
 
      // custom function to handle submission of form data
      const onSubmit = async (data: FormDataType) => {
@@ -231,25 +235,12 @@ function UserForm({ formType }: { formType: string }) {
                               }
 
                               {
-                                   (documentType === 'Citizenship') &&
-                                   <ControlledSelector
-                                        control={control}
-                                        inputName='documentIssuedDistrict'
-                                        placeholder={document_T('Citizenship_issued_district_PH')}
-                                        options={districtOptions}
-                                        requiredErrorMsg={document_T('Citizenship_issued_district_RQ')}
-                                        noOptionsMessage={document_T('Citizenship_issued_district_not_found')}
-                                        isLight={isLight}
-                                   />
-                              }
-
-                              {
-                                   (documentType === 'Driving License' || documentType === 'Bluebook') &&
+                                   (documentType === 'Citizenship' || documentType === 'Driving License' || documentType === 'Bluebook') &&
                                    <ControlledSelector
                                         control={control}
                                         inputName='documentIssuedPlace'
                                         placeholder={document_T(`${issuedPlace_DYNAMIC}place_PH`)}
-                                        options={licenseIssuedPlace}
+                                        options={documentType === 'Citizenship' ? districtOptions : issuedPlace}
                                         requiredErrorMsg={document_T(`${issuedPlace_DYNAMIC}place_RQ`)}
                                         noOptionsMessage={document_T(`${issuedPlace_DYNAMIC}place_not_found`)}
                                         isLight={isLight}

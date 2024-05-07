@@ -6,9 +6,9 @@
 
     "Citizenship_number_PH": "नागरिकता नम्बर*",
     "Citizenship_number_RQ": "*नागरिकता नम्बर आवश्यक छ!",
-    "Citizenship_issued_district_PH": "नागरिकता जारी भयेको जिल्ला*",
-    "Citizenship_issued_district_RQ": "*नागरिकता जारी भयेको जिल्ला आवश्यक छ!",
-    "Citizenship_issued_district_not_found": "उल्लेखित जिल्ला फेला परेन!",
+    "Citizenship_issued_place_PH": "नागरिकता जारी भयेको जिल्ला*",
+    "Citizenship_issued_place_RQ": "*नागरिकता जारी भयेको जिल्ला आवश्यक छ!",
+    "Citizenship_issued_place_not_found": "उल्लेखित जिल्ला फेला परेन!",
     "Citizenship_issued_date_PH": "नागरिकता जारी भयेको मिति *",
     "Citizenship_issued_date_RQ": "*नागरिकता जारी भयेको मिति आवश्यक छ!",
 
