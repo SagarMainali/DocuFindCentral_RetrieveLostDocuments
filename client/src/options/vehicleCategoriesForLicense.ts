@@ -1,4 +1,4 @@
-const vehicleCategories = [
+const vehicleCategoriesForLicense = [
     {label: "A - Motorcycle, Scooter, Moped", value: "A"},
     {label: "B - Car, Jeep, Delivery Van", value: "B"},
     {label: "C - Tempo, Auto Rickshaw", value: "C"},
@@ -22,4 +22,4 @@ const vehicleCategories = [
     {label: "K - Scooter, Moped", value: "K"}
 ]
 
-export default vehicleCategories
+export default vehicleCategoriesForLicense
