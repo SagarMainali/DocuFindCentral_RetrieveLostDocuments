@@ -216,7 +216,7 @@ function UserForm({ formType }: { formType: string }) {
                               />
 
                               {
-                                   (documentType && formType === 'found-doc')
+                                   (formType === 'found-doc' && documentType)
                                    &&
                                    <div>
                                         <input
@@ -284,8 +284,8 @@ function UserForm({ formType }: { formType: string }) {
                               {
                                    documentType === 'Bluebook' &&
                                    <div>
-                                        <input type="text" placeholder='Vehicle lot number*'
-                                             {...register('vehicleLotNumber', { required: '*Vehicle lot number is required!' })}
+                                        <input type="text" placeholder={document_T('vehicle_lot_number_PH')}
+                                             {...register('vehicleLotNumber', { required: document_T('vehicle_lot_number_RQ') })}
                                         />
                                         {errors.vehicleLotNumber && <p className='errorMsg'>{`${errors.vehicleLotNumber.message}`}</p>}
                                    </div>
