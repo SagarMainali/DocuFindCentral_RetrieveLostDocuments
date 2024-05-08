@@ -27,8 +27,8 @@ const ticketCreationAndMatching = (req, res) => {
         }
 
         case "Driving License": {
-            sqlSelectQuery = 'SELECT * FROM unsolved_tickets WHERE ticketType=? AND documentType=? AND documentIssuedPlace=? AND vehicleCategoryForLicense=? AND documentNumber=?  AND documentIssuedDate=? AND documentExpiryDate=?';
-            valuesToLookFor = [ticketTypeOpposite, textData.documentType, textData.documentIssuedPlace, textData.vehicleCategoryForLicense, textData.documentNumber, textData.documentIssuedDate, textData.documentExpirtyDate];
+            sqlSelectQuery = 'SELECT * FROM unsolved_tickets WHERE ticketType=? AND documentType=? AND documentIssuedPlace=? AND vehicleCategoryForLicense=? AND documentNumber=? AND documentIssuedDate=? AND documentExpiryDate=?';
+            valuesToLookFor = [ticketTypeOpposite, textData.documentType, textData.documentIssuedPlace, textData.vehicleCategoryForLicense, textData.documentNumber, textData.documentIssuedDate, textData.documentExpiryDate];
             break
         }
 
