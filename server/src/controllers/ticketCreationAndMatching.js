@@ -21,14 +21,14 @@ const ticketCreationAndMatching = (req, res) => {
 
     switch (textData.documentType) {
         case "Citizenship": {
-            sqlSelectQuery = 'SELECT * FROM unsolved_tickets WHERE ticketType=? AND documentType=? AND documentNumber=? AND documentIssuedDistrict=?'
-            valuesToLookFor = [ticketTypeOpposite, textData.documentType, textData.documentNumber, textData.documentIssuedDistrict];
+            sqlSelectQuery = 'SELECT * FROM unsolved_tickets WHERE ticketType=? AND documentType=? AND documentIssuedPlace=? AND documentNumber=? AND documentIssuedDate=?'
+            valuesToLookFor = [ticketTypeOpposite, textData.documentType, textData.documentIssuedPlace, textData.documentNumber, textData.documentIssuedDate];
             break
         }
 
         case "Driving License": {
-            sqlSelectQuery = 'SELECT * FROM unsolved_tickets WHERE ticketType=? AND documentType=? AND documentNumber=? AND documentIssuedPlace=? AND vehicleCategory=? AND documentIssuedDate=? AND documentExpiryDate=?';
-            valuesToLookFor = [ticketTypeOpposite, textData.documentType, textData.documentNumber, textData.documentIssuedPlace, textData.vehicleCategory, textData.documentIssuedDate, textData.documentExpirtyDate];
+            sqlSelectQuery = 'SELECT * FROM unsolved_tickets WHERE ticketType=? AND documentType=? AND documentIssuedPlace=? AND vehicleCategoryForLicense=? AND documentNumber=?  AND documentIssuedDate=? AND documentExpiryDate=?';
+            valuesToLookFor = [ticketTypeOpposite, textData.documentType, textData.documentIssuedPlace, textData.vehicleCategoryForLicense, textData.documentNumber, textData.documentIssuedDate, textData.documentExpirtyDate];
             break
         }
 
@@ -39,8 +39,8 @@ const ticketCreationAndMatching = (req, res) => {
         }
 
         case "Bluebook": {
-            sqlSelectQuery = 'SELECT * FROM unsolved_tickets WHERE ticketType=? AND documentType=? AND documentNumber=? AND vehicleCategory=?'
-            valuesToLookFor = [ticketTypeOpposite, textData.documentType, textData.documentNumber, textData.vehicleCategory];
+            sqlSelectQuery = 'SELECT * FROM unsolved_tickets WHERE ticketType=? AND documentType=? AND documentIssuedPlace=? AND vehicleClassificationForBluebook=? AND vehicleLotNumber=? AND documentNumber=?'
+            valuesToLookFor = [ticketTypeOpposite, textData.documentType, textData.documentIssuedPlace, textData.vehicleClassificationForBluebook, textData.vehicleLotNumber, textData.documentNumber];
             break
         }
 
