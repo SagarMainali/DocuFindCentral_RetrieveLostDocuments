@@ -34,8 +34,8 @@
     "Passport_expiry_date_PH": "राहदानीको समाप्ति मिति*",
     "Passport_expiry_date_RQ": "*राहदानीको समाप्ति हुने मिति आवश्यक छ!",
 
-    "Bluebook_number_PH": "सवारी साधनको नम्बर*",
-    "Bluebook_number_RQ": "*सवारी साधनको नम्बर आवश्यक छ!",
+    "vehicle_number_PH": "सवारी साधनको नम्बर*",
+    "vehicle_number_RQ": "*सवारी साधनको नम्बर आवश्यक छ!",
     "vehicle_lot_number_PH": "*सवारी साधनको लट नम्बर",
     "vehicle_lot_number_RQ": "*सवारी साधनको लट नम्बर आवश्यक छ!",
     "vehicle_classification_PH": "सवारी साधनको वर्गीकरण*",

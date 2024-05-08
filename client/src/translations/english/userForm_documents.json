@@ -34,8 +34,8 @@
     "Passport_expiry_date_PH": "Passport expiry date*",
     "Passport_expiry_date_RQ": "*Passport expiry date is required!",
 
-    "Bluebook_number_PH": "Vehicle number*",
-    "Bluebook_number_RQ": "*Vehicle number is required!",
+    "vehicle_number_PH": "Vehicle number*",
+    "vehicle_number_RQ": "*Vehicle number is required!",
     "vehicle_lot_number_PH": "Vehicle lot number*",
     "vehicle_lot_number_RQ": "*Vehicle lot number is required!",
     "vehicle_classification_PH": "Vehicle classification*",

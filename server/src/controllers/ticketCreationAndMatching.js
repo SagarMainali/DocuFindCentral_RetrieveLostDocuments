@@ -39,8 +39,8 @@ const ticketCreationAndMatching = (req, res) => {
         }
 
         case "Bluebook": {
-            sqlSelectQuery = 'SELECT * FROM unsolved_tickets WHERE ticketType=? AND documentType=? AND documentIssuedPlace=? AND vehicleClassificationForBluebook=? AND vehicleLotNumber=? AND documentNumber=?'
-            valuesToLookFor = [ticketTypeOpposite, textData.documentType, textData.documentIssuedPlace, textData.vehicleClassificationForBluebook, textData.vehicleLotNumber, textData.documentNumber];
+            sqlSelectQuery = 'SELECT * FROM unsolved_tickets WHERE ticketType=? AND documentType=? AND documentIssuedPlace=? AND vehicleClassificationForBluebook=? AND vehicleLotNumber=? AND vehicleNumber=?'
+            valuesToLookFor = [ticketTypeOpposite, textData.documentType, textData.documentIssuedPlace, textData.vehicleClassificationForBluebook, textData.vehicleLotNumber, textData.vehicleNumber];
             break
         }
 
