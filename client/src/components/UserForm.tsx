@@ -275,15 +275,27 @@ function UserForm({ formType }: { formType: string }) {
                               {
                                    documentType === 'Bluebook' &&
                                    <div>
-                                        <input type="text" placeholder={document_T('vehicle_lot_number_PH')}
+                                        <input type="number" placeholder={document_T('vehicle_lot_number_PH')}
                                              {...register('vehicleLotNumber', { required: document_T('vehicle_lot_number_RQ') })}
+                                             onChange={e => setValue('vehicleLotNumber', e.target.value.slice(0, 3))}
                                         />
                                         {errors.vehicleLotNumber && <p className='errorMsg'>{`${errors.vehicleLotNumber.message}`}</p>}
                                    </div>
                               }
 
                               {
-                                   documentType &&
+                                   documentType === 'Bluebook' &&
+                                   <div>
+                                        <input type="number" placeholder={document_T('vehicle_number_PH')}
+                                             {...register('vehicleNumber', { required: document_T('vehicle_number_RQ') })}
+                                             onChange={e => setValue('vehicleNumber', e.target.value.slice(0, 4))}
+                                        />
+                                        {errors.vehicleLotNumber && <p className='errorMsg'>{`${errors.vehicleLotNumber.message}`}</p>}
+                                   </div>
+                              }
+
+                              {
+                                   documentType && documentType !== 'Bluebook' &&
                                    <div>
                                         <input type="text" placeholder={document_T(`${documentType}_number_PH`)}
                                              {...register('documentNumber', { required: document_T(`${documentType}_number_RQ`) })}
