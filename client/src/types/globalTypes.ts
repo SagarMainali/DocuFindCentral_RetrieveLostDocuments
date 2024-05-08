@@ -7,14 +7,15 @@ export type FormDataType = {
     email: string,
 
     documentType: string,
+    documentIssuedPlace: string,
+    vehicleCategoryForLicense: string,
+    vehicleClassificationForBluebook: string,
+    vehicleLotNumber: string,
+    vehicleNumber: string,
     documentNumber: string,
-    documentIssuedDistrict: string,
     documentIssuedDate: string,
     documentExpiryDate: string,
     imageFile: File,
-    vehicleCategory: string,
-    licenseIssuedPlace: string,
-    vehicleLotNumber: string,
 
     shortMessage: string
 }
