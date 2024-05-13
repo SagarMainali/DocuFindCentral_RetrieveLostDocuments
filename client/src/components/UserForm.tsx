@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import capitalizeAndLengthValidation from '../utils/capitalizeAndLengthValidation';
+import handleNumericInputs from '../utils/handleNumericInputs';
 import ControlledSelector from './customComponents/ControlledSelector'
 import ControlledDatePicker from './customComponents/ControlledDatePicker';
 import ControlledImagePicker from './customComponents/ControlledImagePicker';
@@ -179,9 +180,9 @@ function UserForm({ formType }: { formType: string }) {
                               }
 
                               <div>
-                                   <input type="number" placeholder={general_T('contact_PH')}
+                                   <input type="text" placeholder={general_T('contact_PH')}
                                         {...register('contact', { required: general_T('contact_RQ') })}
-                                        onChange={e => setValue('contact', capitalizeAndLengthValidation(e.target.value, 'contact'))}
+                                        onChange={e => setValue('contact', handleNumericInputs(e))}
                                    />
                                    {errors.contact && <p className='errorMsg'>{`${errors.contact.message}`}</p>}
                               </div>
