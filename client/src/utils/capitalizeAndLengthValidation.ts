@@ -1,5 +1,4 @@
-
-export default function capitalizeAndLengthValidation(text: string, fieldType: string) {
+export default function capitalizeAndLengthValidation(text: string, fieldType: string): string {
     if (fieldType !== 'shortMessage' && fieldType !== 'feedback') {
         if (fieldType === 'name') { // capitalize first letter of each word for name fields
             const words = text.split(' ');
@@ -13,10 +12,6 @@ export default function capitalizeAndLengthValidation(text: string, fieldType: s
 
         else if (fieldType === 'email') { // no need to capitalize email so only return sliced version
             return text.slice(0, 45);
-        }
-
-        else if (fieldType === 'contact') { // no need to capitalize contact number so only return sliced version
-            return text.slice(0, 10);
         }
 
         else { // capitalize first letter of only first word for all except name and contact
