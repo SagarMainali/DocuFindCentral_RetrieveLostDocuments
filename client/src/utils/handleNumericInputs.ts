@@ -1,8 +1,5 @@
-import { FormEvent } from "react";
-
-export default function handleNumericInputs(event: FormEvent<HTMLInputElement>): string {
-    const inputValue = (event.target as HTMLInputElement).value;
-    const filteredInput = inputValue.replace(/[^0-9]/g, '');
-    const slicedInput = filteredInput.slice(0, 10);
+export default function handleNumericInputs(value: string, limit: number): string {
+    const filteredInput = value.replace(/[^0-9]/g, ''); // filter out everything except numbers
+    const slicedInput = filteredInput.slice(0, limit); // slice down the filtered to its limit
     return slicedInput;
 }
