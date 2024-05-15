@@ -182,7 +182,7 @@ function UserForm({ formType }: { formType: string }) {
                               <div>
                                    <input type="text" placeholder={general_T('contact_PH')}
                                         {...register('contact', { required: general_T('contact_RQ') })}
-                                        onChange={e => setValue('contact', handleNumericInputs(e))}
+                                        onChange={e => setValue('contact', handleNumericInputs(e.target.value, 10))}
                                    />
                                    {errors.contact && <p className='errorMsg'>{`${errors.contact.message}`}</p>}
                               </div>
@@ -276,9 +276,9 @@ function UserForm({ formType }: { formType: string }) {
                               {
                                    documentType === 'Bluebook' &&
                                    <div>
-                                        <input type="number" placeholder={document_T('vehicle_lot_number_PH')}
+                                        <input type="text" placeholder={document_T('vehicle_lot_number_PH')}
                                              {...register('vehicleLotNumber', { required: document_T('vehicle_lot_number_RQ') })}
-                                             onChange={e => setValue('vehicleLotNumber', e.target.value.slice(0, 3))}
+                                             onChange={e => setValue('vehicleLotNumber', handleNumericInputs(e.target.value, 3))}
                                         />
                                         {errors.vehicleLotNumber && <p className='errorMsg'>{`${errors.vehicleLotNumber.message}`}</p>}
                                    </div>
@@ -287,9 +287,9 @@ function UserForm({ formType }: { formType: string }) {
                               {
                                    documentType === 'Bluebook' &&
                                    <div>
-                                        <input type="number" placeholder={document_T('vehicle_number_PH')}
+                                        <input type="text" placeholder={document_T('vehicle_number_PH')}
                                              {...register('vehicleNumber', { required: document_T('vehicle_number_RQ') })}
-                                             onChange={e => setValue('vehicleNumber', e.target.value.slice(0, 4))}
+                                             onChange={e => setValue('vehicleNumber', handleNumericInputs(e.target.value, 4))}
                                         />
                                         {errors.vehicleLotNumber && <p className='errorMsg'>{`${errors.vehicleLotNumber.message}`}</p>}
                                    </div>
