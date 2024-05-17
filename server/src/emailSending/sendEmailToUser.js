@@ -17,6 +17,10 @@ const transporter = nodemailer.createTransport({
     }
 });
 
+handlebars.registerHelper('isEqual', (a, b) => {
+    return a === b;
+})
+
 async function sendEmailToUser(bothPartiesData) {
     // reading html file and coverting it into string
     const absolutePath = path.join(__dirname, 'emailTemplate.html'); // only absolute path is working
