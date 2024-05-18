@@ -35,8 +35,13 @@ function replacementsObjectCreation(matchedTickets) {
         })
     })
 
-    console.log(replacements)
-    return replacements;
+    // return the filterd object without values of undefined/null type
+    const newObj = Object.fromEntries(Object.entries(replacements).filter(([key, value]) => {
+        return value !== undefined || value !== null
+    }))
+
+    console.log(newObj)
+    return newObj
 }
 
 module.exports = replacementsObjectCreation;

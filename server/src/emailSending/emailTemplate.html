@@ -87,16 +87,46 @@
         <div style="margin: 10px 0;">
             <h4>Document Type: {{documentType}}</h4>
 
-            <!-- {{#if (isEqual owner_Type Citizenship)}}
+            {{#if (isEqual documentType "Citizenship")}}
             <div>
-                <h4>Citizenship Number: {{owner_documentNumber}}</h4>
-                <h4>Citizenship Issued District: {{owner_citizenshipIssuedDistrict}}</h4>
-                <h4>Citizenship Number: {{owner_documentNumber}}</h4>
+                <h4>Citizenship Number: {{documentNumber}}</h4>
+                <h4>Citizenship Issued District: {{documentIssuedPlace}}</h4>
+                <h4>Citizenship Issued Date: {{documentIssuedDate}}</h4>
             </div>
             {{/if}}
 
-            <h4>Vehicle Number: {{owner_vehicleNumber}}</h4>
-            <h4>Vehicle Lot Number: {{owner_vehicleLotNumber}}</h4> -->
+            {{#if (isEqual documentType "Driving License")}}
+            <div>
+                <h4>License Number: {{documentNumber}}</h4>
+                <h4>License Issued Place: {{documentIssuedPlace}}</h4>
+                <h4>License Category: {{vehicleCategoryForLicense}}</h4>
+                <h4>License Issued Date: {{documentIssuedDate}}</h4>
+                <h4>License Expiry Date: {{documentExpiryDate}}</h4>
+            </div>
+            {{/if}}
+
+            {{#if (isEqual documentType "Passport")}}
+            <div>
+                <h4>Passport Number: {{documentNumber}}</h4>
+                <h4>Passport Issued Date: {{documentIssuedDate}}</h4>
+                <h4>Passport Expiry Date: {{documentExpiryDate}}</h4>
+            </div>
+            {{/if}}
+
+            {{#if (isEqual documentType "Bluebook")}}
+            <div>
+                <h4>Vehicle Lot Number: {{vehicleLotNumber}}</h4>
+                <h4>Vehicle Number: {{VehicleNumber}}</h4>
+                <h4>Vehicle Registered Place: {{documentIssuedPlace}}</h4>
+                <h4>Vehicle Classification: {{vehicleClassificationForBluebook}}</h4>
+            </div>
+            {{/if}}
+
+            {{#if (isEqual documentType "PAN")}}
+            <div>
+                <h4>PAN Number: {{documentNumber}}</h4>
+            </div>
+            {{/if}}
         </div>
 
         <table>
