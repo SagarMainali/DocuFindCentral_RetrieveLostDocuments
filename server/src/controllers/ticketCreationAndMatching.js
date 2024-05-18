@@ -46,8 +46,8 @@ const ticketCreationAndMatching = (req, res) => {
         }
 
         case "PAN": {
-            sqlSelectQuery = 'SELECT * FROM unsolved_tickets WHERE ticketType=? AND documentType=? AND documentNumber=?'
-            valuesToLookFor = [ticketTypeOpposite, textData.documentType, textData.documentNumber];
+            sqlSelectQuery = 'SELECT * FROM unsolved_tickets WHERE ticketType=? AND documentType=? AND documentNumber=? AND documentIssuedDate=?'
+            valuesToLookFor = [ticketTypeOpposite, textData.documentType, textData.documentNumber, textData.documentIssuedDate];
             break
         }
     }
