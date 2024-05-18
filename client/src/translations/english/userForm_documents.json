@@ -46,6 +46,8 @@
 
     "PAN_number_PH": "PAN number*",
     "PAN_number_RQ": "*PAN number is required!",
+    "PAN_issued_date_PH": "PAN issued date*",
+    "PAN_issued_date_RQ": "*PAN issued date is required!",
     
     "document_photo_PH": "Choose image file",
     "invalid_image_msg": "*Only jpg, jpeg and png types are allowed!"
