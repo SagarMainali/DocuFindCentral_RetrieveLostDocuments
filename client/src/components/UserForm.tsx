@@ -35,6 +35,7 @@ function UserForm({ formType }: { formType: string }) {
 
      const {
           register,
+          unregister,
           setValue,
           handleSubmit,
           formState: { errors, isSubmitting },
@@ -63,11 +64,20 @@ function UserForm({ formType }: { formType: string }) {
 
           // looping over each property in an object to append it to Form Data constructor
           for (const key in data) {
+               // don't add props that is undefined/null/''
+               // no need to add this if condition since only props that has value are sent here from useEffect
+               // if (data[key] !== undefined && data[key] !== null && data[key] !== '') {
                formData.append(key, data[key]);
+               // }
           }
 
           // appending tiket type according to path to search the opposite ticket type in database
           formData.append('ticketType', `${pathname === '/lost-document' ? 'Lost' : 'Found'}`);
+
+          console.log(data)
+          for (let pair of formData.entries()) {
+               console.log(pair[0] + ': ' + pair[1]);
+          }
 
           try {
                const responseObj = await fetch('http://localhost:8000/api/post/tickets/', {
@@ -119,6 +129,14 @@ function UserForm({ formType }: { formType: string }) {
           }
      }, [i18n.language, documentType])
      // documentType dependency was added later for the same reason explained above
+
+     // on documentType change, unregister all the dynamic fileds
+     useEffect(() => {
+          const inputsToUnregister = ['documentIssuedPlace', 'vehicleCategoryForLicense', 'vehicleClassificationForBluebook', 'vehicleLotNumber', 'vehicleNumber', 'documentNumber', 'documentIssuedDate', 'documentExpiryDate']
+          inputsToUnregister.forEach((inputFieldName) => {
+               unregister(inputFieldName)
+          })
+     }, [documentType])
 
      return (
           response
