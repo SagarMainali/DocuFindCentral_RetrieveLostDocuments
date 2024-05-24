@@ -43,7 +43,10 @@ function UserForm({ formType }: { formType: string }) {
           watch,
           reset,
           trigger
-     } = useForm<FormDataType>()
+     } = useForm<FormDataType>({
+          defaultValues: {},
+          shouldUnregister: true
+     })
 
      const [response, setResponse] = useState<string | null>(null)
 
@@ -111,7 +114,9 @@ function UserForm({ formType }: { formType: string }) {
 
      // when route gets changed, the response(message sent from the server which is displayed after submitting the form) is reset
      useEffect(() => {
-          setResponse(null)
+          if (!response) {
+               setResponse(null)
+          }
      }, [pathname])
 
      // when form gets submitted, the isSubmitting state is changed so this useEffect runs immediately even beofore the onSubmit function gets called 
@@ -131,12 +136,14 @@ function UserForm({ formType }: { formType: string }) {
      // documentType dependency was added later for the same reason explained above
 
      // on documentType change, unregister all the dynamic fileds
-     useEffect(() => {
-          const inputsToUnregister = ['documentIssuedPlace', 'vehicleCategoryForLicense', 'vehicleClassificationForBluebook', 'vehicleLotNumber', 'vehicleNumber', 'documentNumber', 'documentIssuedDate', 'documentExpiryDate']
-          inputsToUnregister.forEach((inputFieldName) => {
-               unregister(inputFieldName)
-          })
-     }, [documentType])
+     // useEffect(() => {
+     //      if (documentType !== undefined) {
+     //           const inputsToUnregister = ['documentIssuedPlace', 'vehicleCategoryForLicense', 'vehicleClassificationForBluebook', 'vehicleLotNumber', 'vehicleNumber', 'documentNumber', 'documentIssuedDate', 'documentExpiryDate']
+     //           inputsToUnregister.forEach((inputFieldName) => {
+     //                unregister(inputFieldName)
+     //           })
+     //      }
+     // }, [documentType])
 
      return (
           response
