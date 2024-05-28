@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { useLocation } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import capitalizeAndLengthValidation from '../utils/capitalizeAndLengthValidation';
@@ -35,8 +35,8 @@ function UserForm({ formType }: { formType: string }) {
 
      const {
           register,
-          unregister,
           setValue,
+          getValues,
           handleSubmit,
           formState: { errors, isSubmitting },
           control,
@@ -50,7 +50,7 @@ function UserForm({ formType }: { formType: string }) {
 
      const [response, setResponse] = useState<string | null>(null)
 
-     // this variable is used to determine whether to disable 'Document Expiray date' field or not
+     // this variable is used to determine whether to render some input fields or not
      const documentType = watch('documentType')
 
      // dynamic variable for loading citizenship_issued/license_issued/vehicle_registered place/district's translations 
@@ -77,10 +77,10 @@ function UserForm({ formType }: { formType: string }) {
           // appending tiket type according to path to search the opposite ticket type in database
           formData.append('ticketType', `${pathname === '/lost-document' ? 'Lost' : 'Found'}`);
 
-          console.log(data)
-          for (let pair of formData.entries()) {
-               console.log(pair[0] + ': ' + pair[1]);
-          }
+          // console.log(data)
+          // for (let pair of formData.entries()) {
+          //      console.log(pair[0] + ': ' + pair[1]);
+          // }
 
           try {
                const responseObj = await fetch('http://localhost:8000/api/post/tickets/', {
@@ -135,15 +135,34 @@ function UserForm({ formType }: { formType: string }) {
      }, [i18n.language, documentType])
      // documentType dependency was added later for the same reason explained above
 
-     // on documentType change, unregister all the dynamic fileds
+     // on documentType change, unregister all the dynamic input fields
      // useEffect(() => {
      //      if (documentType !== undefined) {
-     //           const inputsToUnregister = ['documentIssuedPlace', 'vehicleCategoryForLicense', 'vehicleClassificationForBluebook', 'vehicleLotNumber', 'vehicleNumber', 'documentNumber', 'documentIssuedDate', 'documentExpiryDate']
-     //           inputsToUnregister.forEach((inputFieldName) => {
-     //                unregister(inputFieldName)
-     //           })
+     //           unregister(['documentIssuedPlace', 'vehicleCategoryForLicense', 'vehicleClassificationForBluebook', 'vehicleLotNumber', 'vehicleNumber', 'documentNumber', 'documentIssuedDate', 'documentExpiryDate'])
      //      }
      // }, [documentType])
+
+     // store previous value of documentType
+     const prevDocumentType = useRef(documentType);
+
+     useEffect(() => {
+          // somehow even though the documentType was not changed the if condition was still running resulting in infinite loop, 
+          // so no the if condition will only run if the documentType is different
+          if (documentType !== prevDocumentType.current) {
+               // keep other input fields value intact
+               const values = getValues()
+               reset({
+                    ...values,
+                    documentIssuedPlace: undefined,
+                    documentNumber: undefined,
+                    documentIssuedDate: undefined,
+                    documentExpiryDate: undefined,
+                    imageFile: undefined
+               })
+               prevDocumentType.current = documentType
+          }
+
+     }, [documentType])
 
      return (
           response
@@ -155,7 +174,6 @@ function UserForm({ formType }: { formType: string }) {
                     onSubmit={handleSubmit(onSubmit)}
                     onKeyDown={(e) => handleEnterKeyPress(e)}
                >
-
                     <h1 className={`${isLight ? 'title-light' : 'title-dark'}`}>
                          {general_T('document')}
                          <span className='mx-[8px] underline underline-offset-4'>
