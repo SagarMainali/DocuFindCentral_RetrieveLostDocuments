@@ -148,7 +148,7 @@ function UserForm({ formType }: { formType: string }) {
      useEffect(() => {
           // somehow even though the documentType was not changed the if condition was still running resulting in infinite loop, 
           // so no the if condition will only run if the documentType is different
-          if (documentType !== prevDocumentType.current) {
+          if (documentType && documentType !== prevDocumentType.current) {
                // keep other input fields value intact
                const values = getValues()
                reset({
@@ -161,7 +161,7 @@ function UserForm({ formType }: { formType: string }) {
                })
                prevDocumentType.current = documentType
           }
-
+          
      }, [documentType])
 
      return (
