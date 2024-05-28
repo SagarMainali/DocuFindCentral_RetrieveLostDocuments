@@ -1,4 +1,5 @@
 import { Control, Controller } from 'react-hook-form'
+import { useRef } from 'react'
 
 import { FormDataType } from '../../types/globalTypes'
 import { getDateOfToday, formatDate } from '../../utils/handleDates'
@@ -13,6 +14,14 @@ type PropsType = {
 }
 
 export default function ControlledDatePicker({ control, inputName, placeholder, requiredErrorMsg, isLight, disabled }: PropsType) {
+
+     const dateInput = useRef<HTMLInputElement>(null)
+
+     const handleClick = () => {
+          if (dateInput.current) {
+               dateInput.current.showPicker();
+          }
+     }
 
      return (
           <Controller
@@ -30,7 +39,7 @@ export default function ControlledDatePicker({ control, inputName, placeholder, 
                     // }
 
                     return (
-                         <div>
+                         <div onClick={handleClick}>
                               <div className={`input flex items-center justify-between
                               ${isLight ? 'input-lightmode' : 'input-darkmode'} 
                               ${disabled && isLight
@@ -53,7 +62,7 @@ export default function ControlledDatePicker({ control, inputName, placeholder, 
                                              <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
                                              <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
                                         </svg>
-                                        <input type="date"
+                                        <input type="date" ref={dateInput}
                                              name={inputName}
                                              onChange={(event) => onChange(formatDate(event.target.value))}
                                              max={inputName === 'documentIssuedDate' ? getDateOfToday() : ''}
