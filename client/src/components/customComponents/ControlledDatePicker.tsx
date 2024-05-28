@@ -23,10 +23,11 @@ export default function ControlledDatePicker({ control, inputName, placeholder, 
                }}
                render={({ field: { onChange, value }, fieldState: { error } }) => {
 
+                    // gets reset from the main component i.e UserForm
                     // reset the date when the documentType changes
-                    if (inputName === 'documentExpiryDate' && disabled && value !== undefined) {
-                         onChange(undefined)
-                    }
+                    // if (inputName === 'documentExpiryDate' && disabled && value !== undefined) {
+                    //      onChange(undefined)
+                    // }
 
                     return (
                          <div>
