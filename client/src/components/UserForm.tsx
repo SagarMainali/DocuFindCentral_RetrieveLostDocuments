@@ -161,7 +161,7 @@ function UserForm({ formType }: { formType: string }) {
                })
                prevDocumentType.current = documentType
           }
-          
+
      }, [documentType])
 
      return (
