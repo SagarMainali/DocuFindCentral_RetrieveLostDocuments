@@ -37,10 +37,10 @@ function replacementsObjectCreation(matchedTickets) {
 
     // return the filterd object without values of undefined/null type
     const newObj = Object.fromEntries(Object.entries(replacements).filter(([key, value]) => {
-        return value !== undefined || value !== null
+        return value !== undefined && value !== null
     }))
 
-    console.log(newObj)
+    console.log('\nReplacements object for handlebars email template below:\n', newObj)
     return newObj
 }
 
