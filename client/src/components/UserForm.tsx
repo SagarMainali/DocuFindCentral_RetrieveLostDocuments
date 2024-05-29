@@ -132,7 +132,7 @@ function UserForm({ formType }: { formType: string }) {
           if (Object.keys(errors).length > 0) {
                trigger();
           }
-     }, [i18n.language, documentType])
+     }, [i18n.language, documentType, errors, trigger])
      // documentType dependency was added later for the same reason explained above
 
      // on documentType change, unregister all the dynamic input fields
@@ -162,7 +162,7 @@ function UserForm({ formType }: { formType: string }) {
                prevDocumentType.current = documentType
           }
 
-     }, [documentType])
+     }, [documentType, getValues, reset])
 
      return (
           response
