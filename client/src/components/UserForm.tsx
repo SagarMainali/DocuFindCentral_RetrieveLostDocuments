@@ -23,7 +23,7 @@ import '../styles/userForm.css'
 
 function UserForm({ formType }: { formType: string }) {
 
-     const { t: general_T } = useTranslation('user_form_ns')
+     const { t: general_T } = useTranslation('user_form_general_ns')
      const { t: document_T } = useTranslation('user_form_documents_ns')
 
      const { i18n } = useTranslation()
@@ -148,6 +148,8 @@ function UserForm({ formType }: { formType: string }) {
      useEffect(() => {
           // somehow even though the documentType was not changed the if condition was still running resulting in infinite loop, 
           // so no the if condition will only run if the documentType is different
+          // console.log('Current documentType:', documentType);
+          // console.log('Previous documentType:', prevDocumentType.current);
           if (documentType && documentType !== prevDocumentType.current) {
                // keep other input fields value intact
                const values = getValues()
@@ -162,7 +164,7 @@ function UserForm({ formType }: { formType: string }) {
                prevDocumentType.current = documentType
           }
 
-     }, [documentType, getValues, reset])
+     }, [documentType])
 
      return (
           response
